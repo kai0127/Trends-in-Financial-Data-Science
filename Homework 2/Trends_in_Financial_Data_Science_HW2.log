@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  21 OCT 2023 02:36
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  21 OCT 2023 16:56
  restricted system commands enabled.
  file:line:error style messages enabled.
 **"/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex"
@@ -1181,46 +1181,51 @@ LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 6.23999pt on input line 249.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 4.68pt on input line 249.
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 6.23999pt on input line 251.
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 4.68pt on input line 251.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 268.
+(Font)              No change on input line 289.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 6.23999pt on input line 292.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 4.68pt on input line 292.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 326.
+(Font)              No change on input line 308.
+LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
+(Font)              No change on input line 331.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 330.
+(Font)              scaled to size 7.79999pt on input line 335.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 330.
+(Font)              scaled to size 7.79999pt on input line 335.
  [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-]
+] [2]
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 368.
+(Font)              No change on input line 582.
+ [3]
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 409.
+(Font)              No change on input line 624.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 444.
- [2] [3] (./Trends_in_Financial_Data_Science_HW2.aux)
+(Font)              No change on input line 665.
+LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
+(Font)              No change on input line 700.
+ [4] [5] (./Trends_in_Financial_Data_Science_HW2.aux)
 Package rerunfilecheck Info: File `Trends_in_Financial_Data_Science_HW2.out' has not changed.
 (rerunfilecheck)             Checksum: EFE765711C3036A3C2841CAE5159AE6A;1836.
 )
 
 Here is how much of LuaTeX's memory you used:
- 32839 strings out of 478285
- 305804,1977958 words of node,token memory allocated
- 1355 words of node memory still in use:
-   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 323 attribute, 60 glue_spec, 41 attribute_list, 2 write, 13 user_defined nodes
-   avail lists: 1:31,2:79993,3:537,4:667,5:1751,6:109,7:13070,8:83,9:1091,10:10,11:784
- 51653 multiletter control sequences out of 65536+600000
+ 32854 strings out of 478285
+ 305802,1977958 words of node,token memory allocated
+ 2027 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 631 attribute, 60 glue_spec, 69 attribute_list, 2 write, 13 user_defined nodes
+   avail lists: 1:22,2:88899,3:476,4:621,5:1580,6:97,7:13162,8:82,9:1191,10:12,11:784
+ 51658 multiletter control sequences out of 65536+600000
  91 fonts using 190436359 bytes
  106i,13n,115p,1850b,765s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/linda/Library/Fonts/Vollkorn-BoldItalic.otf></Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Trends_in_Financial_Data_Science_HW2.pdf (3 pages, 192354 bytes).
+</Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-BoldItalic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Trends_in_Financial_Data_Science_HW2.pdf (5 pages, 224029 bytes).
 
-PDF statistics: 179 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 131072)
+PDF statistics: 200 PDF objects out of 1000 (max. 8388607)
+ 164 compressed objects within 2 object streams
+ 51 named destinations out of 1000 (max. 131072)
  56 words of extra memory for PDF output out of 10000 (max. 100000000)
 

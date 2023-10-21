@@ -244,30 +244,93 @@ WordSpace=1.7,
 
 \tableofcontents
 
-\section*{Useful Lemma}
+\section*{Useful Theorem and Lemma}
+\begin{theorem}
+  \textbf{(Binomial Inverse Theorem - Woodbury Matrix Identity)} \label{theorem: Woodbury}If $\mathbf{A}$, $\mathbf{U}$,
+  $\mathbf{B}$, $\mathbf{V}$ are matrices of sizes $n \times n, n \times k, k \times k, k \times n$,
+  respectively, then
+  \begin{enumerate}[label = (\alph*)]
+    \item If $\mathbf{A}$ and $\mathbf{B}+\mathbf{B V A}^{-1}
+            \mathbf{U B}$ are nonsingular:
+          $$
+            (\mathbf{A}+\mathbf{U B V})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U B}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)^{-1} \mathbf{B V A}^{-1}
+          $$
+    \item And (a) can be simplified to
+          $$
+            (\mathbf{A}+\mathbf{U B V})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U}\left(\mathbf{B}^{-1}+\mathbf{V A}^{-1} \mathbf{U}\right)^{-1} \mathbf{V A}^{-1} .
+          $$
+  \end{enumerate}
+\end{theorem}
+\begin{solution}
+  \begin{enumerate}[label = (\alph*)]
+    \item Prove by verification.
+          First notice that
+          $$
+            (\mathbf{A}+\mathbf{U B V}) \mathbf{A}^{-1} \mathbf{U B}=\mathbf{U B}+\mathbf{U B V A}^{-1} \mathbf{U B}=\mathbf{U}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right) .
+          $$
+
+          Now multiply the matrix we wish to invert by its alleged inverse
+          $$
+            \begin{aligned}
+               & (\mathbf{A}+\mathbf{U B V})\left(\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U B}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)^{-1} \mathbf{B V A}^{-1}\right)                   \\
+               & =\mathbf{I}_n+\mathbf{U B V A}^{-1}-\mathbf{U}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)^{-1} \mathbf{B V A}^{-1} \\
+               & =\mathbf{I}_n+\mathbf{U B V A}^{-1}-\mathbf{U B V A}^{-1}                                                                                                                               \\
+               & =\mathbf{I}_n
+            \end{aligned}
+          $$
+          which verifies that it is the inverse.
+    \item Since $\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}=\mathbf{B}\left(\mathbf{I}+\mathbf{V A}^{-1} \mathbf{U B}\right)$ is nonsingular, we must have $\mathbf{B}$ is invertible. Then the two $B$ terms flanking the quantity inverse in the right-hand side can be replaced with $\left(\mathbf{B}^{-1}\right)^{-1}$, which simplifies (a) to
+          $$
+            (\mathbf{A}+\mathbf{U B V})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U}\left(\mathbf{B}^{-1}+\mathbf{V A}^{-1} \mathbf{U}\right)^{-1} \mathbf{V A}^{-1}
+          $$
+  \end{enumerate}
+\end{solution}
+
 \begin{lemma}\label{lemma: gaussian}
   If a multivariate normal random variable $\boldsymbol{\theta}$ has density $p(\boldsymbol{\theta})$ and
-$$
--2 \log p(\boldsymbol{\theta})=\boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{\eta}^\top \boldsymbol{\theta}+(\text { terms without } \boldsymbol{\theta})
-$$
-then $\mathbb{V}[\boldsymbol{\theta}]=\boldsymbol{H}^{-1}$ and $\mathbb{E} [\boldsymbol{\theta}] =\boldsymbol{H}^{-1} \boldsymbol{\eta}$.
+  $$
+    -2 \log p(\boldsymbol{\theta})=\boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{\eta}^\top \boldsymbol{\theta}+(\text{terms without } \boldsymbol{\theta})
+  $$
+  then $\mathbb{V}[\boldsymbol{\theta}]=\boldsymbol{H}^{-1}$ and $\mathbb{E} [\boldsymbol{\theta}] =\boldsymbol{H}^{-1} \boldsymbol{\eta}$.
 \end{lemma}
 \begin{solution}
   For $\boldsymbol{H}$ symmetric, we have
   $$
-  \boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{v}^\top \boldsymbol{H} \boldsymbol{\theta}=(\boldsymbol{\theta}-\boldsymbol{v})^\top \boldsymbol{H}(\boldsymbol{\theta}-\boldsymbol{v})-\boldsymbol{v}^\top \boldsymbol{H} \boldsymbol{v}
+    \boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{v}^\top \boldsymbol{H} \boldsymbol{\theta}=(\boldsymbol{\theta}-\boldsymbol{v})^\top \boldsymbol{H}(\boldsymbol{\theta}-\boldsymbol{v})-\boldsymbol{v}^\top \boldsymbol{H} \boldsymbol{v}
   $$
   Set $\boldsymbol{v}= \boldsymbol{H}^{-1} \boldsymbol{\eta}$ in the above equation, we obtain
   $$
-  -2 \log p(\boldsymbol{\theta})=\boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{\eta}^\top \boldsymbol{\theta}+(\text { terms without } \boldsymbol{\theta}) = (\boldsymbol{\theta}-\boldsymbol{H}^{-1} \boldsymbol{\eta})^\top \boldsymbol{H}(\boldsymbol{\theta}-\boldsymbol{H}^{-1} \boldsymbol{\eta}) + (\text { terms without } \boldsymbol{\theta})
+    -2 \log p(\boldsymbol{\theta})=\boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{\eta}^\top \boldsymbol{\theta}+(\text{terms without } \boldsymbol{\theta}) = (\boldsymbol{\theta}-\boldsymbol{H}^{-1} \boldsymbol{\eta})^\top \boldsymbol{H}(\boldsymbol{\theta}-\boldsymbol{H}^{-1} \boldsymbol{\eta}) + (\text { terms without } \boldsymbol{\theta})
   $$
   Therefore, we must have $\mathbb{V}[\boldsymbol{\theta}]=\boldsymbol{H}^{-1}$ and $\mathbb{E} [\boldsymbol{\theta}] =\boldsymbol{H}^{-1} \boldsymbol{\eta}$.
 \end{solution}
 
+\begin{definition}\textbf{(Prior Predictive Distribution)}
+  The prior predictive distribution is for predicting distribution for $\boldsymbol{x}$ BEFORE any sample of $\boldsymbol{x}$ has been
+  gathered/observed. The only information we have at this stage is our belief about the
+  prior, $\pi(\boldsymbol{\theta})$, and sampling distribution i.e. $p\left(\boldsymbol{x}
+    \mid \boldsymbol{\theta}\right)$. Then, the prior predictive distribution is given by
+  $$
+    p(\boldsymbol{x}) =\int_{\Theta} p(\boldsymbol{x}, \boldsymbol{\theta}) d \boldsymbol{\theta} =\int_{\Theta} p(\boldsymbol{x} \mid \boldsymbol{\theta}) \pi(\boldsymbol{\theta}) d \boldsymbol{\theta}
+  $$
+
+  After the sample has been gathered, we obtain new information, i.e., the
+  likelihood. Then, we can derive the posterior distribution
+  $\boldsymbol{\theta} | \boldsymbol{x}_{\text{observed}}$ and use that to predict
+  new values/distribution for $\boldsymbol{x}$ which is given by the posterior predictive
+  distribution:
+  $$
+    p(\boldsymbol{x}_{\text{ new }} | \boldsymbol{x}_{\text{ observed}})
+    =\int_{\Theta} p(\boldsymbol{x}, \boldsymbol{\theta} \mid \boldsymbol{x}_{\text{ observed}}) d \boldsymbol{\theta}
+    =\int_{\Theta} p(\boldsymbol{x} \mid \boldsymbol{\theta}, \boldsymbol{x}_{\text{ observed}}) p(\boldsymbol{\theta} \mid \boldsymbol{x}_{\text{ observed}}) d \boldsymbol{\theta}
+  $$
+\end{definition}
+
+
 \section{Topic: Black-Litterman-Bayes}
 \begin{problem}
-This question refers to the article "On The Bayesian Interpretation Of
-Black-Litterman" (Kolm and Ritter, EJOR 2017).
+This question refers to the article ``On The Bayesian Interpretation Of
+Black-Litterman'' (Kolm and Ritter, EJOR 2017).
 \begin{enumerate}[label=(\alph*)]
   \item Derive formulas (10)-(11) using the properties of the multivariate
         normal distribution in the slides "Bayesian Modeling: Introduction".
@@ -276,47 +339,240 @@ Black-Litterman" (Kolm and Ritter, EJOR 2017).
 \end{enumerate}
 \end{problem}
 \begin{solution}
-  Suppose we have $\boldsymbol{r} \sim N(\boldsymbol{\theta}, \boldsymbol{\Sigma})$, 
+  Suppose we have $\boldsymbol{r} \sim N(\boldsymbol{\theta}, \boldsymbol{\Sigma})$,
   and since Black and Litterman were motivated by
   the guiding principle that, in the absence of any sort of information/views
   which could constitute alpha over the benchmark, the optimization procedure
   should simply return the global CAPM equilibrium portfolio, with holdings
   denoted $\boldsymbol{h}_{e q}$. Hence in the absence of any views, and with
   prior mean equal to $\Pi$, the investor's model of the world is that
-\begin{align}
-  \boldsymbol{r} \sim \mathcal{N}(\boldsymbol{\theta}, \boldsymbol{\Sigma}) \  \text { and } \  \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\Pi}, \boldsymbol{C}) \quad \text{ where } \boldsymbol{r}, \boldsymbol{\theta},\boldsymbol{\Pi} \in \mathbb{R}^n, \boldsymbol{\Sigma}, \boldsymbol{C}\in \mathbb{R}^{n\times n}\label{eq:BLB returns}
-\end{align}
-A key aspect of the model is that the practitioner must also specify a level of
-uncertainty or ``error bar'' for each view, which is assumed to be an independent
-source of noise from the volatility already accounted for in a model such as
-$\boldsymbol{\Sigma}$. This is expressed as the following:
-\begin{align}
-  \boldsymbol{P} \boldsymbol{\theta}=\boldsymbol{q}+\boldsymbol{\epsilon}^{(v)}, \quad \boldsymbol{\epsilon}^{(v)} \sim \mathcal{N}(0, \boldsymbol{\Omega}), \quad \boldsymbol{\Omega}=\operatorname{diag}\left(\omega_1, \ldots, \omega_k\right) \label{eq:BLB views}
-\end{align}
-where $\boldsymbol{P} \in \mathbb{R}^{k\times n}$, $\boldsymbol{\Omega} \in \mathbb{R}^{k\times k}$ and $\boldsymbol{q},\boldsymbol{\epsilon}^{(v)} \in \mathbb{R}^k$
+  \begin{align}
+    \boldsymbol{r} \sim \mathcal{N}(\boldsymbol{\theta}, \boldsymbol{\Sigma}) \  \text { and } \  \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\Pi}, \boldsymbol{C}) \quad \text{ where } \boldsymbol{r}, \boldsymbol{\theta},\boldsymbol{\Pi} \in \mathbb{R}^n, \boldsymbol{\Sigma}, \boldsymbol{C}\in \mathbb{R}^{n\times n}\label{eq:BLB returns}
+  \end{align}
+  A key aspect of the model is that the practitioner must also specify a level of
+  uncertainty or ``error bar'' for each view, which is assumed to be an independent
+  source of noise from the volatility already accounted for in a model such as
+  $\boldsymbol{\Sigma}$. This is expressed as the following:
+  \begin{align}
+    \boldsymbol{P} \boldsymbol{\theta}=\boldsymbol{q}+\boldsymbol{\epsilon}, \quad \boldsymbol{\epsilon} \sim \mathcal{N}(0, \boldsymbol{\Omega}), \quad \boldsymbol{\Omega}=\operatorname{diag}\left(\omega_1, \ldots, \omega_k\right), \omega_i > 0 \label{eq:BLB views}
+  \end{align}
+  where $\boldsymbol{P} \in \mathbb{R}^{k\times n}$, $\boldsymbol{\Omega} \in \mathbb{R}^{k\times k}$ and $\boldsymbol{q},\boldsymbol{\epsilon} \in \mathbb{R}^k$
 
   \begin{enumerate}[label=(\alph*)]
     \item In this question, we derive the mean $\boldsymbol{\nu}$ and covariance
-    matrix $\boldsymbol{H}$ for the posterior.
-    
-    Since the posterior is proportional to the product of the likelihood and the
-    prior, to simplify our computation, we neglect the constant coefficients of related probability density functions in
-    our derivation.
+          matrix $\boldsymbol{H}$ for the posterior.
 
-    From \cref{eq:BLB views} and \cref{eq:BLB returns}, we have the likelihood function and the prior to be 
+          Since the posterior is proportional to the product of the likelihood and the
+          prior, to simplify our computation, we neglect the constant coefficients of related probability density functions in
+          our derivation.
+
+          From \cref{eq:BLB views} and \cref{eq:BLB returns}, we have the likelihood function and the prior to be
+          $$
+            f(\boldsymbol{q} \mid \boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})^\top \boldsymbol{\Omega}^{-1}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})\right], \quad \pi(\boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{\theta} -\boldsymbol{\Pi})^\top \boldsymbol{\Sigma}^{-1}(\boldsymbol{\theta} -\boldsymbol{\Pi})\right]
+          $$
+          Leveraging the Bayes's formula, we have $f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto f(\boldsymbol{q} \mid \boldsymbol{\theta}) \pi(\boldsymbol{\theta})$. It follows that (neglecting terms that do not contain $\boldsymbol{\theta}$)
+          $$
+            -2\log f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto (\boldsymbol{P} \boldsymbol{\theta} -\boldsymbol{q})^\top \boldsymbol{\Omega}^{-1}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})+(\boldsymbol{\theta}-\boldsymbol{\Pi})^\top \mathbf{C}^{-1}(\boldsymbol{\theta}-\boldsymbol{\Pi}) \xlongequal[\text{ drop terms without $\boldsymbol{\theta}$}]{\text{ completing the squares }}\boldsymbol{\theta}^\top\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \mathbf{P}+\boldsymbol{C}^{-1}\right] \boldsymbol{\theta}-2\left(\boldsymbol{q}^\top \boldsymbol{\Omega}^{-1} \mathbf{P}+\boldsymbol{\Pi}^\top \mathbf{C}^{-1}\right) \boldsymbol{\theta}
+          $$
+          By \cref{lemma: gaussian}, we obtain
+          $$
+            \boldsymbol{\theta}\mid \boldsymbol{q} \sim \mathcal{N}\left(\boldsymbol{\nu}, \boldsymbol{H}^{-1}\right), \quad \boldsymbol{\nu}=\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{P}+\boldsymbol{C}^{-1}\right]^{-1}\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{q}+\boldsymbol{C}^{-1} \boldsymbol{\Pi}\right] \text{ and } \boldsymbol{H}^{-1}=\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{P}+\boldsymbol{C}^{-1}\right]^{-1}
+          $$
+          as desired.
+
+  \end{enumerate}
+  \vspace*{1em}
+  \hrule
+
+  \textbf{APT Model:}
+
+  Leveraging the powerful APT model (Roll \& Ross, 1980; Ross, 1976), the parameter vector $\boldsymbol{\theta}$ could be generalized to
+  represent the means of unobservable latent factors in the APT
+  model, which assumes a linear functional form:
+  \begin{align}
+    \boldsymbol{r}=\boldsymbol{X} \boldsymbol{f}+\boldsymbol{\epsilon},
+    \quad \boldsymbol{\epsilon}\sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{D}\right) \text{ and } \boldsymbol{D}=\operatorname{diag}\left(\sigma_1^2, \ldots, \sigma_n^2\right), \sigma_i^2>0,  \forall i
+    \label{eq: APT model}
+  \end{align}
+  where $\boldsymbol{r}$ is an $n$-dimensional random vector containing the
+  cross-section of returns in excess of the risk-free rate over some time interval
+  $[t, t+1]$, and $\boldsymbol{X}$ is a (non-random) $n \times k$ matrix that is
+  known before time $t$. The variable $\boldsymbol{f}$ in \cref{eq: APT model} denotes a
+  $k$-dimensional latent random vector process, and
+  information about the $\boldsymbol{f}$-process must be obtained via statistical
+  inference. Specifically, we assume that the $\boldsymbol{f}$-process has finite
+  first and second moments given by
+  $$
+    \mathbb{E}[\boldsymbol{f}]=\boldsymbol{\mu}_f \text { and } \mathbb{V}[\boldsymbol{f}]=\boldsymbol{F}
+  $$
+  In the Black-Litterman-Bayes model, we choose
+  $$
+    \boldsymbol{\theta} = \boldsymbol{\mu}_f,\quad
+    \boldsymbol{f}\mid\boldsymbol{\theta} \sim \mathcal{N}\left(\boldsymbol{\theta}, \boldsymbol{F}\right)
+  $$
+  \textbf{Likelihood Function (Views):}
+
+  For our understanding, let's assume we are considering two
+  latent factors: value and momentum. Typically, a quantitative portfolio manager might have
+  views on individual factors: (1) a view on the value premium, and (2) another
+  view on the momentum premium. It would be atypical for portfolio managers to
+  have views on a combination (e.g. linear) of factors. Hence to keep things simple but
+  still useful, we take the views equation to be:
+  $$
+    \boldsymbol{\theta}=\boldsymbol{q}+\boldsymbol{\varepsilon}, \quad \boldsymbol{\varepsilon} \sim \mathcal{N}(\mathbf{0}, \boldsymbol{\Omega}), \quad \boldsymbol{\Omega}=\operatorname{diag}\left(\omega_1^2, \ldots, \omega_k^2\right)
+  $$
+  then, $\boldsymbol{q} \mid \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\theta},
+    \boldsymbol{\Omega})$ and the corresponding likelihood function is therefore
+  $$
+    f(\boldsymbol{q} \mid \boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{\theta}-\boldsymbol{q})^{\top} \boldsymbol{\Omega}^{-1}(\boldsymbol{\theta}-\boldsymbol{q})\right]=\prod_{i=1}^k \exp \left[-\frac{1}{2 \omega_i^2}\left(\theta_i-q_i\right)^2\right]
+  $$
+
+  \textbf{Prior:}
+
+  What prior for $\boldsymbol{\theta}$ should we choose?
+  First, let's set the prior $\pi(\boldsymbol{\theta})$ to be
+  $$
+    \pi(\boldsymbol{\theta}) \sim \mathcal{N}(\boldsymbol{\xi}, \boldsymbol{V})
+  $$
+  where $\boldsymbol{\xi} \in \mathbb{R}^k$ and $\boldsymbol{V} \in S_{++}^k$, the
+  set of symmetric positive definite $k \times k$ matrices.
+
+  Choosing a prior then amounts to choosing $\boldsymbol{\xi}$ and $\boldsymbol{V}$, and once
+  a prior is chosen, we instantly obtain the prior predictive distribution $p(\boldsymbol{r})$ for $\boldsymbol{r}$ using the APT model and
+  an associated prior (benchmark) portfolio with holdings $\boldsymbol{h}_B$
+  where $\boldsymbol{h}_B$ maximizes expected utility of wealth, where the expectation
+  is taken with respect to the a priori distribution on asset returns
+  $$
+    p(\boldsymbol{r})=\int p(\boldsymbol{r} \mid \boldsymbol{\theta}) \pi(\boldsymbol{\theta}) d \boldsymbol{\theta},
+    \quad \boldsymbol{h}_B = \arg \max_{\boldsymbol{h}} \EE\left[u\left(\boldsymbol{h}^\top\boldsymbol{r}\right)\right]
+    = \arg \max_{\boldsymbol{h}} \int u\left(\boldsymbol{h}^\top \boldsymbol{r}\right) p(\boldsymbol{r}) d \boldsymbol{r}
+  $$
+  Let's see what our prior (benchmark) portfolio will look like.
+
+  Since $\boldsymbol{r}=\boldsymbol{X} \boldsymbol{f}+\boldsymbol{\epsilon},
+    \boldsymbol{\epsilon}\sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{D}\right)$ and $\boldsymbol{f}\mid\boldsymbol{\theta} \sim \mathcal{N}\left(\boldsymbol{\theta}, \boldsymbol{F}\right)$,
+  we can equivalently rewrite it as $\boldsymbol{f} = \boldsymbol{\theta} + \boldsymbol{w}$
+  where $\boldsymbol{w} \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{F}\right)$, and $\boldsymbol{w}$ is independent of $\boldsymbol{\theta}$.
+  Then, by properties of multivariate normal distribution, we have
+  $$
+    \boldsymbol{r}=\boldsymbol{X} \boldsymbol{f}+\boldsymbol{\epsilon} =
+    \boldsymbol{X} \boldsymbol{\theta}+\boldsymbol{X} \boldsymbol{w}+\boldsymbol{\epsilon}\quad
+    \Longrightarrow \quad \boldsymbol{r}_{\pi} \sim \mathcal{N}\left(\boldsymbol{X}\boldsymbol{\xi}, \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)
+  $$
+  The a priori optimal portfolio under CARA utility, $u(x) = -e^{-\lambda x}$, $\lambda \ne 0$, is then
+  $$
+    \boldsymbol{h}_B:=\boldsymbol{h}^*
+    =\left(\lambda \mathbb{V}_\pi[\boldsymbol{r}]\right)^{-1} \mathbb{E}_\pi[\boldsymbol{r}]
+    =\lambda^{-1} \left(\boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)^{-1} \boldsymbol{X}\boldsymbol{\xi}
+  $$
+
+  \begin{remark}
+    In the original paper, the author derived the prior predictive mean and variance as
     $$
-f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})^\top \boldsymbol{\Omega}^{-1}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})\right], f(\boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{\theta} -\boldsymbol{\Pi})^\top \boldsymbol{\Sigma}^{-1}(\boldsymbol{\theta} -\boldsymbol{\Pi})\right]
-$$
-Leveraging the Bayes's formula, we have $f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto f(\boldsymbol{q} \mid \boldsymbol{\theta})f(\boldsymbol{\theta})$. It follows that
-$$
--2\log f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto (\boldsymbol{P} \boldsymbol{\theta} -\boldsymbol{q})^\top \boldsymbol{\Omega}^{-1}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})+(\boldsymbol{\theta}-\boldsymbol{\Pi})^\top \mathbf{C}^{-1}(\boldsymbol{\theta}-\boldsymbol{\Pi}) \xlongequal[\text{ drop terms without $\boldsymbol{\theta}$}]{\text{ completing the squares }}\boldsymbol{\theta}^\top\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \mathbf{P}+\boldsymbol{C}^{-1}\right] \boldsymbol{\theta}-2\left(\boldsymbol{q}^\top \boldsymbol{\Omega}^{-1} \mathbf{P}+\boldsymbol{\Pi}^\top \mathbf{C}^{-1}\right) \boldsymbol{\theta}
-$$
-By \cref{lemma: gaussian}, we obtain
-$$
-\boldsymbol{\theta}\mid \boldsymbol{q} \sim \mathcal{N}\left(\boldsymbol{\nu}, \boldsymbol{H}^{-1}\right), \quad \boldsymbol{\nu}=\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{P}+\boldsymbol{C}^{-1}\right]^{-1}\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{q}+\boldsymbol{C}^{-1} \boldsymbol{\Pi}\right] \text{ and } \boldsymbol{H}^{-1}=\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{P}+\boldsymbol{C}^{-1}\right]^{-1}
-$$
-    \item \textbf{(Extra credit)} Derive formulas (22)-(26) using the same
-          properties.
+      \mathbb{E}_\pi[\boldsymbol{r}]
+      =\left(\boldsymbol{\Sigma}^{-1}+\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1} \boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi}
+      \text{ and }
+      \mathbb{V}_\pi[\boldsymbol{r}]=\left(\boldsymbol{\Sigma}^{-1}+\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}
+    $$
+    where $\boldsymbol{H}:=\boldsymbol{V}^{-1}+\boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1} \boldsymbol{X}$ and $\boldsymbol{\Sigma}:=\boldsymbol{D}+\boldsymbol{X F} \boldsymbol{X}^\top$.
+
+    We first note that due to his careless mistake, these results are wrong! The correct results are:
+    $$
+      \mathbb{E}_\pi[\boldsymbol{r}]
+      =\left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1} \boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi}
+      \quad \text{ and } \quad
+      \mathbb{V}_\pi[\boldsymbol{r}]=\left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}
+    $$
+    Then, substitute $\mathbf{A} = \boldsymbol{\Sigma}$, $\mathbf{U} = \mathbf{X}$, $\mathbf{V} = \mathbf{X}^\top$ and $\mathbf{B} = \mathbf{V}$ in the Woodbury identity (\cref{theorem: Woodbury}), we have
+    $$
+      \mathbb{V}_\pi[\boldsymbol{r}] = \left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}
+      =\boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{\Sigma} = \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}
+    $$
+    It follows that
+    $$
+      \left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}\boldsymbol{\Sigma}^{-1} \boldsymbol{X}
+      =\left(\boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{\Sigma}\right)\boldsymbol{\Sigma}^{-1} \boldsymbol{X}
+      = \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\boldsymbol{X} + \boldsymbol{X}
+      = \boldsymbol{X}\boldsymbol{V}\left(\boldsymbol{V}^{-1} + \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)
+      = \boldsymbol{X}\boldsymbol{V}\boldsymbol{H}
+    $$
+    The mean $\mathbb{E}_\pi[\boldsymbol{r}]$ then follows as
+    $$
+      \mathbb{E}_\pi[\boldsymbol{r}]
+      =\left(\boldsymbol{\Sigma}^{-1}+\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1} \boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi}
+      = \boldsymbol{X}\boldsymbol{V}\boldsymbol{H}\boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi} = \boldsymbol{X}\boldsymbol{\xi}
+    $$
+    Thus, we obtain
+    $$
+      \boldsymbol{r}_{\pi} \sim \mathcal{N}\left(\boldsymbol{X}\boldsymbol{\xi}, \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)
+    $$
+    which is consistent with our results.
+  \end{remark}
+  \begin{enumerate}[label=(\alph*), start=2]
+    \item In this question, we derive the posterior distribution for
+          $\boldsymbol{r}\mid \boldsymbol{q}$ and the mean-variance optimal
+          portfolio holdings.
+
+          \textbf{Step 1: Calculate the posterior for $\boldsymbol{\theta} \mid  \boldsymbol{q}$.}
+
+          Since $\pi(\boldsymbol{\theta})$ is normal and the likelihood
+          $f(\boldsymbol{q} \mid \boldsymbol{\theta})$ is also normal, the prior
+          is a conjugate prior with respect to the normal likelihood. Then, the
+          posterior distribution $p(\boldsymbol{\theta} \mid \boldsymbol{q})$ is
+          also normal. Using this relation and $p(\boldsymbol{\theta} \mid \boldsymbol{q}) \propto f(\boldsymbol{q} \mid \boldsymbol{\theta})\pi(\boldsymbol{\theta})$, we have (neglecting terms that do not contain $\boldsymbol{\theta}$)
+          $$
+            -2 \log p(\boldsymbol{\theta} \mid \boldsymbol{q})= (\boldsymbol{\theta}-\boldsymbol{q})^{\top} \boldsymbol{\Omega}^{-1}(\boldsymbol{\theta}-\boldsymbol{q})+(\boldsymbol{\theta}-\boldsymbol{\xi})^{\top} \mathbf{V}^{-1}(\boldsymbol{\theta}-\boldsymbol{\xi})
+            =  \boldsymbol{\theta}^{\top}\left(\boldsymbol{\Omega}^{-1}+\mathbf{V}^{-1}\right) \boldsymbol{\theta}-2\left(\boldsymbol{q}^{\top} \boldsymbol{\Omega}^{-1}+\boldsymbol{\xi}^{\top} \mathbf{V}^{-1}\right) \boldsymbol{\theta}
+            +(\text { terms without } \boldsymbol{\theta})
+          $$
+          Setting
+          $\mathbf{H}=\left(\boldsymbol{\Omega}^{-1}+\mathbf{V}^{-1}\right)$ and
+          $\boldsymbol{\eta}^{\top}=\left(\boldsymbol{q}^{\top}
+            \boldsymbol{\Omega}^{-1}+\boldsymbol{\xi}^{\top}
+            \mathbf{V}^{-1}\right)$ in \cref{lemma: gaussian}, we have
+          $$
+            \mathbb{V}[\boldsymbol{\theta} \mid \boldsymbol{q}]=\mathbf{H}^{-1}=\left( \boldsymbol{\Omega}^{-1}+ \boldsymbol{V}^{-1}\right)^{-1},
+            \quad \mathbb{E}[\boldsymbol{\theta} \mid  \boldsymbol{q}]=\mathbf{H}^{-1} \boldsymbol{\eta} =\mathbb{V}[\boldsymbol{\theta} \mid \boldsymbol{q}]\left(\boldsymbol{V}^{-1} \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} q\right)
+            =\left( \boldsymbol{V}^{-1}+ \boldsymbol{\Omega}^{-1}\right)^{-1}\left( \boldsymbol{V}^{-1}  \boldsymbol{\xi}+ \boldsymbol{\Omega}^{-1}  \boldsymbol{q}\right)
+          $$
+          Therefore, the posterior must satisfy
+          $$
+            \boldsymbol{\theta} \mid  \boldsymbol{q} \sim \mathcal{N}\left(\widetilde{\boldsymbol{\xi}}, \widetilde{ \boldsymbol{V}}\right)
+          $$
+          where
+          $\widetilde{\boldsymbol{V}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}$
+          and $\widetilde{\boldsymbol{\xi}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}\left(\boldsymbol{V}^{-1}
+            \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} \boldsymbol{q}\right)$.
+
+          \textbf{Step 2: Calculate the posterior for $\boldsymbol{r} \mid  \boldsymbol{q}$.}
+
+          The a posteriori distribution of asset returns $\boldsymbol{r}$ (also
+          called the posterior predictive density) is given by
+          $$
+            p(\boldsymbol{r} \mid \boldsymbol{q})=\int p(\boldsymbol{r} \mid \boldsymbol{\theta}) p(\boldsymbol{\theta} \mid \boldsymbol{q}) d \boldsymbol{\theta}
+          $$
+          For this one, we can view $p(\boldsymbol{\theta} \mid \boldsymbol{q})$
+          as the prior density for $\boldsymbol{\theta}$, then the situation
+          here is the same as in deriving the prior (benchmark) portfolio.
+          Hence, use the previous result and make the substitution
+          $\boldsymbol{\xi} \rightarrow \widetilde{\boldsymbol{\xi}}$ and
+          $\boldsymbol{V} \rightarrow \widetilde{\boldsymbol{V}}$, we obtain
+          $$
+            \boldsymbol{r} \mid \boldsymbol{q} \sim \mathcal{N}\left(\boldsymbol{X}\widetilde{\boldsymbol{\xi}}, \boldsymbol{X}\boldsymbol{\widetilde{V}}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)
+          $$
+
+          \textbf{Step 3: Calculate the mean-variance optimal portfolio.}
+
+          The posterior optimal portfolio under CARA utility is then
+          $$
+            \boldsymbol{h}^*
+            =\left(\lambda \mathbb{V}[\boldsymbol{r}\mid \boldsymbol{q}]\right)^{-1} \mathbb{E}[\boldsymbol{r}\mid \boldsymbol{q}]
+            =\lambda^{-1} \left(\boldsymbol{X}\boldsymbol{\widetilde{V}}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)^{-1} \boldsymbol{X}\boldsymbol{\widetilde{\xi}}
+          $$
+          where
+          $\widetilde{\boldsymbol{V}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}$
+          and $\widetilde{\boldsymbol{\xi}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}\left(\boldsymbol{V}^{-1}
+            \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} \boldsymbol{q}\right)$.
   \end{enumerate}
 \end{solution}
 

@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1697870183 "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" "Trends_in_Financial_Data_Science_HW2.pdf" "Trends_in_Financial_Data_Science_HW2" 1697870188 0
-  "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" 1697870183 21805 9fc003acefa0085f58c2785f7d1c0db5 ""
+["lualatex"] 1697921803 "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" "Trends_in_Financial_Data_Science_HW2.pdf" "Trends_in_Financial_Data_Science_HW2" 1697921808 0
+  "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" 1697921802 39813 2106e565780549fb57a75f67471db6d0 ""
   "/Users/linda/Library/Fonts/Vollkorn-Bold.otf" 1525855805 504600 83467cfa4400474b6d068d7d268da90e ""
   "/Users/linda/Library/Fonts/Vollkorn-BoldItalic.otf" 1525854575 420332 111db9d7a31febd45ac0bb50a2052414 ""
   "/Users/linda/Library/Fonts/Vollkorn-Italic.otf" 1525854575 411584 7b726e6369ee5630e2928aa5b34d2154 ""
@@ -329,10 +329,10 @@
   "/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty" 1653941231 14914 340890023fe5b05f4034feae149cab10 ""
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696053482 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1694803921 11876210 49080bdcf9fb115e6dd63b7a21cafe03 ""
-  "Trends_in_Financial_Data_Science_HW2.aux" 1697870187 1848 063f1acc830fa9a29bf8ae46a916425c "lualatex"
-  "Trends_in_Financial_Data_Science_HW2.out" 1697870187 1836 efe765711c3036a3c2841cae5159ae6a "lualatex"
-  "Trends_in_Financial_Data_Science_HW2.tex" 1697870183 21805 9fc003acefa0085f58c2785f7d1c0db5 ""
-  "Trends_in_Financial_Data_Science_HW2.toc" 1697870187 586 e9f0fae531d85377533248f303f7c012 "lualatex"
+  "Trends_in_Financial_Data_Science_HW2.aux" 1697921807 2111 72cd5ed58a1b7964ed6739ef36cbfdb1 "lualatex"
+  "Trends_in_Financial_Data_Science_HW2.out" 1697921807 1836 efe765711c3036a3c2841cae5159ae6a "lualatex"
+  "Trends_in_Financial_Data_Science_HW2.tex" 1697921802 39813 2106e565780549fb57a75f67471db6d0 ""
+  "Trends_in_Financial_Data_Science_HW2.toc" 1697921807 586 780f7d68c9b4166e7f7f9b4d9c9638a5 "lualatex"
   (generated)
   "Trends_in_Financial_Data_Science_HW2.aux"
   "Trends_in_Financial_Data_Science_HW2.log"
