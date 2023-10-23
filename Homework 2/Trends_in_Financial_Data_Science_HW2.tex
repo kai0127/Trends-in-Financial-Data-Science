@@ -330,10 +330,10 @@ WordSpace=1.7,
 \section{Topic: Black-Litterman-Bayes}
 \begin{problem}
 This question refers to the article ``On The Bayesian Interpretation Of
-Black-Litterman'' (Kolm and Ritter, EJOR 2017).
+Black-Litterman'' \cite{Kolm2017}.
 \begin{enumerate}[label=(\alph*)]
   \item Derive formulas (10)-(11) using the properties of the multivariate
-        normal distribution in the slides "Bayesian Modeling: Introduction".
+        normal distribution in the slides ``Bayesian Modeling: Introduction''.
   \item \textbf{(Extra credit)} Derive formulas (22)-(26) using the same
         properties.
 \end{enumerate}
@@ -587,20 +587,32 @@ for extra credit.
         $\mathbb{E}\left[\mathbf{w}_t \mathbf{v}_t^\top\right]=\mathbf{0}$. Now,
         derive the Kalman filter under the assumption that
         $\mathbb{E}\left[\mathbf{w}_t \mathbf{v}_t^\top\right]=\mathbf{M}_t$.
+
+        \begin{solution}
+          
+        \end{solution}
   \item Using the notation from class, let us denote the error between the true
         and estimated states by the random variable
-        $\tilde{\mathbf{x}}_t=\mathbf{x}_t-\hat{\mathbf{x}}_t$. We denote by
+        $\widetilde{\mathbf{x}}_t=\mathbf{x}_t-\hat{\mathbf{x}}_t$. We denote by
         $\mathbf{W}_t$ a known positive definite matrix. Show that the Kalman filter
         is the solution to the problem
         \begin{align}
-          \min _{\hat{\mathbf{x}}_t} \mathbb{E}\left[\tilde{\mathbf{x}}_t^\top \mathbf{W}_t \tilde{\mathbf{x}}_t\right]\label{eq: kalman}
+          \min _{\hat{\mathbf{x}}_t} \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]\label{eq: kalman}
         \end{align}
+
+        \begin{solution}
+          
+        \end{solution}
   \item Now let us assume that $\mathbf{w}_t$ and $\mathbf{v}_t$ have zero mean,
         are uncorrelated with covariance matrices $\mathbf{Q}_t$ and $\mathbf{R}_t$,
         respectively (but they are no longer Gaussian). Show that the Kalman filter is
         the best linear solution to \cref{eq: kalman}. In other words, the Kalman
         filter is the best filter that is a linear combination of the measurements,
         $\mathbf{y}_t$.
+
+        \begin{solution}
+          
+        \end{solution}
   \item In class we derived the Kalman filter under the assumption that
         $\mathbf{w}_t$ and $\mathbf{v}_t$ are uncolored (i.e. each is serially
         uncorrelated).
@@ -615,6 +627,10 @@ for extra credit.
         the state equations. Can you find a solution to (ii) where one does not
         have to augment the state? Is it possible to do so for (i) - why, or why
         not?
+
+        \begin{solution}
+          
+        \end{solution}
 \end{enumerate}
 
 \end{problem}
@@ -746,12 +762,16 @@ was chosen so that $\mathbf{V}_I$ has unimodular columns.
 
 
 
+\newpage 
+\begin{thebibliography}{1}
 
+  \bibitem{Kolm2017} 
+  Kolm, Petter N. and Ritter, Gordon, On the Bayesian Interpretation of
+  Black-Litterman (October 16, 2016). European Journal of Operational Research,
+  Volume 258, Issue 2, 16 April 2017, Pages 564-572, Available at SSRN:
+  https://ssrn.com/abstract=2853158
 
-
-
-
-
+\end{thebibliography}
 
 
 
