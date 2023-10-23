@@ -235,25 +235,519 @@ WordSpace=1.7,
 \begin{document}
 
 \begin{center}
-    \text{\Large{Black-Litterman-Bayes, Karlman Filter, ICA
-}}
+  \text{\Large{Black-Litterman-Bayes, Kalman Filter, ICA
+    }}
 
-    {\text{Kaiwen Zhou}}
+  {\text{Kaiwen Zhou}}
 \end{center}
 \vspace{2em}
 
 \tableofcontents
 
+\section*{Useful Theorem and Lemma}
+\begin{theorem}
+  \textbf{(Binomial Inverse Theorem - Woodbury Matrix Identity)} \label{theorem: Woodbury}If $\mathbf{A}$, $\mathbf{U}$,
+  $\mathbf{B}$, $\mathbf{V}$ are matrices of sizes $n \times n, n \times k, k \times k, k \times n$,
+  respectively, then
+  \begin{enumerate}[label = (\alph*)]
+    \item If $\mathbf{A}$ and $\mathbf{B}+\mathbf{B V A}^{-1}
+            \mathbf{U B}$ are nonsingular:
+          $$
+            (\mathbf{A}+\mathbf{U B V})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U B}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)^{-1} \mathbf{B V A}^{-1}
+          $$
+    \item And (a) can be simplified to
+          $$
+            (\mathbf{A}+\mathbf{U B V})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U}\left(\mathbf{B}^{-1}+\mathbf{V A}^{-1} \mathbf{U}\right)^{-1} \mathbf{V A}^{-1} .
+          $$
+  \end{enumerate}
+\end{theorem}
+\begin{solution}
+  \begin{enumerate}[label = (\alph*)]
+    \item Prove by verification.
+          First notice that
+          $$
+            (\mathbf{A}+\mathbf{U B V}) \mathbf{A}^{-1} \mathbf{U B}=\mathbf{U B}+\mathbf{U B V A}^{-1} \mathbf{U B}=\mathbf{U}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right) .
+          $$
+
+          Now multiply the matrix we wish to invert by its alleged inverse
+          $$
+            \begin{aligned}
+               & (\mathbf{A}+\mathbf{U B V})\left(\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U B}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)^{-1} \mathbf{B V A}^{-1}\right)                   \\
+               & =\mathbf{I}_n+\mathbf{U B V A}^{-1}-\mathbf{U}\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)\left(\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}\right)^{-1} \mathbf{B V A}^{-1} \\
+               & =\mathbf{I}_n+\mathbf{U B V A}^{-1}-\mathbf{U B V A}^{-1}                                                                                                                               \\
+               & =\mathbf{I}_n
+            \end{aligned}
+          $$
+          which verifies that it is the inverse.
+    \item Since $\mathbf{B}+\mathbf{B V A}^{-1} \mathbf{U B}=\mathbf{B}\left(\mathbf{I}+\mathbf{V A}^{-1} \mathbf{U B}\right)$ is nonsingular, we must have $\mathbf{B}$ is invertible. Then the two $B$ terms flanking the quantity inverse in the right-hand side can be replaced with $\left(\mathbf{B}^{-1}\right)^{-1}$, which simplifies (a) to
+          $$
+            (\mathbf{A}+\mathbf{U B V})^{-1}=\mathbf{A}^{-1}-\mathbf{A}^{-1} \mathbf{U}\left(\mathbf{B}^{-1}+\mathbf{V A}^{-1} \mathbf{U}\right)^{-1} \mathbf{V A}^{-1}
+          $$
+  \end{enumerate}
+\end{solution}
+
+\begin{lemma}\label{lemma: gaussian}
+  If a multivariate normal random variable $\boldsymbol{\theta}$ has density $p(\boldsymbol{\theta})$ and
+  $$
+    -2 \log p(\boldsymbol{\theta})=\boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{\eta}^\top \boldsymbol{\theta}+(\text{terms without } \boldsymbol{\theta})
+  $$
+  then $\mathbb{V}[\boldsymbol{\theta}]=\boldsymbol{H}^{-1}$ and $\mathbb{E} [\boldsymbol{\theta}] =\boldsymbol{H}^{-1} \boldsymbol{\eta}$.
+\end{lemma}
+\begin{solution}
+  For $\boldsymbol{H}$ symmetric, we have
+  $$
+    \boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{v}^\top \boldsymbol{H} \boldsymbol{\theta}=(\boldsymbol{\theta}-\boldsymbol{v})^\top \boldsymbol{H}(\boldsymbol{\theta}-\boldsymbol{v})-\boldsymbol{v}^\top \boldsymbol{H} \boldsymbol{v}
+  $$
+  Set $\boldsymbol{v}= \boldsymbol{H}^{-1} \boldsymbol{\eta}$ in the above equation, we obtain
+  $$
+    -2 \log p(\boldsymbol{\theta})=\boldsymbol{\theta}^\top \boldsymbol{H} \boldsymbol{\theta}-2 \boldsymbol{\eta}^\top \boldsymbol{\theta}+(\text{terms without } \boldsymbol{\theta}) = (\boldsymbol{\theta}-\boldsymbol{H}^{-1} \boldsymbol{\eta})^\top \boldsymbol{H}(\boldsymbol{\theta}-\boldsymbol{H}^{-1} \boldsymbol{\eta}) + (\text { terms without } \boldsymbol{\theta})
+  $$
+  Therefore, we must have $\mathbb{V}[\boldsymbol{\theta}]=\boldsymbol{H}^{-1}$ and $\mathbb{E} [\boldsymbol{\theta}] =\boldsymbol{H}^{-1} \boldsymbol{\eta}$.
+\end{solution}
+
+\begin{definition}\textbf{(Prior Predictive Distribution)}
+  The prior predictive distribution is for predicting distribution for $\boldsymbol{x}$ BEFORE any sample of $\boldsymbol{x}$ has been
+  gathered/observed. The only information we have at this stage is our belief about the
+  prior, $\pi(\boldsymbol{\theta})$, and sampling distribution i.e. $p\left(\boldsymbol{x}
+    \mid \boldsymbol{\theta}\right)$. Then, the prior predictive distribution is given by
+  $$
+    p(\boldsymbol{x}) =\int_{\Theta} p(\boldsymbol{x}, \boldsymbol{\theta}) d \boldsymbol{\theta} =\int_{\Theta} p(\boldsymbol{x} \mid \boldsymbol{\theta}) \pi(\boldsymbol{\theta}) d \boldsymbol{\theta}
+  $$
+
+  After the sample has been gathered, we obtain new information, i.e., the
+  likelihood. Then, we can derive the posterior distribution
+  $\boldsymbol{\theta} | \boldsymbol{x}_{\text{observed}}$ and use that to predict
+  new values/distribution for $\boldsymbol{x}$ which is given by the posterior predictive
+  distribution:
+  $$
+    p(\boldsymbol{x}_{\text{ new }} | \boldsymbol{x}_{\text{ observed}})
+    =\int_{\Theta} p(\boldsymbol{x}, \boldsymbol{\theta} \mid \boldsymbol{x}_{\text{ observed}}) d \boldsymbol{\theta}
+    =\int_{\Theta} p(\boldsymbol{x} \mid \boldsymbol{\theta}, \boldsymbol{x}_{\text{ observed}}) p(\boldsymbol{\theta} \mid \boldsymbol{x}_{\text{ observed}}) d \boldsymbol{\theta}
+  $$
+\end{definition}
+
+
 \section{Topic: Black-Litterman-Bayes}
 \begin{problem}
-    Evaluate $1+ 1$.
+This question refers to the article ``On The Bayesian Interpretation Of
+Black-Litterman'' \cite{Kolm2017}.
+\begin{enumerate}[label=(\alph*)]
+  \item Derive formulas (10)-(11) using the properties of the multivariate
+        normal distribution in the slides ``Bayesian Modeling: Introduction''.
+  \item \textbf{(Extra credit)} Derive formulas (22)-(26) using the same
+        properties.
+\end{enumerate}
 \end{problem}
 \begin{solution}
+  Suppose we have $\boldsymbol{r} \sim N(\boldsymbol{\theta}, \boldsymbol{\Sigma})$,
+  and since Black and Litterman were motivated by
+  the guiding principle that, in the absence of any sort of information/views
+  which could constitute alpha over the benchmark, the optimization procedure
+  should simply return the global CAPM equilibrium portfolio, with holdings
+  denoted $\boldsymbol{h}_{e q}$. Hence in the absence of any views, and with
+  prior mean equal to $\Pi$, the investor's model of the world is that
+  \begin{align}
+    \boldsymbol{r} \sim \mathcal{N}(\boldsymbol{\theta}, \boldsymbol{\Sigma}) \  \text { and } \  \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\Pi}, \boldsymbol{C}) \quad \text{ where } \boldsymbol{r}, \boldsymbol{\theta},\boldsymbol{\Pi} \in \mathbb{R}^n, \boldsymbol{\Sigma}, \boldsymbol{C}\in \mathbb{R}^{n\times n}\label{eq:BLB returns}
+  \end{align}
+  A key aspect of the model is that the practitioner must also specify a level of
+  uncertainty or ``error bar'' for each view, which is assumed to be an independent
+  source of noise from the volatility already accounted for in a model such as
+  $\boldsymbol{\Sigma}$. This is expressed as the following:
+  \begin{align}
+    \boldsymbol{P} \boldsymbol{\theta}=\boldsymbol{q}+\boldsymbol{\epsilon}, \quad \boldsymbol{\epsilon} \sim \mathcal{N}(0, \boldsymbol{\Omega}), \quad \boldsymbol{\Omega}=\operatorname{diag}\left(\omega_1, \ldots, \omega_k\right), \omega_i > 0 \label{eq:BLB views}
+  \end{align}
+  where $\boldsymbol{P} \in \mathbb{R}^{k\times n}$, $\boldsymbol{\Omega} \in \mathbb{R}^{k\times k}$ and $\boldsymbol{q},\boldsymbol{\epsilon} \in \mathbb{R}^k$
 
+  \begin{enumerate}[label=(\alph*)]
+    \item In this question, we derive the mean $\boldsymbol{\nu}$ and covariance
+          matrix $\boldsymbol{H}$ for the posterior.
+
+          Since the posterior is proportional to the product of the likelihood and the
+          prior, to simplify our computation, we neglect the constant coefficients of related probability density functions in
+          our derivation.
+
+          From \cref{eq:BLB views} and \cref{eq:BLB returns}, we have the likelihood function and the prior to be
+          $$
+            f(\boldsymbol{q} \mid \boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})^\top \boldsymbol{\Omega}^{-1}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})\right], \quad \pi(\boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{\theta} -\boldsymbol{\Pi})^\top \boldsymbol{\Sigma}^{-1}(\boldsymbol{\theta} -\boldsymbol{\Pi})\right]
+          $$
+          Leveraging the Bayes's formula, we have $f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto f(\boldsymbol{q} \mid \boldsymbol{\theta}) \pi(\boldsymbol{\theta})$. It follows that (neglecting terms that do not contain $\boldsymbol{\theta}$)
+          $$
+            -2\log f(\boldsymbol{\theta}\mid \boldsymbol{q}) \propto (\boldsymbol{P} \boldsymbol{\theta} -\boldsymbol{q})^\top \boldsymbol{\Omega}^{-1}(\boldsymbol{P} \boldsymbol{\theta}-\boldsymbol{q})+(\boldsymbol{\theta}-\boldsymbol{\Pi})^\top \mathbf{C}^{-1}(\boldsymbol{\theta}-\boldsymbol{\Pi}) \xlongequal[\text{ drop terms without $\boldsymbol{\theta}$}]{\text{ completing the squares }}\boldsymbol{\theta}^\top\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \mathbf{P}+\boldsymbol{C}^{-1}\right] \boldsymbol{\theta}-2\left(\boldsymbol{q}^\top \boldsymbol{\Omega}^{-1} \mathbf{P}+\boldsymbol{\Pi}^\top \mathbf{C}^{-1}\right) \boldsymbol{\theta}
+          $$
+          By \cref{lemma: gaussian}, we obtain
+          $$
+            \boldsymbol{\theta}\mid \boldsymbol{q} \sim \mathcal{N}\left(\boldsymbol{\nu}, \boldsymbol{H}^{-1}\right), \quad \boldsymbol{\nu}=\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{P}+\boldsymbol{C}^{-1}\right]^{-1}\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{q}+\boldsymbol{C}^{-1} \boldsymbol{\Pi}\right] \text{ and } \boldsymbol{H}^{-1}=\left[\boldsymbol{P}^\top \boldsymbol{\Omega}^{-1} \boldsymbol{P}+\boldsymbol{C}^{-1}\right]^{-1}
+          $$
+          as desired.
+
+  \end{enumerate}
+  \vspace*{1em}
+  \hrule
+
+  \textbf{APT Model:}
+
+  Leveraging the powerful APT model (Roll \& Ross, 1980; Ross, 1976), the parameter vector $\boldsymbol{\theta}$ could be generalized to
+  represent the means of unobservable latent factors in the APT
+  model, which assumes a linear functional form:
+  \begin{align}
+    \boldsymbol{r}=\boldsymbol{X} \boldsymbol{f}+\boldsymbol{\epsilon},
+    \quad \boldsymbol{\epsilon}\sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{D}\right) \text{ and } \boldsymbol{D}=\operatorname{diag}\left(\sigma_1^2, \ldots, \sigma_n^2\right), \sigma_i^2>0,  \forall i
+    \label{eq: APT model}
+  \end{align}
+  where $\boldsymbol{r}$ is an $n$-dimensional random vector containing the
+  cross-section of returns in excess of the risk-free rate over some time interval
+  $[t, t+1]$, and $\boldsymbol{X}$ is a (non-random) $n \times k$ matrix that is
+  known before time $t$. The variable $\boldsymbol{f}$ in \cref{eq: APT model} denotes a
+  $k$-dimensional latent random vector process, and
+  information about the $\boldsymbol{f}$-process must be obtained via statistical
+  inference. Specifically, we assume that the $\boldsymbol{f}$-process has finite
+  first and second moments given by
+  $$
+    \mathbb{E}[\boldsymbol{f}]=\boldsymbol{\mu}_f \text { and } \mathbb{V}[\boldsymbol{f}]=\boldsymbol{F}
+  $$
+  In the Black-Litterman-Bayes model, we choose
+  $$
+    \boldsymbol{\theta} = \boldsymbol{\mu}_f,\quad
+    \boldsymbol{f}\mid\boldsymbol{\theta} \sim \mathcal{N}\left(\boldsymbol{\theta}, \boldsymbol{F}\right)
+  $$
+  \textbf{Likelihood Function (Views):}
+
+  For our understanding, let's assume we are considering two
+  latent factors: value and momentum. Typically, a quantitative portfolio manager might have
+  views on individual factors: (1) a view on the value premium, and (2) another
+  view on the momentum premium. It would be atypical for portfolio managers to
+  have views on a combination (e.g. linear) of factors. Hence to keep things simple but
+  still useful, we take the views equation to be:
+  $$
+    \boldsymbol{\theta}=\boldsymbol{q}+\boldsymbol{\varepsilon}, \quad \boldsymbol{\varepsilon} \sim \mathcal{N}(\mathbf{0}, \boldsymbol{\Omega}), \quad \boldsymbol{\Omega}=\operatorname{diag}\left(\omega_1^2, \ldots, \omega_k^2\right)
+  $$
+  then, $\boldsymbol{q} \mid \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\theta},
+    \boldsymbol{\Omega})$ and the corresponding likelihood function is therefore
+  $$
+    f(\boldsymbol{q} \mid \boldsymbol{\theta}) \propto \exp \left[-\frac{1}{2}(\boldsymbol{\theta}-\boldsymbol{q})^{\top} \boldsymbol{\Omega}^{-1}(\boldsymbol{\theta}-\boldsymbol{q})\right]=\prod_{i=1}^k \exp \left[-\frac{1}{2 \omega_i^2}\left(\theta_i-q_i\right)^2\right]
+  $$
+
+  \textbf{Prior:}
+
+  What prior for $\boldsymbol{\theta}$ should we choose?
+  First, let's set the prior $\pi(\boldsymbol{\theta})$ to be
+  $$
+    \pi(\boldsymbol{\theta}) \sim \mathcal{N}(\boldsymbol{\xi}, \boldsymbol{V})
+  $$
+  where $\boldsymbol{\xi} \in \mathbb{R}^k$ and $\boldsymbol{V} \in S_{++}^k$, the
+  set of symmetric positive definite $k \times k$ matrices.
+
+  Choosing a prior then amounts to choosing $\boldsymbol{\xi}$ and $\boldsymbol{V}$, and once
+  a prior is chosen, we instantly obtain the prior predictive distribution $p(\boldsymbol{r})$ for $\boldsymbol{r}$ using the APT model and
+  an associated prior (benchmark) portfolio with holdings $\boldsymbol{h}_B$
+  where $\boldsymbol{h}_B$ maximizes expected utility of wealth, where the expectation
+  is taken with respect to the a priori distribution on asset returns
+  $$
+    p(\boldsymbol{r})=\int p(\boldsymbol{r} \mid \boldsymbol{\theta}) \pi(\boldsymbol{\theta}) d \boldsymbol{\theta},
+    \quad \boldsymbol{h}_B = \arg \max_{\boldsymbol{h}} \EE\left[u\left(\boldsymbol{h}^\top\boldsymbol{r}\right)\right]
+    = \arg \max_{\boldsymbol{h}} \int u\left(\boldsymbol{h}^\top \boldsymbol{r}\right) p(\boldsymbol{r}) d \boldsymbol{r}
+  $$
+  Let's see what our prior (benchmark) portfolio will look like.
+
+  Since $\boldsymbol{r}=\boldsymbol{X} \boldsymbol{f}+\boldsymbol{\epsilon},
+    \boldsymbol{\epsilon}\sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{D}\right)$ and $\boldsymbol{f}\mid\boldsymbol{\theta} \sim \mathcal{N}\left(\boldsymbol{\theta}, \boldsymbol{F}\right)$,
+  we can equivalently rewrite it as $\boldsymbol{f} = \boldsymbol{\theta} + \boldsymbol{w}$
+  where $\boldsymbol{w} \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{F}\right)$, and $\boldsymbol{w}$ is independent of $\boldsymbol{\theta}$.
+  Then, by properties of multivariate normal distribution, we have
+  $$
+    \boldsymbol{r}=\boldsymbol{X} \boldsymbol{f}+\boldsymbol{\epsilon} =
+    \boldsymbol{X} \boldsymbol{\theta}+\boldsymbol{X} \boldsymbol{w}+\boldsymbol{\epsilon}\quad
+    \Longrightarrow \quad \boldsymbol{r}_{\pi} \sim \mathcal{N}\left(\boldsymbol{X}\boldsymbol{\xi}, \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)
+  $$
+  The a priori optimal portfolio under CARA utility, $u(x) = -e^{-\lambda x}$, $\lambda \ne 0$, is then
+  $$
+    \boldsymbol{h}_B:=\boldsymbol{h}^*
+    =\left(\lambda \mathbb{V}_\pi[\boldsymbol{r}]\right)^{-1} \mathbb{E}_\pi[\boldsymbol{r}]
+    =\lambda^{-1} \left(\boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)^{-1} \boldsymbol{X}\boldsymbol{\xi}
+  $$
+
+  \begin{remark}
+    In the original paper, the author derived the prior predictive mean and variance as
+    $$
+      \mathbb{E}_\pi[\boldsymbol{r}]
+      =\left(\boldsymbol{\Sigma}^{-1}+\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1} \boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi}
+      \text{ and }
+      \mathbb{V}_\pi[\boldsymbol{r}]=\left(\boldsymbol{\Sigma}^{-1}+\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}
+    $$
+    where $\boldsymbol{H}:=\boldsymbol{V}^{-1}+\boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1} \boldsymbol{X}$ and $\boldsymbol{\Sigma}:=\boldsymbol{D}+\boldsymbol{X F} \boldsymbol{X}^\top$.
+
+    We first note that due to his careless mistake, these results are wrong! The correct results are:
+    $$
+      \mathbb{E}_\pi[\boldsymbol{r}]
+      =\left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1} \boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi}
+      \quad \text{ and } \quad
+      \mathbb{V}_\pi[\boldsymbol{r}]=\left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}
+    $$
+    Then, substitute $\mathbf{A} = \boldsymbol{\Sigma}$, $\mathbf{U} = \mathbf{X}$, $\mathbf{V} = \mathbf{X}^\top$ and $\mathbf{B} = \mathbf{V}$ in the Woodbury identity (\cref{theorem: Woodbury}), we have
+    $$
+      \mathbb{V}_\pi[\boldsymbol{r}] = \left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}
+      =\boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{\Sigma} = \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}
+    $$
+    It follows that
+    $$
+      \left(\boldsymbol{\Sigma}^{-1}-\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1}\boldsymbol{\Sigma}^{-1} \boldsymbol{X}
+      =\left(\boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{\Sigma}\right)\boldsymbol{\Sigma}^{-1} \boldsymbol{X}
+      = \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\boldsymbol{X} + \boldsymbol{X}
+      = \boldsymbol{X}\boldsymbol{V}\left(\boldsymbol{V}^{-1} + \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\boldsymbol{X}\right)
+      = \boldsymbol{X}\boldsymbol{V}\boldsymbol{H}
+    $$
+    The mean $\mathbb{E}_\pi[\boldsymbol{r}]$ then follows as
+    $$
+      \mathbb{E}_\pi[\boldsymbol{r}]
+      =\left(\boldsymbol{\Sigma}^{-1}+\boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{X}^\top \boldsymbol{\Sigma}^{-1}\right)^{-1} \boldsymbol{\Sigma}^{-1} \boldsymbol{X} \boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi}
+      = \boldsymbol{X}\boldsymbol{V}\boldsymbol{H}\boldsymbol{H}^{-1} \boldsymbol{V}^{-1} \boldsymbol{\xi} = \boldsymbol{X}\boldsymbol{\xi}
+    $$
+    Thus, we obtain
+    $$
+      \boldsymbol{r}_{\pi} \sim \mathcal{N}\left(\boldsymbol{X}\boldsymbol{\xi}, \boldsymbol{X}\boldsymbol{V}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)
+    $$
+    which is consistent with our results.
+  \end{remark}
+  \begin{enumerate}[label=(\alph*), start=2]
+    \item In this question, we derive the posterior distribution for
+          $\boldsymbol{r}\mid \boldsymbol{q}$ and the mean-variance optimal
+          portfolio holdings.
+
+          \textbf{Step 1: Calculate the posterior for $\boldsymbol{\theta} \mid  \boldsymbol{q}$.}
+
+          Since $\pi(\boldsymbol{\theta})$ is normal and the likelihood
+          $f(\boldsymbol{q} \mid \boldsymbol{\theta})$ is also normal, the prior
+          is a conjugate prior with respect to the normal likelihood. Then, the
+          posterior distribution $p(\boldsymbol{\theta} \mid \boldsymbol{q})$ is
+          also normal. Using this relation and $p(\boldsymbol{\theta} \mid \boldsymbol{q}) \propto f(\boldsymbol{q} \mid \boldsymbol{\theta})\pi(\boldsymbol{\theta})$, we have (neglecting terms that do not contain $\boldsymbol{\theta}$)
+          $$
+            -2 \log p(\boldsymbol{\theta} \mid \boldsymbol{q})= (\boldsymbol{\theta}-\boldsymbol{q})^{\top} \boldsymbol{\Omega}^{-1}(\boldsymbol{\theta}-\boldsymbol{q})+(\boldsymbol{\theta}-\boldsymbol{\xi})^{\top} \mathbf{V}^{-1}(\boldsymbol{\theta}-\boldsymbol{\xi})
+            =  \boldsymbol{\theta}^{\top}\left(\boldsymbol{\Omega}^{-1}+\mathbf{V}^{-1}\right) \boldsymbol{\theta}-2\left(\boldsymbol{q}^{\top} \boldsymbol{\Omega}^{-1}+\boldsymbol{\xi}^{\top} \mathbf{V}^{-1}\right) \boldsymbol{\theta}
+            +(\text { terms without } \boldsymbol{\theta})
+          $$
+          Setting
+          $\mathbf{H}=\left(\boldsymbol{\Omega}^{-1}+\mathbf{V}^{-1}\right)$ and
+          $\boldsymbol{\eta}^{\top}=\left(\boldsymbol{q}^{\top}
+            \boldsymbol{\Omega}^{-1}+\boldsymbol{\xi}^{\top}
+            \mathbf{V}^{-1}\right)$ in \cref{lemma: gaussian}, we have
+          $$
+            \mathbb{V}[\boldsymbol{\theta} \mid \boldsymbol{q}]=\mathbf{H}^{-1}=\left( \boldsymbol{\Omega}^{-1}+ \boldsymbol{V}^{-1}\right)^{-1},
+            \quad \mathbb{E}[\boldsymbol{\theta} \mid  \boldsymbol{q}]=\mathbf{H}^{-1} \boldsymbol{\eta} =\mathbb{V}[\boldsymbol{\theta} \mid \boldsymbol{q}]\left(\boldsymbol{V}^{-1} \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} q\right)
+            =\left( \boldsymbol{V}^{-1}+ \boldsymbol{\Omega}^{-1}\right)^{-1}\left( \boldsymbol{V}^{-1}  \boldsymbol{\xi}+ \boldsymbol{\Omega}^{-1}  \boldsymbol{q}\right)
+          $$
+          Therefore, the posterior must satisfy
+          $$
+            \boldsymbol{\theta} \mid  \boldsymbol{q} \sim \mathcal{N}\left(\widetilde{\boldsymbol{\xi}}, \widetilde{ \boldsymbol{V}}\right)
+          $$
+          where
+          $\widetilde{\boldsymbol{V}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}$
+          and $\widetilde{\boldsymbol{\xi}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}\left(\boldsymbol{V}^{-1}
+            \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} \boldsymbol{q}\right)$.
+
+          \textbf{Step 2: Calculate the posterior for $\boldsymbol{r} \mid  \boldsymbol{q}$.}
+
+          The a posteriori distribution of asset returns $\boldsymbol{r}$ (also
+          called the posterior predictive density) is given by
+          $$
+            p(\boldsymbol{r} \mid \boldsymbol{q})=\int p(\boldsymbol{r} \mid \boldsymbol{\theta}) p(\boldsymbol{\theta} \mid \boldsymbol{q}) d \boldsymbol{\theta}
+          $$
+          For this one, we can view $p(\boldsymbol{\theta} \mid \boldsymbol{q})$
+          as the prior density for $\boldsymbol{\theta}$, then the situation
+          here is the same as in deriving the prior (benchmark) portfolio.
+          Hence, use the previous result and make the substitution
+          $\boldsymbol{\xi} \rightarrow \widetilde{\boldsymbol{\xi}}$ and
+          $\boldsymbol{V} \rightarrow \widetilde{\boldsymbol{V}}$, we obtain
+          $$
+            \boldsymbol{r} \mid \boldsymbol{q} \sim \mathcal{N}\left(\boldsymbol{X}\widetilde{\boldsymbol{\xi}}, \boldsymbol{X}\boldsymbol{\widetilde{V}}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)
+          $$
+
+          \textbf{Step 3: Calculate the mean-variance optimal portfolio.}
+
+          The posterior optimal portfolio under CARA utility is then
+          $$
+            \boldsymbol{h}^*
+            =\left(\lambda \mathbb{V}[\boldsymbol{r}\mid \boldsymbol{q}]\right)^{-1} \mathbb{E}[\boldsymbol{r}\mid \boldsymbol{q}]
+            =\lambda^{-1} \left(\boldsymbol{X}\boldsymbol{\widetilde{V}}\boldsymbol{X}^\top + \boldsymbol{X}\boldsymbol{F}\boldsymbol{X}^\top + \boldsymbol{D}\right)^{-1} \boldsymbol{X}\boldsymbol{\widetilde{\xi}}
+          $$
+          where
+          $\widetilde{\boldsymbol{V}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}$
+          and $\widetilde{\boldsymbol{\xi}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}\left(\boldsymbol{V}^{-1}
+            \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} \boldsymbol{q}\right)$.
+  \end{enumerate}
 \end{solution}
 
 
 
+\section{Topic: Important Properties Of the Kalman Filter}
+\begin{problem}
+Choose three out of the four subproblems. It is optional to solve the other one
+for extra credit.
+\begin{enumerate}[label=(\alph*)]
+  \item In class we derived the Kalman filter under the assumption that
+        $\mathbb{E}\left[\mathbf{w}_t \mathbf{v}_t^\top\right]=\mathbf{0}$. Now,
+        derive the Kalman filter under the assumption that
+        $\mathbb{E}\left[\mathbf{w}_t \mathbf{v}_t^\top\right]=\mathbf{M}_t$.
+
+        \begin{solution}
+          
+        \end{solution}
+  \item Using the notation from class, let us denote the error between the true
+        and estimated states by the random variable
+        $\widetilde{\mathbf{x}}_t=\mathbf{x}_t-\hat{\mathbf{x}}_t$. We denote by
+        $\mathbf{W}_t$ a known positive definite matrix. Show that the Kalman filter
+        is the solution to the problem
+        \begin{align}
+          \min _{\hat{\mathbf{x}}_t} \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]\label{eq: kalman}
+        \end{align}
+
+        \begin{solution}
+          
+        \end{solution}
+  \item Now let us assume that $\mathbf{w}_t$ and $\mathbf{v}_t$ have zero mean,
+        are uncorrelated with covariance matrices $\mathbf{Q}_t$ and $\mathbf{R}_t$,
+        respectively (but they are no longer Gaussian). Show that the Kalman filter is
+        the best linear solution to \cref{eq: kalman}. In other words, the Kalman
+        filter is the best filter that is a linear combination of the measurements,
+        $\mathbf{y}_t$.
+
+        \begin{solution}
+          
+        \end{solution}
+  \item In class we derived the Kalman filter under the assumption that
+        $\mathbf{w}_t$ and $\mathbf{v}_t$ are uncolored (i.e. each is serially
+        uncorrelated).
+        \begin{enumerate}[label=(\roman*)]
+          \item Derive the Kalman filter under the assumption that
+                $\mathbf{w}_t$ is a VAR(1) process with known system matrix.
+          \item Derive the Kalman filter under the assumption that
+                $\mathbf{v}_t$ is a $\operatorname{VAR}(1)$ process with known
+                system matrix.
+        \end{enumerate}
+        Hint: For (d), both (i) and (ii) can be solved by properly augmenting
+        the state equations. Can you find a solution to (ii) where one does not
+        have to augment the state? Is it possible to do so for (i) - why, or why
+        not?
+
+        \begin{solution}
+          
+        \end{solution}
+\end{enumerate}
+
+\end{problem}
+
+
+\section{Topic: Kalman filter's Application on Financial Problems --- Pairs Trading}
+\begin{problem}
+In this question we consider a basic pairs trading strategy between two stocks
+with prices $p_t^A$ and $p_t^B$ at time $t$. We denote the spread between them
+by $s_t:=\log \left(p_t^A\right)-\log \left(p_t^B\right)$ and assume the spread
+follows an Ornstein-Uhlenbeck process
+$$
+  d s_t=\kappa\left(\theta-s_t\right) d t+\sigma d B_t
+$$
+where $d B_t$ is a standard Brownian motion. In other words, the spread reverts
+to its mean $\theta \in \mathbb{R}$ at the speed $\kappa \in \mathbb{R}_{+}$and
+volatility $\sigma \in \mathbb{R}_{+}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that the discrete time solution of (2) is Markovian, that is
+        $$
+          s_k=\mathbb{E}\left[s_k \mid s_{k-1}\right]+\varepsilon_k
+        $$
+        where $k=1,2, \ldots$, and $\varepsilon_k$ is a random process with zero
+        mean and variance equal to $\sigma_{\varepsilon,
+            k}^2=\mathbb{V}\left[s_k \mid s_{k-1}\right]$. (Hint: You can derive the
+        discrete solution explicitly.)
+  \item Propose a methodology for updating the parameters $\theta, \kappa$ using
+        the Kalman filter and describe how you would use it to trade the stock pair.
+  \item Test your methodology from (b) on simulated data. In particular, (i)
+        simulate (2) from known parameters $\theta, \kappa$ and $\sigma$, and then
+        (ii) use the Kalman filter to recover them. You do not need to implement the
+        Kalman filter from scratch; you are welcome to use a Kalman implementation
+        from a Python package such as pykalman. How do you obtain a good estimate of
+        $\sigma$ ?
+  \item Repeat the same experiment from (c), but this time simulate (2) first
+        with $\kappa$ having the same value as above and then suddenly changing it to
+        another value such that the half-life of the spread is $50 \%$ of its original
+        value. How long does it take the Kalman filter to adjust? Can you make
+        adjustment to your filter in order to speed up the time it takes the Kalman
+        filter to adjust?
+\end{enumerate}
+Hint: For (c) and (d), think about how you are going to demonstrate the results
+using appropriate graphs, etc.
+\end{problem}
+
+\section{Topic: Kalman filter's Application on Financial Problems --- Index Tracking Portfolios}
+
+\begin{problem}
+It is common in portfolio management to build so-called (index) tracking
+portfolios. Let us assume we are observing the return of the S\&P 500 benchmark
+index, $r_{b, t}$. Now, let us pick a subset of 50 stocks from the constituents
+of this index. We will use these stocks to build a tracking portfolio for the
+index. For example, this could be the 50 companies in the index with the largest
+market cap. We denote the returns of these 50 stock by $\mathbf{r}_t \in
+  \mathbb{R}^{50}$. The goal of finding a tracking portfolio is to find a dynamic
+trading strategy of the 50 stocks such that $\boldsymbol{\beta}_t^\top
+  \mathbf{r}_t \approx r_{b, t}$, where $\boldsymbol{\beta}_t$ denotes the
+holdings of the tracking portfolio.
+\begin{enumerate}[label=(\alph*)]
+  \item In this part, we assume that the covariance matrix of returns of the
+        stocks in the $\mathrm{S} \& \mathrm{P} 500, \boldsymbol{\Sigma}$, is given
+        and constant through time. Find the portfolio of these 50 stocks that
+        minimizes the tracking error to $r_{b, t}$, i.e. find the solution to
+        $$
+          \boldsymbol{\beta}_t^*=\operatorname{argmin}_{\boldsymbol{\beta}_t} \sqrt{\mathbb{V}\left[r_{b, t}-\boldsymbol{\beta}_t^\top \mathbf{r}_t\right]} .
+        $$
+
+        What specific property does $\boldsymbol{\beta}_t$ have here?
+  \item In this part, we no longer assume that covariances amongst stocks are
+        time invariant. Propose a solution to minimizing the tracking error using the
+        Kalman filter.
+  \item Download daily market data and create an example that illustrates your
+        methodology. How does the tracking portfolio of the Kalman filter perform?
+\end{enumerate}
+Hint: For (c), compare your Kalman filter to a solution based on (a) where the
+covariance matrix is estimated on rolling windows. Can you match the performance
+of the Kalman filter with the simpler methodology in (a) by appropriately
+choosing the length of the rolling window?
+\end{problem}
+
+
+\section{Topic: Another Interpretation for Independent Component Analysis (ICA)}
+\begin{problem}
+In class we considered the principally-independent component analysis method
+which essentially was the truncated rank- $K$ SVD of a matrix X followed by an
+ICA rotation of the left singular components:
+$$
+  \mathbf{X} \simeq \mathbf{U S V}^\top=\mathbf{U}_I \mathbf{S}_I \mathbf{V}_I
+$$
+where $\mathbf{U}_I=\mathbf{U} \mathbf{A}_I$ with
+$\mathbf{A}_I=\underset{\mathbf{A}, \mathbf{A}^\top
+    \mathbf{A}=I_K}{\operatorname{argmax}}\left|k_{\ell}(\mathbf{U A})\right|,
+  k_{\ell}(\mathbf{G})$ being any centered cumulant of order $\ell \geq 3$ which
+for all practical purposes can be considered a non-linear (activation)
+
+function applied to each of the entries of $\mathbf{G}$. Furthermore the matrix
+$\mathbf{V}_I$ was defined as $\mathbf{V}_I^\top:=\mathbf{D}^{-1}
+  \mathbf{S}^{-1} \mathbf{A}_I \mathbf{S} \mathbf{V}^\top$ where $\mathbf{D}$
+was chosen so that $\mathbf{V}_I$ has unimodular columns.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $\mathbf{D}$ is a diagonal matrix
+  \item Show that $\mathbf{S}_I=\mathbf{S D}$ is diagonal such that
+        $\operatorname{Tr}\left(\mathbf{S}_I^2\right)=\operatorname{Tr}\left(\mathbf{S}^2\right)$.
+  \item Show that the method can be derived as the limit, $\lambda^2 \rightarrow
+          0$, of the optimization
+        $$
+          \mathbf{U}_I, \mathbf{S}_I, \mathbf{V}_I=\underset{\mathbf{P}, \mathbf{Q}: \mathbf{P}^\top \mathbf{P}=\operatorname{diag}\left(\mathbf{Q}^\top \mathbf{Q}\right)=\mathbf{I}_k}{\operatorname{argmin}}\left\|\mathbf{X}-\mathbf{P R Q}^\top\right\|_F-\lambda^2\left|k_{\ell}(\mathbf{P})\right| .
+        $$
+  \item Show that an alternative objective function achieving the same result is
+        $$
+          \mathbf{U}_I, \mathbf{S}_I, \mathbf{V}_I=\underset{\mathbf{P}, \mathbf{Q}: \mathbf{P}^\top \mathbf{P}=\operatorname{diag}\left(\mathbf{Q}^\top \mathbf{Q}\right)=\mathbf{I}_k}{\operatorname{argmin}}\left\|\mathbf{X}-\mathbf{P R Q}^\top\right\|_F-\lambda^2 J(\mathbf{P}),
+        $$
+        where $J[\mathbf{x}]:=H\left[\mathbf{x}_{\text {gauss
+          }}\right]-H[\mathbf{x}]$ is the negentropy and $J(\mathbf{P})$ is the
+        sum of the negentropies of all the columns of $\mathbf{P}$.
+\end{enumerate}
+\end{problem}
 
 
 
@@ -268,18 +762,16 @@ WordSpace=1.7,
 
 
 
+\newpage 
+\begin{thebibliography}{1}
 
+  \bibitem{Kolm2017} 
+  Kolm, Petter N. and Ritter, Gordon, On the Bayesian Interpretation of
+  Black-Litterman (October 16, 2016). European Journal of Operational Research,
+  Volume 258, Issue 2, 16 April 2017, Pages 564-572, Available at SSRN:
+  https://ssrn.com/abstract=2853158
 
-
-
-
-
-
-
-
-
-
-
+\end{thebibliography}
 
 
 
