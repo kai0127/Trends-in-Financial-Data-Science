@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  24 OCT 2023 12:01
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  24 OCT 2023 12:02
  restricted system commands enabled.
  file:line:error style messages enabled.
-**"/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex"
-("/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex"
+**"/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex"
+("/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex"
 LaTeX2e <2022-11-01> patch level 1
 Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
 Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
@@ -1040,8 +1040,8 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@erf=\skip68
 \f@nch@O@olf=\skip69
 \f@nch@O@orf=\skip70
-) ("./Homework Template.aux")
-\openout1 = Homework Template.aux
+) ("./Gaussian Mixture Models.aux")
+\openout1 = Gaussian Mixture Models.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 235.
 LaTeX Font Info:    ... okay on input line 235.
@@ -1103,10 +1103,10 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
 Package hyperref Info: Link coloring ON on input line 235.
- ("./Homework Template.out") ("./Homework Template.out")
+ ("./Gaussian Mixture Models.out") ("./Gaussian Mixture Models.out")
 \@outlinefile=\write5
 
-\openout5 = Homework Template.out
+\openout5 = Gaussian Mixture Models.out
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1154,7 +1154,7 @@ LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 11.23196pt on input line 245.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 11.23196pt on input line 245.
-("./Homework Template.toc"
+("./Gaussian Mixture Models.toc"
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 8.54097pt on input line 1.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
@@ -1162,7 +1162,7 @@ LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 )
 \tf@toc=\write6
 
-\openout6 = Homework Template.toc
+\openout6 = Gaussian Mixture Models.toc
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
 (Font)              No change on input line 248.
 LaTeX Font Info:    Trying loading font information for U+msa on input line 249.
@@ -1187,8 +1187,8 @@ LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 7.79999pt on input line 289.
  [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] ("./Homework Template.aux")
-Package rerunfilecheck Info: File `"Homework Template".out' has not changed.
+] ("./Gaussian Mixture Models.aux")
+Package rerunfilecheck Info: File `"Gaussian Mixture Models".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 )
 
@@ -1197,12 +1197,12 @@ Here is how much of LuaTeX's memory you used:
  125244,1977958 words of node,token memory allocated
  1019 words of node memory still in use:
    10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 178 attribute, 59 glue_spec, 27 attribute_list, 2 write, 12 user_defined nodes
-   avail lists: 1:15,2:4739,3:153,4:269,5:196,6:40,7:724,8:3,9:300,10:1,11:24
+   avail lists: 1:16,2:5063,3:153,4:269,5:199,6:40,7:805,8:3,9:300,10:1,11:30
  51622 multiletter control sequences out of 65536+600000
  75 fonts using 167146967 bytes
- 106i,12n,115p,1838b,481s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,12n,115p,1837b,481s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on Homework Template.pdf (1 page, 25052 bytes).
+Output written on Gaussian Mixture Models.pdf (1 page, 26089 bytes).
 
 PDF statistics: 50 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream

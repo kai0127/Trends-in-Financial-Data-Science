@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1698163267 "/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex" "Homework Template.pdf" "Homework Template" 1698163272 0
-  "/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex" 1698163266 6899 825fbb1cf94ed00343625e7a30ec4d95 ""
+["lualatex"] 1698163377 "/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex" "Gaussian Mixture Models.pdf" "Gaussian Mixture Models" 1698163382 0
+  "/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex" 1698163376 6924 1f4f4e498bfc2e4421f8472a736b7157 ""
   "/Users/linda/Library/Fonts/Vollkorn-Bold.otf" 1525855805 504600 83467cfa4400474b6d068d7d268da90e ""
   "/Users/linda/Library/Fonts/Vollkorn-Italic.otf" 1525854575 411584 7b726e6369ee5630e2928aa5b34d2154 ""
   "/Users/linda/Library/Fonts/Vollkorn-Regular.otf" 1525855801 485528 2a74db36878fd191bb3c2f4c6575a19f ""
@@ -306,14 +306,14 @@
   "/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty" 1653941231 14914 340890023fe5b05f4034feae149cab10 ""
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696053482 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1694803921 11876210 49080bdcf9fb115e6dd63b7a21cafe03 ""
-  "Homework Template.aux" 1698163271 662 6a700d7ccfb8fc4c43556f4cef5641c2 "lualatex"
-  "Homework Template.out" 1698163271 101 0043c2a6a1f79a25b1083f0a33689746 "lualatex"
-  "Homework Template.tex" 1698163266 6899 825fbb1cf94ed00343625e7a30ec4d95 ""
-  "Homework Template.toc" 1698163271 67 56ab5bb8af95cd0a857545005bd97735 "lualatex"
+  "Gaussian Mixture Models.aux" 1698163381 662 6a700d7ccfb8fc4c43556f4cef5641c2 "lualatex"
+  "Gaussian Mixture Models.out" 1698163381 101 0043c2a6a1f79a25b1083f0a33689746 "lualatex"
+  "Gaussian Mixture Models.tex" 1698163376 6924 1f4f4e498bfc2e4421f8472a736b7157 ""
+  "Gaussian Mixture Models.toc" 1698163381 67 56ab5bb8af95cd0a857545005bd97735 "lualatex"
   (generated)
-  "Homework Template.aux"
-  "Homework Template.log"
-  "Homework Template.out"
-  "Homework Template.pdf"
-  "Homework Template.toc"
+  "Gaussian Mixture Models.aux"
+  "Gaussian Mixture Models.log"
+  "Gaussian Mixture Models.out"
+  "Gaussian Mixture Models.pdf"
+  "Gaussian Mixture Models.toc"
   (rewritten before read)
