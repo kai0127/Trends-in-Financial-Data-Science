@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1697923667 "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" "Trends_in_Financial_Data_Science_HW2.pdf" "Trends_in_Financial_Data_Science_HW2" 1697923671 0
-  "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" 1697923661 40390 924707ead2119989180a4776c119fa86 ""
+["lualatex"] 1698259852 "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" "Trends_in_Financial_Data_Science_HW2.pdf" "Trends_in_Financial_Data_Science_HW2" 1698259857 0
+  "/Users/linda/Desktop/LaTeX/Homework 2/Trends_in_Financial_Data_Science_HW2.tex" 1698259851 40433 b70e219fc1859c19040d92b0b98639e1 ""
   "/Users/linda/Library/Fonts/Vollkorn-Bold.otf" 1525855805 504600 83467cfa4400474b6d068d7d268da90e ""
   "/Users/linda/Library/Fonts/Vollkorn-BoldItalic.otf" 1525854575 420332 111db9d7a31febd45ac0bb50a2052414 ""
   "/Users/linda/Library/Fonts/Vollkorn-Italic.otf" 1525854575 411584 7b726e6369ee5630e2928aa5b34d2154 ""
@@ -14,7 +14,7 @@
   "/Users/linda/Library/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/vollkorn-bolditalic.luc" 1696149711 663190 b66ca3d1e185396479b45a41e5249300 ""
   "/Users/linda/Library/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/vollkorn-italic.luc" 1696149711 531537 6ba2912c381ac826b2bb56e86971eb6d ""
   "/Users/linda/Library/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/vollkorn-regular.luc" 1696149708 659234 daaa00f77c1f75da2f00f807a7763652 ""
-  "/Users/linda/Library/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1697869543 5738 611c0144335f23cc8f5eeb32f443e4cd ""
+  "/Users/linda/Library/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1698176924 6032 0b4acb685817ce738cfee3bfc0ff3aa8 ""
   "/Users/linda/Library/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1696942012 370726 2d664aaa1aa6ab8002b2b9ce556a7a6b ""
   "/Users/linda/Library/texlive/2023/texmf-var/luatexja/extra_babelstonehan.luc" 1696045430 1667274 857e1839817ad440d2ac976e3c10929c ""
   "/Users/linda/Library/texlive/2023/texmf-var/luatexja/extra_haranoajimincho-regular.luc" 1696041368 316486 3b099056621ba8e72fc0c7fca02f108c ""
@@ -329,10 +329,10 @@
   "/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty" 1653941231 14914 340890023fe5b05f4034feae149cab10 ""
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696053482 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1694803921 11876210 49080bdcf9fb115e6dd63b7a21cafe03 ""
-  "Trends_in_Financial_Data_Science_HW2.aux" 1697923671 2153 085bde14442f43a83de56896b46a67dc "lualatex"
-  "Trends_in_Financial_Data_Science_HW2.out" 1697923671 1836 efe765711c3036a3c2841cae5159ae6a "lualatex"
-  "Trends_in_Financial_Data_Science_HW2.tex" 1697923661 40390 924707ead2119989180a4776c119fa86 ""
-  "Trends_in_Financial_Data_Science_HW2.toc" 1697923671 586 571e519a30703c2078cfbc6f91e8e977 "lualatex"
+  "Trends_in_Financial_Data_Science_HW2.aux" 1698259857 2153 085bde14442f43a83de56896b46a67dc "lualatex"
+  "Trends_in_Financial_Data_Science_HW2.out" 1698259857 1836 efe765711c3036a3c2841cae5159ae6a "lualatex"
+  "Trends_in_Financial_Data_Science_HW2.tex" 1698259851 40433 b70e219fc1859c19040d92b0b98639e1 ""
+  "Trends_in_Financial_Data_Science_HW2.toc" 1698259857 586 571e519a30703c2078cfbc6f91e8e977 "lualatex"
   (generated)
   "Trends_in_Financial_Data_Science_HW2.aux"
   "Trends_in_Financial_Data_Science_HW2.log"
