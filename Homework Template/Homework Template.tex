@@ -161,6 +161,10 @@ WordSpace=1.7,
 {\color{C2}\normalfont\begin{framed}\begingroup\textbf{Solution:} }
   {\endgroup\end{framed}}
 
+\newenvironment{topic}
+{\color{C2}\normalfont\begin{framed}\begingroup }
+  {\endgroup\end{framed}}
+
 \newtheoremstyle{remark}% name of the style to be used
   {}% measure of space to leave above the theorem. E.g.: 3pt
   {}% measure of space to leave below the theorem. E.g.: 3pt
@@ -187,6 +191,54 @@ WordSpace=1.7,
 
 % This package is for the long equal sign \xlongequal{}
 \usepackage{extarrows}
+
+%%%%%%%%%%%% Algorithms %%%%%%%%%%%%
+\usepackage{etoolbox} 
+\usepackage{setspace}
+\usepackage{algorithm}
+\AtBeginEnvironment{algorithmic}{\onehalfspacing}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+
+\algrenewcommand\algorithmicindent{1.0em}
+\let\Algorithm\algorithm
+\renewcommand\algorithm[1][]{\Algorithm[#1]}%\fontsize{11}{16}\selectfont}
+
+\newenvironment{labelalgorithm}[4][t]{%
+\begin{algorithm}[#1]
+%\newcommand{\thealgorithmlabel}{#2}
+\newcommand{\thealgorithmname}{#3}
+%\newcommand{\thealgorithmcap}{#4}
+\customlabel{alg:name:#2}{\textproc{#3}}
+%\customlabel{alg:cap:#2}{#4}
+\caption{#4}\label{alg:#2}
+}{\end{algorithm}}
+
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{}%
+}
+\makeatother
+
+
+%\algdef{SE}[FUNCTION]{Procedure}{EndProcedure}%
+%   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+%   {\algorithmicend\ \algorithmicclass}%
+
+\algnewcommand\algorithmicclass{\textbf{class}}
+\algdef{SE}[FUNCTION]{Class}{EndClass}%
+   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+   {\algorithmicend\ \algorithmicclass}%
+
+% Tells algorithmicx not to print an empty line if `noend' is set 
+\makeatletter
+\ifthenelse{\equal{\ALG@noend}{t}}%
+  {\algtext*{EndClass}}
+  {}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % Page Formatting

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  24 OCT 2023 12:02
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  25 OCT 2023 14:41
  restricted system commands enabled.
  file:line:error style messages enabled.
 **"/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex"
@@ -764,14 +764,46 @@ Package: thm-amsthm 2023/02/17 v0.75
 \thmt@style@headstyle=\toks42
 )) (/usr/local/texlive/2023/texmf-dist/tex/latex/extarrows/extarrows.sty
 Package: extarrows 2020/03/12 v1.2.0 Some extensible arrows
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count313
+\float@exts=\toks43
+\float@box=\box73
+\@float@everytoks=\toks44
+\@floatcapt=\box74
+)
+\@float@every@algorithm=\toks45
+\c@algorithm=\count314
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count315
+\c@ALG@rem=\count316
+\c@ALG@nested=\count317
+\ALG@tlm=\skip61
+\ALG@thistlm=\skip62
+\c@ALG@Lnr=\count318
+\c@ALG@blocknr=\count319
+\c@ALG@storecount=\count320
+\c@ALG@tmpcounter=\count321
+\ALG@tmplength=\skip63
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count313
-\Gm@cntv=\count314
-\c@Gm@tempcnt=\count315
+\Gm@cnth=\count322
+\Gm@cntv=\count323
+\c@Gm@tempcnt=\count324
 \Gm@bindingoffset=\dimen188
 \Gm@wd@mp=\dimen189
 \Gm@odd@mp=\dimen190
@@ -780,13 +812,13 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen193
 \Gm@layouthoffset=\dimen194
 \Gm@layoutvoffset=\dimen195
-\Gm@dimlist=\toks43
+\Gm@dimlist=\toks46
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks44
+\pgfutil@everybye=\toks47
 \pgfutil@tempdima=\dimen196
 \pgfutil@tempdimb=\dimen197
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box73
+\pgfutil@abb=\box75
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
@@ -794,10 +826,10 @@ Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks45
-\pgfkeys@temptoks=\toks46
+\pgfkeys@pathtoks=\toks48
+\pgfkeys@temptoks=\toks49
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks47
+\pgfkeys@tmptoks=\toks50
 ))
 \pgf@x=\dimen198
 \pgf@y=\dimen199
@@ -811,14 +843,14 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yd=\dimen263
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count316
-\c@pgf@countb=\count317
-\c@pgf@countc=\count318
-\c@pgf@countd=\count319
-\t@pgf@toka=\toks48
-\t@pgf@tokb=\toks49
-\t@pgf@tokc=\toks50
-\pgf@sys@id@count=\count320
+\c@pgf@counta=\count325
+\c@pgf@countb=\count326
+\c@pgf@countc=\count327
+\c@pgf@countd=\count328
+\t@pgf@toka=\toks51
+\t@pgf@tokb=\toks52
+\t@pgf@tokc=\toks53
+\pgf@sys@id@count=\count329
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -829,21 +861,21 @@ File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count321
-\pgfsyssoftpath@bigbuffer@items=\count322
+\pgfsyssoftpath@smallbuffer@items=\count330
+\pgfsyssoftpath@bigbuffer@items=\count331
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen264
-\pgfmath@count=\count323
-\pgfmath@box=\box74
-\pgfmath@toks=\toks51
-\pgfmath@stack@operand=\toks52
-\pgfmath@stack@operation=\toks53
+\pgfmath@count=\count332
+\pgfmath@box=\box76
+\pgfmath@toks=\toks54
+\pgfmath@stack@operand=\toks55
+\pgfmath@stack@operation=\toks56
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count324
+\c@pgfmathroundto@lastzeros=\count333
 )) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen265
@@ -870,10 +902,10 @@ File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@shorten@start@additional=\dimen282
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box75
-\pgf@hbox=\box76
-\pgf@layerbox@main=\box77
-\pgf@picture@serial@count=\count325
+\pgfpic=\box77
+\pgf@hbox=\box78
+\pgf@layerbox@main=\box79
+\pgf@picture@serial@count=\count334
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen283
@@ -894,13 +926,13 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen288
-\pgf@sys@shading@range@num=\count326
-\pgf@shadingcount=\count327
+\pgf@sys@shading@range@num=\count335
+\pgf@shadingcount=\count336
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box78
+\pgfexternal@startupbox=\box80
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
@@ -911,7 +943,7 @@ File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box79
+\pgfnodeparttextbox=\box81
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
@@ -924,13 +956,13 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen291
 \pgffor@skip=\dimen292
-\pgffor@stack=\toks54
-\pgffor@toks=\toks55
+\pgffor@stack=\toks57
+\pgffor@toks=\toks58
 )) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count328
+\pgf@plot@mark@count=\count337
 \pgfplotmarksize=\dimen293
 )
 \tikz@lastx=\dimen294
@@ -941,32 +973,51 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@lastmovetoy=\dimen299
 \tikzleveldistance=\dimen300
 \tikzsiblingdistance=\dimen301
-\tikz@figbox=\box80
-\tikz@figbox@bg=\box81
-\tikz@tempbox=\box82
-\tikz@tempbox@bg=\box83
-\tikztreelevel=\count329
-\tikznumberofchildren=\count330
-\tikznumberofcurrentchild=\count331
-\tikz@fig@count=\count332
+\tikz@figbox=\box82
+\tikz@figbox@bg=\box83
+\tikz@tempbox=\box84
+\tikz@tempbox@bg=\box85
+\tikztreelevel=\count338
+\tikznumberofchildren=\count339
+\tikznumberofcurrentchild=\count340
+\tikz@fig@count=\count341
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count333
-\pgfmatrixcurrentcolumn=\count334
-\pgf@matrix@numberofcolumns=\count335
+\pgfmatrixcurrentrow=\count342
+\pgfmatrixcurrentcolumn=\count343
+\pgf@matrix@numberofcolumns=\count344
 )
-\tikz@expandcount=\count336
+\tikz@expandcount=\count345
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/usr/local/texlive/2023/texmf-dist/tex/latex/enumitem/enumitem.sty
+))) (/usr/local/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip64
+\subfigcapskip=\skip65
+\subfigcaptopadj=\dimen302
+\subfigbottomskip=\skip66
+\subfigcapmargin=\dimen303
+\subfiglabelskip=\skip67
+\c@subfigure=\count346
+\c@lofdepth=\count347
+\c@subtable=\count348
+\c@lotdepth=\count349
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip68
+\subfig@bottom=\skip69
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\enitkv@toks@=\toks56
-\labelindent=\skip61
-\enit@outerparindent=\dimen302
-\enit@toks=\toks57
-\enit@inbox=\box84
-\enit@count@id=\count337
-\enitdp@description=\count338
+\enitkv@toks@=\toks59
+\labelindent=\skip70
+\enit@outerparindent=\dimen304
+\enit@toks=\toks60
+\enit@inbox=\box86
+\enit@count@id=\count350
+\enitdp@description=\count351
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2022/01/05 v1.2f Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup7
@@ -981,37 +1032,39 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 Package: caption 2023/03/12 v3.6j Customizing captions (AR)
  (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
-\caption@tempdima=\dimen303
-\captionmargin=\dimen304
-\caption@leftmargin=\dimen305
-\caption@rightmargin=\dimen306
-\caption@width=\dimen307
-\caption@indent=\dimen308
-\caption@parindent=\dimen309
-\caption@hangindent=\dimen310
+\caption@tempdima=\dimen305
+\captionmargin=\dimen306
+\caption@leftmargin=\dimen307
+\caption@rightmargin=\dimen308
+\caption@width=\dimen309
+\caption@indent=\dimen310
+\caption@parindent=\dimen311
+\caption@hangindent=\dimen312
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count339
-\c@continuedfloat=\count340
+\c@caption@flags=\count352
+\c@continuedfloat=\count353
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: subfigure package is loaded.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count341
-\lst@gtempboxa=\box85
-\lst@token=\toks58
-\lst@length=\count342
-\lst@currlwidth=\dimen311
-\lst@column=\count343
-\lst@pos=\count344
-\lst@lostspace=\dimen312
-\lst@width=\dimen313
-\lst@newlines=\count345
-\lst@lineno=\count346
-\lst@maxwidth=\dimen314
+\lst@mode=\count354
+\lst@gtempboxa=\box87
+\lst@token=\toks61
+\lst@length=\count355
+\lst@currlwidth=\dimen313
+\lst@column=\count356
+\lst@pos=\count357
+\lst@lostspace=\dimen314
+\lst@width=\dimen315
+\lst@newlines=\count358
+\lst@lineno=\count359
+\lst@maxwidth=\dimen316
  (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count347
-\lst@skipnumbers=\count348
-\lst@framebox=\box86
+\c@lstnumber=\count360
+\lst@skipnumbers=\count361
+\lst@framebox=\box88
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
@@ -1019,75 +1072,74 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
  (/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty (/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexbase/luatexbase-cctb.sty
 Package: luatexbase-cctb 2015/10/04 v1.3 luatexbase interface to LuaTeX (legacy subpackage) 
 )
-\ltj@lst@japanese@min=\count349
+\ltj@lst@japanese@min=\count362
 \CatcodeTableLTJlistings=\catcodetable15
-\ltj@lst@frame@lslimit=\dimen315
-
-(/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
+\ltj@lst@frame@lslimit=\dimen317
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\lst@WFtoken=\toks59
+\lst@WFtoken=\toks62
 \lst@WF=\write4
 )) (/usr/local/texlive/2023/texmf-dist/tex/latex/doublestroke/dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip62
-\f@nch@O@elh=\skip63
-\f@nch@O@erh=\skip64
-\f@nch@O@olh=\skip65
-\f@nch@O@orh=\skip66
-\f@nch@O@elf=\skip67
-\f@nch@O@erf=\skip68
-\f@nch@O@olf=\skip69
-\f@nch@O@orf=\skip70
+\f@nch@headwidth=\skip71
+\f@nch@O@elh=\skip72
+\f@nch@O@erh=\skip73
+\f@nch@O@olh=\skip74
+\f@nch@O@orh=\skip75
+\f@nch@O@elf=\skip76
+\f@nch@O@erf=\skip77
+\f@nch@O@olf=\skip78
+\f@nch@O@orf=\skip79
 ) ("./Gaussian Mixture Models.aux")
 \openout1 = Gaussian Mixture Models.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 235.
-LaTeX Font Info:    Trying loading font information for TS1+cmr on input line 235.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 286.
+LaTeX Font Info:    Trying loading font information for TS1+cmr on input line 286.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 8.54097pt on input line 235.
+(Font)              scaled to size 8.54097pt on input line 286.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 8.54097pt on input line 235.
+(Font)              scaled to size 8.54097pt on input line 286.
  (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count350
-\scratchdimen=\dimen316
-\scratchbox=\box87
-\nofMPsegments=\count351
-\nofMParguments=\count352
-\everyMPshowfont=\toks60
-\MPscratchCnt=\count353
-\MPscratchDim=\dimen317
-\MPnumerator=\count354
-\makeMPintoPDFobject=\count355
-\everyMPtoPDFconversion=\toks61
+\scratchcounter=\count363
+\scratchdimen=\dimen318
+\scratchbox=\box89
+\nofMPsegments=\count364
+\nofMParguments=\count365
+\everyMPshowfont=\toks63
+\MPscratchCnt=\count366
+\MPscratchDim=\dimen319
+\MPnumerator=\count367
+\makeMPintoPDFobject=\count368
+\everyMPtoPDFconversion=\toks64
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1102,7 +1154,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Link coloring ON on input line 235.
+Package hyperref Info: Link coloring ON on input line 286.
  ("./Gaussian Mixture Models.out") ("./Gaussian Mixture Models.out")
 \@outlinefile=\write5
 
@@ -1145,15 +1197,15 @@ Package hyperref Info: Link coloring ON on input line 235.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count356
+\c@lstlisting=\count369
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 11.23196pt on input line 239.
+(Font)              scaled to size 11.23196pt on input line 290.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 11.23196pt on input line 239.
+(Font)              scaled to size 11.23196pt on input line 290.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 11.23196pt on input line 245.
+(Font)              scaled to size 11.23196pt on input line 296.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 11.23196pt on input line 245.
+(Font)              scaled to size 11.23196pt on input line 296.
 ("./Gaussian Mixture Models.toc"
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 8.54097pt on input line 1.
@@ -1163,49 +1215,80 @@ LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 \tf@toc=\write6
 
 \openout6 = Gaussian Mixture Models.toc
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 248.
-LaTeX Font Info:    Trying loading font information for U+msa on input line 249.
+<images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg, id=22, 550.055pt x 335.2525pt>
+File: images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg Graphic file (type jpg)
+<use images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg>
+Package luatex.def Info: images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg  used on input line 303.
+(luatex.def)             Requested size: 179.96368pt x 109.68217pt.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 7.01999pt on input line 303.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 7.01999pt on input line 303.
+<images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg, id=23, 991.705pt x 323.2075pt>
+File: images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg Graphic file (type jpg)
+<use images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg>
+Package luatex.def Info: images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg  used on input line 304.
+(luatex.def)             Requested size: 287.9375pt x 93.8412pt.
+<images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg, id=24, 959.585pt x 644.4075pt>
+File: images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg Graphic file (type jpg)
+<use images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg>
+Package luatex.def Info: images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg  used on input line 305.
+(luatex.def)             Requested size: 179.95102pt x 107.97456pt.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Trying loading font information for U+msa on input line 314.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying loading font information for U+msb on input line 249.
+LaTeX Font Info:    Trying loading font information for U+msb on input line 314.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 6.23999pt on input line 249.
+(Font)              scaled to size 4.68pt on input line 314.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 4.68pt on input line 249.
+(Font)              scaled to size 3.9pt on input line 314.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 6.23999pt on input line 249.
+(Font)              scaled to size 4.68pt on input line 314.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 4.68pt on input line 249.
+(Font)              scaled to size 3.9pt on input line 314.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 4.68pt on input line 344.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 289.
+(Font)              scaled to size 7.79999pt on input line 415.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 289.
+(Font)              scaled to size 7.79999pt on input line 415.
  [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] ("./Gaussian Mixture Models.aux")
+<./images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg><./images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg><./images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg>] [2]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 611.
+LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/sc' undefined
+(Font)              No change on input line 613.
+ [3] [4] ("./Gaussian Mixture Models.aux")
 Package rerunfilecheck Info: File `"Gaussian Mixture Models".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 )
 
 Here is how much of LuaTeX's memory you used:
- 32772 strings out of 478285
- 125244,1977958 words of node,token memory allocated
- 1019 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 178 attribute, 59 glue_spec, 27 attribute_list, 2 write, 12 user_defined nodes
-   avail lists: 1:16,2:5063,3:153,4:269,5:199,6:40,7:805,8:3,9:300,10:1,11:30
- 51622 multiletter control sequences out of 65536+600000
- 75 fonts using 167146967 bytes
- 106i,12n,115p,1837b,481s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on Gaussian Mixture Models.pdf (1 page, 26089 bytes).
+ 33815 strings out of 478285
+ 244640,1977958 words of node,token memory allocated
+ 1520 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 389 attribute, 63 glue_spec, 47 attribute_list, 2 write, 13 user_defined, 1 pdf_action nodes
+   avail lists: 1:39,2:59076,3:469,4:643,5:1003,6:100,7:9315,8:88,9:1344,10:4,11:589
+ 52546 multiletter control sequences out of 65536+600000
+ 91 fonts using 200980039 bytes
+ 106i,16n,115p,1837b,788s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Gaussian Mixture Models.pdf (4 pages, 324014 bytes).
 
-PDF statistics: 50 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 131072)
- 24 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 158 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 131072)
+ 40 words of extra memory for PDF output out of 10000 (max. 100000000)
 
