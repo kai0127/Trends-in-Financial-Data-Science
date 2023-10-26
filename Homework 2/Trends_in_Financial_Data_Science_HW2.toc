@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Topic: Black-Litterman-Bayes}{2}{section.1}%
-\contentsline {section}{\numberline {2}Topic: Important Properties Of the Kalman Filter}{4}{section.2}%
-\contentsline {section}{\numberline {3}Topic: Kalman filter's Application on Financial Problems --- Pairs Trading}{4}{section.3}%
-\contentsline {section}{\numberline {4}Topic: Kalman filter's Application on Financial Problems --- Index Tracking Portfolios}{4}{section.4}%
-\contentsline {section}{\numberline {5}Topic: Another Interpretation for Independent Component Analysis (ICA)}{5}{section.5}%
+\contentsline {section}{\numberline {2}Topic: Important Properties of the Kalman Filter}{4}{section.2}%
+\contentsline {section}{\numberline {3}Topic: Kalman filter's Application on Financial Problems --- Pairs Trading}{6}{section.3}%
+\contentsline {section}{\numberline {4}Topic: Kalman filter's Application on Financial Problems --- Index Tracking Portfolios}{7}{section.4}%
+\contentsline {section}{\numberline {5}Topic: Another Interpretation for Independent Component Analysis (ICA)}{7}{section.5}%

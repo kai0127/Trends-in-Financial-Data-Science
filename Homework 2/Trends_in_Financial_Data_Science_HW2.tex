@@ -161,6 +161,11 @@ WordSpace=1.7,
 {\color{C2}\normalfont\begin{framed}\begingroup\textbf{Solution:} }
   {\endgroup\end{framed}}
 
+\newenvironment{topic}
+  {\color{C2}\normalfont\begin{framed}\begingroup}
+    {\endgroup\end{framed}}
+
+
 \newtheoremstyle{remark}% name of the style to be used
   {}% measure of space to leave above the theorem. E.g.: 3pt
   {}% measure of space to leave below the theorem. E.g.: 3pt
@@ -326,6 +331,19 @@ WordSpace=1.7,
   $$
 \end{definition}
 
+\begin{lemma}\label{lemma: covariance matrix properties}
+  If $X, Y, W$, and $V$ are real-valued random variables and $a, b, c, d$ are real-valued constants, then the following facts are a consequence of the definition of covariance:
+  $$
+    \begin{aligned}
+      \operatorname{cov}(X, a)             & =0                                                                                                                   \\
+      \operatorname{cov}(X, X)             & =\operatorname{var}(X)                                                                                               \\
+      \operatorname{cov}(X, Y)             & =\operatorname{cov}(Y, X)                                                                                            \\
+      \operatorname{cov}(a X, b Y)         & =a b \operatorname{cov}(X, Y)                                                                                        \\
+      \operatorname{cov}(X+a, Y+b)         & =\operatorname{cov}(X, Y)                                                                                            \\
+      \operatorname{cov}(a X+b Y, c W+d V) & =a c \operatorname{cov}(X, W)+a d \operatorname{cov}(X, V)+b c \operatorname{cov}(Y, W)+b d \operatorname{cov}(Y, V)
+    \end{aligned}
+  $$
+\end{lemma}
 
 \section{Topic: Black-Litterman-Bayes}
 \begin{problem}
@@ -338,7 +356,9 @@ Black-Litterman'' \cite{Kolm2017}.
         properties.
 \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{topic}
+  \textbf{Classic Black-Litterman Model from Bayesian Perspective:}
+
   Suppose we have $\boldsymbol{r} \sim N(\boldsymbol{\theta}, \boldsymbol{\Sigma})$,
   and since Black and Litterman were motivated by
   the guiding principle that, in the absence of any sort of information/views
@@ -359,7 +379,7 @@ Black-Litterman'' \cite{Kolm2017}.
   where $\boldsymbol{P} \in \mathbb{R}^{k\times n}$, $\boldsymbol{\Omega} \in \mathbb{R}^{k\times k}$ and $\boldsymbol{q},\boldsymbol{\epsilon} \in \mathbb{R}^k$
 
   \begin{enumerate}[label=(\alph*)]
-    \item In this question, we derive the mean $\boldsymbol{\nu}$ and covariance
+    \item \textbf{Solution:} In this question, we derive the mean $\boldsymbol{\nu}$ and covariance
           matrix $\boldsymbol{H}$ for the posterior.
 
           Since the posterior is proportional to the product of the likelihood and the
@@ -381,7 +401,7 @@ Black-Litterman'' \cite{Kolm2017}.
           as desired.
 
   \end{enumerate}
-  \vspace*{1em}
+  \vspace*{0.8em}
   \hrule
 
   \textbf{APT Model:}
@@ -509,7 +529,7 @@ Black-Litterman'' \cite{Kolm2017}.
     which is consistent with our results.
   \end{remark}
   \begin{enumerate}[label=(\alph*), start=2]
-    \item In this question, we derive the posterior distribution for
+    \item \textbf{Solution:} In this question, we derive the posterior distribution for
           $\boldsymbol{r}\mid \boldsymbol{q}$ and the mean-variance optimal
           portfolio holdings.
 
@@ -574,11 +594,135 @@ Black-Litterman'' \cite{Kolm2017}.
           and $\widetilde{\boldsymbol{\xi}}=\left(\boldsymbol{V}^{-1}+\boldsymbol{\Omega}^{-1}\right)^{-1}\left(\boldsymbol{V}^{-1}
             \boldsymbol{\xi}+\boldsymbol{\Omega}^{-1} \boldsymbol{q}\right)$.
   \end{enumerate}
-\end{solution}
+\end{topic}
 
 
 
-\section{Topic: Important Properties Of the Kalman Filter}
+\section{Topic: Important Properties of the Kalman Filter}
+\begin{topic}
+  \textbf{State Space Models:}
+
+  Consider the following discrete linear dynamical system, which also referred to as linear state space model:
+  \begin{align}
+    \begin{aligned}
+       & \mathbf{x}_{t}=\mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{w}_{t} \\
+       & \mathbf{y}_{t}=\mathbf{H}_{t} \mathbf{x}_{t}+\mathbf{v}_{t}
+    \end{aligned}\quad \text{ where } \quad
+    \mathbf{x}_{0} \sim \mathcal{N}\left(\boldsymbol{\mu}_{0}, \mathbf{P}_{0}\right),\quad
+    \mathbf{w}_{t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{Q}_{t}\right), \quad
+    \mathbf{v}_{t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{R}_{t}\right)
+    \label{eq: state space model relation}
+  \end{align}
+  Additionally, the initial state $\mathbf{x}_{0}$ and the noise terms $\mathbf{w}_{t},
+    \mathbf{v}_{t}$ are all assumed to be mutually independent.
+
+  Sequences $\{\mathbf{x}_{\tau}\}_{\tau=0}^t$ and $\{\mathbf{y}_{\tau}\}_{\tau=0}^t$ are
+  called the hidden/latent state and observation sequences, respectively.
+  It follows that the first and second equations are referred to the state and observation
+  equations, respectively.
+  In a state space model the state sequences $\{\mathbf{x}_{\tau}\}_{\tau=0}^t$ are not observable;
+  however, the observation sequences $\{\mathbf{y}_{\tau}\}_{\tau=0}^t$ are fully observable.
+
+
+  \textbf{The Filtering Problem:}
+
+  The filtering problem is to estimate
+  $$
+    \hat{\mathbf{x}}_{t}=\mathbb{E}\left(\mathbf{x}_{t} \mid \mathbf{Y}_{t}\right)
+  $$
+  where $\mathbf{Y}_{t}:=\left\{\mathbf{y}_{0}, \ldots, \mathbf{y}_{t}\right\}$.
+  In other words, given the noisy observations,
+  $\left\{\mathbf{y}_{\tau}\right\}_{\tau=0}^{t}$, we seek to estimate the
+  expected state. And the optimal solution for our setup is given by the Kalman filter, also referred
+  to as linear quadratic estimation (LQE).
+  \vspace{0.8em}
+
+  \hrule
+
+  \textbf{Derive the Kalman Filter:}
+
+  The derivation of the Kalman filter is by induction, showing that the
+  observation and state sequences are conditionally Gaussian.
+
+  \textbf{Base Case:} Since $\mathbf{x}_{0}$ is Gaussian, $\mathbf{x}_{1}, \mathbf{y}_{1}$ are also Gaussians.
+  It follows that
+  $$
+    \begin{aligned}
+       & \mathbf{x}_{1} \sim \mathcal{N}\left(\mathbf{F}_{1} \boldsymbol{\mu}_{0}, \mathbf{F}_{1} \mathbf{P}_{0} \mathbf{F}_{1}^\top+\mathbf{Q}_{1}\right)                                                                              \\
+       & \mathbf{y}_{1} \sim \mathcal{N}\left(\mathbf{H}_{1} \mathbf{F}_{1} \boldsymbol{\mu}_{0}, \mathbf{H}_{1}\left(\mathbf{F}_{1} \mathbf{P}_{0} \mathbf{F}_{1}^\top+\mathbf{Q}_{1}\right) \mathbf{H}_{1}^\top+\mathbf{R}_{1}\right)
+    \end{aligned}
+  $$
+
+  \textbf{Induction Step:} To perform the induction step, we assume that
+  $$
+    \mathbf{x}_{t-1} \sim \mathcal{N}\left(\hat{\mathbf{x}}_{t-1 \mid t-1}, \mathbf{P}_{t-1 \mid t-1}\right)
+  $$
+
+  where the subscript $t \mid t^{\prime}$ to denote our belief about the state $\mathbf{x}_{t}$ given
+  observations $\mathbf{Y}_{t^{\prime}}$. We immediately obtain from \cref{eq: state space model relation}
+
+  $$
+    \begin{aligned}
+       & \mathbf{x}_{t} \mid \mathbf{Y}_{t-1} \sim \mathcal{N}\left(\mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}, \mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right)                                                                              \\
+       & \mathbf{y}_{t} \mid \mathbf{Y}_{t-1} \sim \mathcal{N}\left(\mathbf{H}_{t} \mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}, \mathbf{H}_{t}\left(\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right) \mathbf{H}_{t}^\top+\mathbf{R}_{t}\right)
+    \end{aligned}
+  $$
+
+  As $\mathbf{x}_{t}$, $\mathbf{w}_{t}$ and $\mathbf{v}_{t}$ are independent, the covariance of
+  $\mathbf{x}_{t}$ and $\mathbf{y}_{t}$ is given by
+  $$
+    \operatorname{Cov}\left(\mathbf{x}_{t}, \mathbf{y}_{t}\right)
+    =\operatorname{Cov}\left(\mathbf{x}_{t}, \mathbf{H}_{t} \mathbf{x}_{t}+\mathbf{v}_{t}\right)
+    =\operatorname{Cov}\left(\mathbf{x}_{t}, \mathbf{H}_{t} \mathbf{x}_{t}\right)
+    + \operatorname{Cov}\left(\mathbf{x}_{t}, \mathbf{v}_{t}\right)
+    = \EE\left[\mathbf{x}_{t}\mathbf{x}_{t}^\top\mathbf{H}_{t}^\top\right]
+    =\left(\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right) \mathbf{H}_{t}^\top
+  $$
+
+  \textbf{IS/Predict Step of the Kalman Filter:} From the distribution of $\mathbf{x}_{t} \mid \mathbf{Y}_{t-1}$, we introduce the notation
+  $$
+    \begin{aligned}
+      \hat{\mathbf{x}}_{t \mid t-1} & :=\mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}                              \\
+      \mathbf{P}_{t \mid t-1}       & :=\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}
+    \end{aligned}
+  $$
+  Then, we see that the joint distribution of
+  $\mathbf{x}_{t}$ and $\mathbf{y}_{t}$, conditioned on $\mathbf{Y}_{t-1}$, is given by the multivariate Gaussian
+  $$
+    \left[\begin{array}{l}
+        \mathbf{x}_{t} \\
+        \mathbf{y}_{t}
+      \end{array}\right] \sim \mathcal{N}\left(\left[\begin{array}{c}
+        \hat{\mathbf{x}}_{t \mid t-1} \\
+        \mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}
+      \end{array}\right],\left[\begin{array}{cc}
+        \mathbf{P}_{t \mid t-1}                & \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top                               \\
+        \mathbf{H}_{t} \mathbf{P}_{t \mid t-1} & \mathbf{H}_{t} \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top+\mathbf{R}_{t}
+      \end{array}\right]\right)
+  $$
+  \textbf{IS/Update Step of the Kalman Filter:}
+  Let us now assume $\mathbf{y}_{t}$ is observed.
+  Applying the conditional formulas for the multivariate Gaussian we obtain
+  $$
+    \mathbf{x}_{t} \mid \mathbf{Y}_{t} \sim \mathcal{N}\left(\hat{\mathbf{x}}_{t \mid t}, \mathbf{P}_{t \mid t}\right)
+  $$
+  where
+  \begin{align*}
+    \hat{\mathbf{x}}_{t \mid t} :=\hat{\mathbf{x}}_{t \mid t-1}+\mathbf{K}_{t}\left(\mathbf{y}_{t}-\mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}\right), \quad
+    \mathbf{P}_{t \mid t} :=\left(\mathbf{I}-\mathbf{K}_{t} \mathbf{H}_{t}\right) \mathbf{P}_{t \mid t-1},\quad
+    \mathbf{K}_{t} :=\mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top \mathbf{S}_{t}^{-1}, \quad
+    \mathbf{S}_{t} :=\mathbf{H}_{t} \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top+\mathbf{R}_{t}
+  \end{align*}
+  Specifically, $\mathbf{K}_{t}$ is called the Kalman gain. Clearly, our belief about
+  $\mathbf{x}_{t}$ given $\mathbf{Y}_{t}$ is a multivariate Gaussian distribution.
+
+  \begin{remark}
+    From the above filter formulas, it follows that we can apply the predict and
+    update steps recursively as new observations arrive. This makes the Kalman
+    filter ideal for online real-time processing of information.
+  \end{remark}
+\end{topic}
+
 \begin{problem}
 Choose three out of the four subproblems. It is optional to solve the other one
 for extra credit.
@@ -589,29 +733,166 @@ for extra credit.
         $\mathbb{E}\left[\mathbf{w}_t \mathbf{v}_t^\top\right]=\mathbf{M}_t$.
 
         \begin{solution}
-          
+          We assume that
+          $$
+            \mathbf{x}_{t-1} \sim \mathcal{N}\left(\hat{\mathbf{x}}_{t-1 \mid t-1}, \mathbf{P}_{t-1 \mid t-1}\right)
+          $$
+          where the subscript $t \mid t^{\prime}$ to denote our belief about the state $\mathbf{x}_{t}$ given
+          observations $\mathbf{Y}_{t^{\prime}}$.
+
+          \textbf{Find $\mathbf{x}_{t} \mid \mathbf{Y}_{t-1}$ and $\mathbf{y}_{t} \mid \mathbf{Y}_{t-1}$:}
+
+          From \cref{eq: state space model relation}, we get $\mathbf{x}_{t}=\mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{w}_{t}$.
+          Then, for $\mathbf{x}_{t} \mid \mathbf{Y}_{t-1}$, it's easy to deduce that
+          $$
+            \mathbf{x}_{t} \mid \mathbf{Y}_{t-1} \sim \mathcal{N}\left(\mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}, \mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right)
+          $$
+
+          Since $\mathbf{y}_{t}=\mathbf{H}_{t} \mathbf{x}_{t}+\mathbf{v}_{t} =
+            \mathbf{H}_{t} \mathbf{F}_{t}
+            \mathbf{x}_{t-1}+\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}$, we have
+          $\EE\left[\mathbf{y}_{t} \mid \mathbf{Y}_{t-1}\right] = \mathbf{H}_{t}
+            \mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}$. By \cref{lemma: covariance matrix properties}, we obtain
+          \begin{align*}
+            \VV\left[\mathbf{y}_{t} \mid \mathbf{Y}_{t-1}\right]
+            = \VV\left[\mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right]
+             & =  \operatorname*{Cov}\left(\mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}, \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right) \\
+            \mathbf{x}_{t-1} \text{ independent of } \mathbf{w}_{t} \text{ and } \mathbf{v}_{t} \Longrightarrow
+             & =  \operatorname*{Cov}\left(\mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}, \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}\right)
+            + \operatorname*{Cov}\left(\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}, \mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right)                                                                                                   \\
+             & = \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1}\mathbf{F}_{t}^\top \mathbf{H}_{t}^\top
+            + \EE\left[\left(\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right)\left(\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right)^\top\right]                                                                                      \\
+             & = \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1}\mathbf{F}_{t}^\top \mathbf{H}_{t}^\top
+            + \mathbf{H}_{t}\EE\left[\mathbf{w}_{t}\mathbf{w}_{t}^\top\right]\mathbf{H}_{t}^\top
+            + \EE\left[\mathbf{v}_{t}\mathbf{v}_{t}^\top\right]
+            + \EE\left[\mathbf{H}_{t}\mathbf{w}_{t}\mathbf{v}_{t}^\top\right]
+            + \EE\left[\mathbf{v}_{t}\mathbf{w}_{t}^\top\mathbf{H}_{t}^\top\right]                                                                                                                                                       \\
+             & = \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1}\mathbf{F}_{t}^\top \mathbf{H}_{t}^\top
+            + \mathbf{H}_{t}\mathbf{Q}_{t}\mathbf{H}_{t}^\top
+            + \mathbf{R}_{t}
+            + \mathbf{H}_{t}\mathbf{M}_{t}
+            + \mathbf{M}_{t}^\top\mathbf{H}_{t}^\top                                                                                                                                                                                     \\
+             & =\mathbf{H}_{t}\left(\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right) \mathbf{H}_{t}^\top
+            + \mathbf{R}_{t}
+            + \mathbf{H}_{t}\mathbf{M}_{t}
+            + \mathbf{M}_{t}^\top\mathbf{H}_{t}^\top
+          \end{align*}
+          Therefore, we have
+          \begin{align*}
+            \mathbf{x}_{t} \mid \mathbf{Y}_{t-1} & \sim \mathcal{N}\left(\mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}, \mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right) \\
+            \mathbf{y}_{t} \mid \mathbf{Y}_{t-1}
+                                                 & \sim
+            \mathcal{N}\left(\mathbf{H}_{t} \mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1},
+            \mathbf{H}_{t}\left(\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right) \mathbf{H}_{t}^\top
+            + \mathbf{R}_{t}
+            + \mathbf{H}_{t}\mathbf{M}_{t}
+            + \mathbf{M}_{t}^\top\mathbf{H}_{t}^\top\right)
+          \end{align*}
+
+          \textbf{Find $\mathbf{x}_{t} \mid \mathbf{Y}_{t}$:}
+
+          As $\mathbf{x}_{t-1}$, $\mathbf{w}_{t}$ and $\mathbf{x}_{t-1}$, $\mathbf{v}_{t}$ are independent, the covariance of
+          $\mathbf{x}_{t}$ and $\mathbf{y}_{t}$ is given by
+          $$
+            \operatorname{Cov}\left(\mathbf{x}_{t}, \mathbf{y}_{t}\right)
+            =\operatorname{Cov}\left(\mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{w}_{t}, \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right)
+            =\operatorname{Cov}\left(\mathbf{F}_{t} \mathbf{x}_{t-1}, \mathbf{H}_{t} \mathbf{F}_{t} \mathbf{x}_{t-1}\right)
+            +\operatorname{Cov}\left(\mathbf{w}_{t}, \mathbf{H}_{t}\mathbf{w}_{t}+\mathbf{v}_{t}\right)
+            =\left(\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}\right) \mathbf{H}_{t}^\top + \mathbf{M}_{t}
+          $$
+
+          \textbf{- IS/Predict Step of the Kalman Filter:} From the distribution of $\mathbf{x}_{t} \mid \mathbf{Y}_{t-1}$, we introduce the notation
+          $$
+            \begin{aligned}
+              \hat{\mathbf{x}}_{t \mid t-1} & :=\mathbf{F}_{t} \hat{\mathbf{x}}_{t-1 \mid t-1}                              \\
+              \mathbf{P}_{t \mid t-1}       & :=\mathbf{F}_{t} \mathbf{P}_{t-1 \mid t-1} \mathbf{F}_{t}^\top+\mathbf{Q}_{t}
+            \end{aligned}
+          $$
+          Then, we see that the joint distribution of
+          $\mathbf{x}_{t}$ and $\mathbf{y}_{t}$, conditioned on $\mathbf{Y}_{t-1}$, is given by the multivariate Gaussian
+          $$
+            \left[\begin{array}{l}
+                \mathbf{x}_{t} \\
+                \mathbf{y}_{t}
+              \end{array}\right] \sim \mathcal{N}\left(\left[\begin{array}{c}
+                \hat{\mathbf{x}}_{t \mid t-1} \\
+                \mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}
+              \end{array}\right],\left[\begin{array}{cc}
+                \mathbf{P}_{t \mid t-1}                                       & \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top  + \mathbf{M}_{t}                                                                                     \\
+                \mathbf{H}_{t} \mathbf{P}_{t \mid t-1}  + \mathbf{M}_{t}^\top & \mathbf{H}_{t} \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top+\mathbf{R}_{t} + \mathbf{H}_{t}\mathbf{M}_{t} + \mathbf{M}_{t}^\top\mathbf{H}_{t}^\top
+              \end{array}\right]\right)
+          $$
+          \textbf{- IS/Update Step of the Kalman Filter:}
+          Let us now assume $\mathbf{y}_{t}$ is observed.
+          Applying the conditional formulas for the multivariate Gaussian we obtain
+          $$
+            \mathbf{x}_{t} \mid \mathbf{Y}_{t} \sim \mathcal{N}\left(\hat{\mathbf{x}}_{t \mid t}, \mathbf{P}_{t \mid t}\right)
+          $$
+          where
+          \begin{align*}
+            \hat{\mathbf{x}}_{t \mid t} :=\hat{\mathbf{x}}_{t \mid t-1}+\mathbf{K}_{t}\left(\mathbf{y}_{t}-\mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}\right), ~~
+            \mathbf{P}_{t \mid t} :=\left(\mathbf{I}-\mathbf{K}_{t} \mathbf{H}_{t}\right) \mathbf{P}_{t \mid t-1} - \mathbf{K}_{t}\mathbf{M}_{t}^\top, ~~
+            \mathbf{K}_{t} :=\mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top  + \mathbf{M}_{t}, ~
+            \mathbf{S}_{t} :=\mathbf{H}_{t} \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^\top+\mathbf{R}_{t} + \mathbf{H}_{t}\mathbf{M}_{t} + \mathbf{M}_{t}^\top\mathbf{H}_{t}^\top
+          \end{align*}
+          Specifically, $\mathbf{K}_{t}$ is called the Kalman gain. Clearly, our belief about
+          $\mathbf{x}_{t}$ given $\mathbf{Y}_{t}$ is a multivariate Gaussian distribution.
         \end{solution}
-  \item Using the notation from class, let us denote the error between the true
+
+  \item \textbf{(The Kalman filter is the Best Predictor, among all (e.g. linear/non-linear), under Mean-Squared Error if noise is Gaussian)} Using the notation from class, let us denote the error between the true
         and estimated states by the random variable
         $\widetilde{\mathbf{x}}_t=\mathbf{x}_t-\hat{\mathbf{x}}_t$. We denote by
         $\mathbf{W}_t$ a known positive definite matrix. Show that the Kalman filter
         is the solution to the problem
         \begin{align}
-          \min _{\hat{\mathbf{x}}_t} \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]\label{eq: kalman}
+          \min_{\hat{\mathbf{x}}_t} \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]\label{eq: kalman}
         \end{align}
 
         \begin{solution}
-          
+          Since $\mathbf{W}_t$ is a known positive definite matrix, by Cholesky
+          decomposition, we have $\mathbf{W}_t =
+            \mathbf{L}_t\mathbf{L}_t^\top$. Recall that the Kalman filter approximates
+          $\hat{\mathbf{x}}_t = \hat{\mathbf{x}}_{t\mid t} = \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]$,
+          and using the fact that $\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t
+            \widetilde{\mathbf{x}}_t\in \mathbb{R}$, we can rewrite the loss
+          function as
+          \begin{align*}
+            \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]
+             & = \mathbb{E}\left[\left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)^\top \mathbf{W}_t \left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\right]
+            + \mathbb{E}\left[\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)^\top \mathbf{W}_t\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)\right]                  \\
+             & \quad + 2\cdot \mathbb{E}\left[\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)^\top \mathbf{W}_t \left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\right]       \\
+             & =  \mathbb{E}\left[\left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)^\top \mathbf{L}_t\mathbf{L}_t^\top \left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\right]
+            + \mathbb{E}\left[\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)^\top \mathbf{L}_t\mathbf{L}_t^\top\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)\right] \\
+            \phi(\hat{\mathbf{x}}_t) =\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)^\top \mathbf{W}_t \Longrightarrow
+             & \quad + 2\mathbb{E}\left\{\mathbb{E}\left[\phi(\hat{\mathbf{x}}_t)\left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\mid \mathbf{Y}_t\right]\right\}                                             \\
+             & =  \mathbb{E}\left[\|\mathbf{L}_t^\top \left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\|^2\right]
+            + \mathbb{E}\left[\|\mathbf{L}_t^\top\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)\|^2\right]
+            + 2\mathbb{E}\left\{\mathbb{E}\left[\phi(\hat{\mathbf{x}}_t)\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\right]\right\}                                      \\
+             & =  \mathbb{E}\left[\|\mathbf{L}_t^\top \left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\|^2\right]
+            + \mathbb{E}\left[\|\mathbf{L}_t^\top\left(\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right] - \hat{\mathbf{x}}_t\right)\|^2\right]                                                                                            \\
+             & \ge  \mathbb{E}\left[\|\mathbf{L}_t^\top \left(\mathbf{x}_t - \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]\right)\|^2\right]
+          \end{align*}
+          where the equality can be attained when $\hat{\mathbf{x}}_t = \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]$.
+
+          Therefore, the Kalman filter is the solution to the problem $\min_{\hat{\mathbf{x}}_t} \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]$.
         \end{solution}
-  \item Now let us assume that $\mathbf{w}_t$ and $\mathbf{v}_t$ have zero mean,
-        are uncorrelated with covariance matrices $\mathbf{Q}_t$ and $\mathbf{R}_t$,
+        \item \textbf{(The Kalman filter is the Best LINEAR Predictor under Mean-Squared Error if noise is NOT Gaussian (Non-linear Predictors could be better.))} Now
+        let us assume that $\mathbf{w}_t$ and $\mathbf{v}_t$ have zero mean, are
+        uncorrelated with covariance matrices $\mathbf{Q}_t$ and $\mathbf{R}_t$,
         respectively (but they are no longer Gaussian). Show that the Kalman filter is
-        the best linear solution to \cref{eq: kalman}. In other words, the Kalman
-        filter is the best filter that is a linear combination of the measurements,
-        $\mathbf{y}_t$.
+        the best linear solution to \cref{eq: kalman}.
 
         \begin{solution}
-          
+          The best linear unbiased estimator (BLUE) of the vector $\beta$ of
+          parameters $\beta_j$ is one with the smallest mean squared error for
+          every vector $\lambda$ of linear combination parameters. This is
+          equivalent to the condition that
+          $$
+            \operatorname{Var}(\tilde{\beta})-\operatorname{Var}(\widehat{\beta})
+          $$
+          is a positive semi-definite matrix for every other linear unbiased estimator
+          $\tilde{\beta}$.
+
         \end{solution}
   \item In class we derived the Kalman filter under the assumption that
         $\mathbf{w}_t$ and $\mathbf{v}_t$ are uncolored (i.e. each is serially
@@ -629,7 +910,7 @@ for extra credit.
         not?
 
         \begin{solution}
-          
+
         \end{solution}
 \end{enumerate}
 
@@ -642,35 +923,66 @@ In this question we consider a basic pairs trading strategy between two stocks
 with prices $p_t^A$ and $p_t^B$ at time $t$. We denote the spread between them
 by $s_t:=\log \left(p_t^A\right)-\log \left(p_t^B\right)$ and assume the spread
 follows an Ornstein-Uhlenbeck process
-$$
-  d s_t=\kappa\left(\theta-s_t\right) d t+\sigma d B_t
-$$
+\begin{align}
+  d s_t=\kappa\left(\theta-s_t\right) d t+\sigma d B_t \label{eq: OU process}
+\end{align}
 where $d B_t$ is a standard Brownian motion. In other words, the spread reverts
 to its mean $\theta \in \mathbb{R}$ at the speed $\kappa \in \mathbb{R}_{+}$and
 volatility $\sigma \in \mathbb{R}_{+}$.
 \begin{enumerate}[label=(\alph*)]
-  \item Show that the discrete time solution of (2) is Markovian, that is
+  \item Show that the discrete time solution of \cref{eq: OU process} is Markovian, that is
         $$
-          s_k=\mathbb{E}\left[s_k \mid s_{k-1}\right]+\varepsilon_k
+          s_n=\mathbb{E}\left[s_n \mid s_{n-1}\right]+\varepsilon_n
         $$
-        where $k=1,2, \ldots$, and $\varepsilon_k$ is a random process with zero
+        where $n=1,2, \ldots$, and $\varepsilon_n$ is a random process with zero
         mean and variance equal to $\sigma_{\varepsilon,
-            k}^2=\mathbb{V}\left[s_k \mid s_{k-1}\right]$. (Hint: You can derive the
-        discrete solution explicitly.)
+            n}^2=\mathbb{V}\left[s_n \mid s_{n-1}\right]$. 
+            
+            Hint: You can derive the discrete solution explicitly.
+
+        \begin{solution}
+          Set $f(t, x) = e^{\kappa t}x$ and apply the It\^{o}'s lemma, we have
+          $de^{e^{\kappa t}s_t} = \kappa e^{\kappa t}s_t dt + e^{\kappa t} ds_t$. Pluging in \cref{eq: OU process}, we obtain
+          $$
+          d s_t + \kappa s_t d t = \frac{d e^{\kappa t}s_t}{e^{\kappa t}} = \kappa \theta dt+\sigma d B_t 
+          \Longrightarrow
+          e^{\kappa t}s_t - s_0 = \int_{0}^t e^{\kappa s}\kappa \theta ds + \int_{0}^t e^{\kappa s}\sigma d B_s 
+          \Longrightarrow
+          s_t = e^{-\kappa t}s_0 + \theta \left(1 - e^{-\kappa t}\right) + \int_{0}^t e^{\kappa(s-t)}\sigma d B_s, \forall t>0
+          $$
+          To extract $s_{n-1}$ out of $s_n$, we can rewrite $s_n$ as:
+          \begin{align*}
+          s_n = e^{-\kappa n}s_0 + \theta \left(1 - e^{-\kappa n}\right) + \int_{0}^n e^{\kappa(s-n)}\sigma d B_s 
+          &= \theta - e^{-\kappa}\theta + e^{-\kappa} \cdot \left(e^{-\kappa (n-1)}s_0 + \theta \left(1 - e^{-\kappa (n-1)}\right) + e^{-\kappa (n-1)} \left[\int_{0}^{n-1} e^{\kappa s}\sigma d B_s + \int_{n-1}^n e^{\kappa s}\sigma d B_s\right]\right)\\
+          &= \theta - e^{-\kappa}\theta + e^{-\kappa} s_{n-1} + e^{-\kappa n}\int_{n-1}^n e^{\kappa s}\sigma d B_s
+        \end{align*}
+        \end{solution}
   \item Propose a methodology for updating the parameters $\theta, \kappa$ using
         the Kalman filter and describe how you would use it to trade the stock pair.
+
+        \begin{solution}
+          
+        \end{solution}
   \item Test your methodology from (b) on simulated data. In particular, (i)
         simulate (2) from known parameters $\theta, \kappa$ and $\sigma$, and then
         (ii) use the Kalman filter to recover them. You do not need to implement the
         Kalman filter from scratch; you are welcome to use a Kalman implementation
         from a Python package such as pykalman. How do you obtain a good estimate of
         $\sigma$ ?
+
+        \begin{solution}
+          
+        \end{solution}
   \item Repeat the same experiment from (c), but this time simulate (2) first
         with $\kappa$ having the same value as above and then suddenly changing it to
         another value such that the half-life of the spread is $50 \%$ of its original
         value. How long does it take the Kalman filter to adjust? Can you make
         adjustment to your filter in order to speed up the time it takes the Kalman
         filter to adjust?
+
+        \begin{solution}
+          
+        \end{solution}
 \end{enumerate}
 Hint: For (c) and (d), think about how you are going to demonstrate the results
 using appropriate graphs, etc.
@@ -762,10 +1074,10 @@ was chosen so that $\mathbf{V}_I$ has unimodular columns.
 
 
 
-\newpage 
+\newpage
 \begin{thebibliography}{1}
 
-  \bibitem{Kolm2017} 
+  \bibitem{Kolm2017}
   Kolm, Petter N. and Ritter, Gordon, On the Bayesian Interpretation of
   Black-Litterman (October 16, 2016). European Journal of Operational Research,
   Volume 258, Issue 2, 16 April 2017, Pages 564-572, Available at SSRN:
