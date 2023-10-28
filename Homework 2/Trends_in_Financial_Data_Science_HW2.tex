@@ -243,7 +243,7 @@ WordSpace=1.7,
   \text{\Large{Black-Litterman-Bayes, Kalman Filter, ICA
     }}
 
-  {\text{Kaiwen Zhou}}
+  {\text{Kaiwen Zhou, Youran Pan, Erding Liao}}
 \end{center}
 \vspace{2em}
 
@@ -839,7 +839,7 @@ for extra credit.
           $\mathbf{x}_{t}$ given $\mathbf{Y}_{t}$ is a multivariate Gaussian distribution.
         \end{solution}
 
-  \item \textbf{(The Kalman filter is the Best Predictor, among all (e.g. linear/non-linear), under Mean-Squared Error if noise is Gaussian)} Using the notation from class, let us denote the error between the true
+  \item Using the notation from class, let us denote the error between the true
         and estimated states by the random variable
         $\widetilde{\mathbf{x}}_t=\mathbf{x}_t-\hat{\mathbf{x}}_t$. We denote by
         $\mathbf{W}_t$ a known positive definite matrix. Show that the Kalman filter
@@ -852,7 +852,7 @@ for extra credit.
           Since $\mathbf{W}_t$ is a known positive definite matrix, by Cholesky
           decomposition, we have $\mathbf{W}_t =
             \mathbf{L}_t\mathbf{L}_t^\top$. Recall that the Kalman filter approximates
-          $\hat{\mathbf{x}}_t = \hat{\mathbf{x}}_{t\mid t} = \EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]$,
+          $\EE\left[\mathbf{x}_t\mid \mathbf{Y}_t\right]$ as $\hat{\mathbf{x}}_t = \hat{\mathbf{x}}_{t\mid t}$,
           and using the fact that $\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t
             \widetilde{\mathbf{x}}_t\in \mathbb{R}$, we can rewrite the loss
           function as
@@ -876,22 +876,79 @@ for extra credit.
 
           Therefore, the Kalman filter is the solution to the problem $\min_{\hat{\mathbf{x}}_t} \mathbb{E}\left[\widetilde{\mathbf{x}}_t^\top \mathbf{W}_t \widetilde{\mathbf{x}}_t\right]$.
         \end{solution}
-        \item \textbf{(The Kalman filter is the Best LINEAR Predictor under Mean-Squared Error if noise is NOT Gaussian (Non-linear Predictors could be better.))} Now
+  \item \textbf{(The Kalman filter is the Best LINEAR Predictor under Mean-Squared Error if noise is NOT Gaussian (Non-linear Predictors could be better.))} Now
         let us assume that $\mathbf{w}_t$ and $\mathbf{v}_t$ have zero mean, are
         uncorrelated with covariance matrices $\mathbf{Q}_t$ and $\mathbf{R}_t$,
         respectively (but they are no longer Gaussian). Show that the Kalman filter is
         the best linear solution to \cref{eq: kalman}.
 
         \begin{solution}
-          The best linear unbiased estimator (BLUE) of the vector $\beta$ of
-          parameters $\beta_j$ is one with the smallest mean squared error for
-          every vector $\lambda$ of linear combination parameters. This is
-          equivalent to the condition that
+          We assume that the estimate is a
+          linear weighted sum of the prediction and the new observation and can
+          be described by the equation,
           $$
-            \operatorname{Var}(\tilde{\beta})-\operatorname{Var}(\widehat{\beta})
+          \hat{\mathbf{x}}_{t \mid t} :=\hat{\mathbf{x}}_{t \mid t-1}+\mathbf{K}_{t}\left(\mathbf{y}_{t}-\mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}\right)
           $$
-          is a positive semi-definite matrix for every other linear unbiased estimator
-          $\tilde{\beta}$.
+          where $\mathbf{K}_{t}$ is called the
+          gain matrice. Our problem now is to reduced to
+          finding the $\mathbf{K}_{t}$ that
+          minimise the conditional mean squared estimation error where of course
+          the estimation error is given by:
+          $$
+            \widetilde{\mathbf{x}}_{t \mid t} = \mathbf{x}_{t} -\hat{\mathbf{x}}_{t \mid t}
+          $$
+          \textbf{Unbiasedness:}
+          Assume that at state $t - 1$, our predictor $E\left[\hat{\mathbf{x}}_{t-1 \mid t-1}\right]=E\left[\mathbf{x}_{t-1}\right]$ is unbiased. Notice that
+          $$
+              E\left[\hat{\mathbf{x}}_{t \mid t-1}\right] =E\left[\mathbf{F}_{t-1} \hat{\mathbf{x}}_{t-1 \mid t-1} + \mathbf{w}_{t-1}\right] =\mathbf{F}_{t-1} E\left[\hat{\mathbf{x}}_{t-1 \mid t-1}\right]
+              =E\left[\mathbf{x}_{t}\right]
+          $$
+          Taking the expectation yields
+          $$
+            \begin{aligned}
+              E\left[\hat{\mathbf{x}}_{t \mid t}\right] =E\left[\hat{\mathbf{x}}_{t \mid t-1}+\mathbf{K}_{t}\left(\mathbf{y}_{t}-\mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}\right)\right] 
+               =E\left[\mathbf{x}_{t}\right] + \EE\left[\mathbf{K}_{t}\mathbf{H}_t\mathbf{x}_{t} + \mathbf{K}_{t}\mathbf{v}_{t} -\mathbf{K}_{t}\mathbf{H}_{t} \hat{\mathbf{x}}_{t \mid t-1}\right] = E\left[\mathbf{x}_{t}\right]
+            \end{aligned}
+          $$
+          Therefore, the result given by the Kalman filter formulated as above is unbiased provided $E\left[\hat{\mathbf{x}}_{t \mid t}\right]=E\left[\mathbf{x}_{k}\right]$.
+
+            \textbf{Formulate the Error Covariance:}
+
+          We now turn to the updated error covariance
+          \begin{align*}
+              E\left[\widetilde{\mathbf{x}}_{t \mid t} \widetilde{\mathbf{x}}_{t \mid t}^\top \mid \mathbf{Y}_k\right]                                                                                                           
+              =E\left[\left(\mathbf{x}_{t}-\hat{\mathbf{x}}_{t \mid t}\right)\left(\mathbf{x}_{k}-\hat{\mathbf{x}}_{t \mid t}\right)^\top\right]                                                                                    
+              =\mathbf{P}_{t \mid t} =\left(\mathbf{I}-\mathbf{K}_{t} \mathbf{H}_{t}\right) \mathbf{P}_{t \mid t-1}
+          \end{align*}
+          Our goal is now to minimise the conditional mean-squared estimation
+          error with respect to the Kalman gain, $\mathbf{K}$.
+          $$
+              L =\min _{\mathbf{K}_{t}} E\left[\widetilde{\mathbf{x}}_{t \mid t}^\top \widetilde{\mathbf{x}}_{t \mid t} \mid \mathbf{Y}_{t}\right]                                  
+                =\min _{\mathbf{K}_{k}} \operatorname{trace}\left(E\left[\widetilde{\mathbf{x}}_{t \mid t} \widetilde{\mathbf{x}}_{t \mid t}^\top \mid \mathbf{Y}_{t}\right]\right) 
+                =\min _{\mathbf{K}_{k}} \operatorname{trace}\left(\mathbf{P}_{t \mid t}\right)
+          $$
+
+          For any matrix $\mathbf{A}$ and a symmetric matrix $\mathbf{B}$
+          $$
+            \frac{\partial}{\partial \mathbf{A}}\left(\operatorname{trace}\left(\mathbf{A B A}^T\right)\right)=2 \mathbf{A B}
+          $$
+          (to see this, consider writing the trace as $\sum_i \mathbf{a}_i^T
+          \mathbf{B} \mathbf{a}_i$ where $\mathbf{a}_i$ are the columns of
+          $\mathbf{A}^T$, and then differentiating w.r.t. the $\mathbf{a}_i$ ).
+
+          Differentiating with respect to
+          the gain matrix (using the relation above) and setting equal to zero
+          yields
+          $$
+            \frac{\partial L}{\partial \mathbf{K}_{t}}=-2\left(\mathbf{I}-\mathbf{K}_{t} \mathbf{H}_{t}\right) \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^T+2 \mathbf{K}_{t} \mathbf{R}_{t}=\mathbf{0}
+          $$
+
+          Re-arranging gives an equation for the gain matrix
+          $$
+            \mathbf{K}_{t}=\mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^T\left[\mathbf{H}_{t} \mathbf{P}_{t \mid t-1} \mathbf{H}_{t}^T+\mathbf{R}_{t}\right]^{-1}
+          $$
+          This is exactly what we have. Thus, the result given by the Kalman filter formulated as above is the best unbiased linear predictor provided
+          $E\left[\hat{\mathbf{x}}_{t \mid t}\right]=E\left[\mathbf{x}_{k}\right]$.
 
         \end{solution}
   \item In class we derived the Kalman filter under the assumption that
@@ -930,38 +987,139 @@ where $d B_t$ is a standard Brownian motion. In other words, the spread reverts
 to its mean $\theta \in \mathbb{R}$ at the speed $\kappa \in \mathbb{R}_{+}$and
 volatility $\sigma \in \mathbb{R}_{+}$.
 \begin{enumerate}[label=(\alph*)]
-  \item Show that the discrete time solution of \cref{eq: OU process} is Markovian, that is
+  \item In the discrete sense, we use the notation $S_n := S_{n\cdot \Delta t}$
+        to denote the value of process $s$ at a given time $n\cdot \Delta t$ where
+        $\Delta t$ is a constant period amount of time picked as the step size.
+        Show that the discrete time solution of \cref{eq: OU process} is
+        Markovian, that is
         $$
           s_n=\mathbb{E}\left[s_n \mid s_{n-1}\right]+\varepsilon_n
         $$
         where $n=1,2, \ldots$, and $\varepsilon_n$ is a random process with zero
         mean and variance equal to $\sigma_{\varepsilon,
-            n}^2=\mathbb{V}\left[s_n \mid s_{n-1}\right]$. 
-            
-            Hint: You can derive the discrete solution explicitly.
+            n}^2=\mathbb{V}\left[s_n \mid s_{n-1}\right]$.
+
+        Hint: You can derive the discrete solution explicitly.
 
         \begin{solution}
           Set $f(t, x) = e^{\kappa t}x$ and apply the It\^{o}'s lemma, we have
           $de^{e^{\kappa t}s_t} = \kappa e^{\kappa t}s_t dt + e^{\kappa t} ds_t$. Pluging in \cref{eq: OU process}, we obtain
           $$
-          d s_t + \kappa s_t d t = \frac{d e^{\kappa t}s_t}{e^{\kappa t}} = \kappa \theta dt+\sigma d B_t 
-          \Longrightarrow
-          e^{\kappa t}s_t - s_0 = \int_{0}^t e^{\kappa s}\kappa \theta ds + \int_{0}^t e^{\kappa s}\sigma d B_s 
-          \Longrightarrow
-          s_t = e^{-\kappa t}s_0 + \theta \left(1 - e^{-\kappa t}\right) + \int_{0}^t e^{\kappa(s-t)}\sigma d B_s, \forall t>0
+            d s_t + \kappa s_t d t = \frac{d e^{\kappa t}s_t}{e^{\kappa t}} = \kappa \theta dt+\sigma d B_t
+            \Longrightarrow
+            e^{\kappa t}s_t - s_0 = \int_{0}^t e^{\kappa s}\kappa \theta ds + \int_{0}^t e^{\kappa s}\sigma d B_s
+            \Longrightarrow
+            s_t = e^{-\kappa t}s_0 + \theta \left(1 - e^{-\kappa t}\right) + \int_{0}^t e^{\kappa(s-t)}\sigma d B_s, \forall t>0
           $$
           To extract $s_{n-1}$ out of $s_n$, we can rewrite $s_n$ as:
           \begin{align*}
-          s_n = e^{-\kappa n}s_0 + \theta \left(1 - e^{-\kappa n}\right) + \int_{0}^n e^{\kappa(s-n)}\sigma d B_s 
-          &= \theta - e^{-\kappa}\theta + e^{-\kappa} \cdot \left(e^{-\kappa (n-1)}s_0 + \theta \left(1 - e^{-\kappa (n-1)}\right) + e^{-\kappa (n-1)} \left[\int_{0}^{n-1} e^{\kappa s}\sigma d B_s + \int_{n-1}^n e^{\kappa s}\sigma d B_s\right]\right)\\
-          &= \theta - e^{-\kappa}\theta + e^{-\kappa} s_{n-1} + e^{-\kappa n}\int_{n-1}^n e^{\kappa s}\sigma d B_s
-        \end{align*}
+            s_n
+             & = e^{-\kappa n\Delta t}s_0 + \theta \left(1 - e^{-\kappa n\Delta t}\right) + \int_{0}^n e^{\kappa(s-n)\Delta t}\sigma d B_s                                                                                                                                                                                           \\
+             & = \theta - e^{-\kappa\Delta t}\theta + e^{-\kappa\Delta t} \cdot \left(e^{-\kappa (n-1)\Delta t}s_0 + \theta \left(1 - e^{-\kappa (n-1)\Delta t}\right) + e^{-\kappa (n-1)\Delta t} \left[\int_{0}^{(n-1)\Delta t} e^{\kappa s}\sigma d B_s + \int_{(n-1)\Delta t}^{n\Delta t} e^{\kappa s}\sigma d B_s\right]\right) \\
+             & = \theta - e^{-\kappa\Delta t}\theta + e^{-\kappa\Delta t} s_{n-1} + e^{-\kappa n\Delta t}\int_{(n-1)\Delta t}^{n\Delta t} e^{\kappa s}\sigma d B_s
+          \end{align*}
+          Taking the mean and variance of $s_{n}$ conditioned on $s_{n-1}$, and define $\varepsilon_n := e^{-\kappa n\Delta t}\int_{(n-1)\Delta t}^{n\Delta t} e^{\kappa s}\sigma d B_s$, we have
+          \begin{align*}
+            \mathbb{E}\left[s_n \mid s_{n-1}\right]
+             & = \mathbb{E}\left[\theta - e^{-\kappa\Delta t}\theta + e^{-\kappa\Delta t} s_{n-1}\right] + \mathbb{E}\left[e^{-\kappa n\Delta t}\int_{(n-1)\Delta t}^{n\Delta t} e^{\kappa s}\sigma d B_s \mid s_{n-1}\right]
+            \xlongequal[\text{ information up to } n-1 ]{ s_{n-1} \text{ only contains }} \theta - e^{-\kappa\Delta t}\theta + e^{-\kappa\Delta t} s_{n-1}                                                                    \\
+            \mathbb{V}\left[s_n \mid s_{n-1}\right]
+             & = \mathbb{V}\left[\theta - e^{-\kappa\Delta t}\theta + e^{-\kappa\Delta t} s_{n-1} + e^{-\kappa n\Delta t}\int_{(n-1)\Delta t}^{n\Delta t} e^{\kappa s}\sigma d B_s \mid s_{n-1}\right]
+            = \mathbb{V}\left[e^{-\kappa n\Delta t}\int_{(n-1)\Delta t}^{n\Delta t} e^{\kappa s}\sigma d B_s \right]
+            = \frac{\sigma^2}{2\kappa} \left(1-e^{-2\kappa \Delta t}\right) = \mathbb{V}\left[\varepsilon_n \right]
+          \end{align*}
+          Therefore, we have
+          $$
+            s_n = \mathbb{E}\left[s_n \mid s_{n-1}\right] + \varepsilon_n
+          $$
+          where $\varepsilon_n$ is a random process with zero
+          mean and variance equal to $\sigma_{\varepsilon,
+              n}^2=\mathbb{V}\left[s_n \mid s_{n-1}\right] = \frac{\sigma^2}{2\kappa} \left(1-e^{-2\kappa \Delta t}\right)$.
+
         \end{solution}
   \item Propose a methodology for updating the parameters $\theta, \kappa$ using
         the Kalman filter and describe how you would use it to trade the stock pair.
 
         \begin{solution}
-          
+          To conform the notation used in the Kalman filter, we use $t\in
+            \mathbb{N}$ to denote the states and write the result in (a) as:
+          $$
+            s_t = \theta - e^{-\kappa\Delta t}\theta + e^{-\kappa\Delta t} s_{t-1} + \varepsilon_t \quad  \text{ where } \quad  \varepsilon_t \sim \mathcal{N}\left(0, \frac{\sigma^2}{2\kappa} \left(1-e^{-2\kappa \Delta t}\right)\right)
+          $$
+          \textbf{State Equation:}
+
+          Set constants $\alpha = \theta - e^{-\kappa\Delta t}\theta$, $\beta =
+            e^{-\kappa\Delta t}$, $\mathbf{F}_t = \begin{bmatrix} 1      & 0     \\
+                \alpha & \beta
+            \end{bmatrix} $, $\mathbf{x}_t = \begin{bmatrix}
+              1 \\
+              s_t
+            \end{bmatrix}$, $\mathbf{w}_t = \begin{bmatrix}
+              0 \\
+              \varepsilon_t
+            \end{bmatrix} $
+          and
+          $\mathbf{Q}_{t} = \begin{bmatrix}
+              0 & 0                      \\
+              0 & \sigma_{\epsilon, t}^2
+            \end{bmatrix}$, we have our state equation as:
+          $$
+            s_t = \alpha + \beta s_{t-1} + \varepsilon_t
+            \quad \xrightarrow{ \text{ rewrite } } \quad
+            \begin{bmatrix}
+              1 \\
+              s_t
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+              1      & 0     \\
+              \alpha & \beta
+            \end{bmatrix}
+            \begin{bmatrix}
+              1 \\
+              s_{t-1}
+            \end{bmatrix}
+            + \begin{bmatrix}
+              0 \\
+              \varepsilon_t
+            \end{bmatrix}
+            \quad \xrightarrow{ \text{ substitute } \mathbf{F}_t, \mathbf{x}_t \text{ and } \mathbf{w}_t} \quad
+            \mathbf{x}_t = \mathbf{F}_t\mathbf{x}_{t-1} + \mathbf{w}_t
+            \quad  \text{ where } \quad
+            \mathbf{w}_t \sim \mathcal{N}\left(\boldsymbol{0},  \mathbf{Q}_{t}\right)
+          $$
+          \textbf{Observations Equation:}
+
+          Now, assume the observation $y_t$ is just the true process $s_t$ plus a small perturbation.
+          Setting $\mathbf{H}_t = \begin{bmatrix}
+              0 & 1
+            \end{bmatrix}$, $\mathbf{v}_t = v \sim \mathcal{N}\left(0, \nu^2\right)$ and
+          $\mathbf{R}_{t} = \nu^2$, we obtain
+          $$
+            y_t = \mathbf{H}_t\mathbf{x}_t + \mathbf{v}_t
+            \quad  \text{ where } \quad
+            \mathbf{v}_t \sim \mathcal{N}\left(\boldsymbol{0},  \mathbf{R}_{t}\right)
+          $$
+          \textbf{Initial State:}
+
+          Naturally, we set the initial state variable $\mathbf{x}_0  \sim \mathcal{N}\left(\boldsymbol{\mu}_{0}, \mathbf{P}_{0}\right)$
+          where $\boldsymbol{\mu}_{0} = \begin{bmatrix}
+              1 \\
+              s_0
+            \end{bmatrix}$ and $\mathbf{P}_{0} = \boldsymbol{0}$.
+
+          Therefore, by our construction, we have the linear state space model:
+          \begin{align*}
+            \begin{aligned}
+               & \mathbf{x}_{t}=\mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{w}_{t} \\
+               & \mathbf{y}_{t}=\mathbf{H}_{t} \mathbf{x}_{t}+\mathbf{v}_{t}
+            \end{aligned}\quad \text{ where } \quad
+            \mathbf{x}_{0} \sim \mathcal{N}\left(\boldsymbol{\mu}_{0}, \mathbf{P}_{0}\right),\quad
+            \mathbf{w}_{t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{Q}_{t}\right), \quad
+            \mathbf{v}_{t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{R}_{t}\right)
+          \end{align*}
+          Additionally, the initial state $\mathbf{x}_{0}$ and the noise terms $\mathbf{w}_{t},
+            \mathbf{v}_{t}$ are all assumed to be mutually independent.
         \end{solution}
   \item Test your methodology from (b) on simulated data. In particular, (i)
         simulate (2) from known parameters $\theta, \kappa$ and $\sigma$, and then
@@ -971,7 +1129,7 @@ volatility $\sigma \in \mathbb{R}_{+}$.
         $\sigma$ ?
 
         \begin{solution}
-          
+
         \end{solution}
   \item Repeat the same experiment from (c), but this time simulate (2) first
         with $\kappa$ having the same value as above and then suddenly changing it to
@@ -981,7 +1139,7 @@ volatility $\sigma \in \mathbb{R}_{+}$.
         filter to adjust?
 
         \begin{solution}
-          
+
         \end{solution}
 \end{enumerate}
 Hint: For (c) and (d), think about how you are going to demonstrate the results
@@ -1000,7 +1158,7 @@ market cap. We denote the returns of these 50 stock by $\mathbf{r}_t \in
   \mathbb{R}^{50}$. The goal of finding a tracking portfolio is to find a dynamic
 trading strategy of the 50 stocks such that $\boldsymbol{\beta}_t^\top
   \mathbf{r}_t \approx r_{b, t}$, where $\boldsymbol{\beta}_t$ denotes the
-holdings of the tracking portfolio.
+holdings (relative weights) of the tracking portfolio.
 \begin{enumerate}[label=(\alph*)]
   \item In this part, we assume that the covariance matrix of returns of the
         stocks in the $\mathrm{S} \& \mathrm{P} 500, \boldsymbol{\Sigma}$, is given
@@ -1009,13 +1167,203 @@ holdings of the tracking portfolio.
         $$
           \boldsymbol{\beta}_t^*=\operatorname{argmin}_{\boldsymbol{\beta}_t} \sqrt{\mathbb{V}\left[r_{b, t}-\boldsymbol{\beta}_t^\top \mathbf{r}_t\right]} .
         $$
+        What specific property does $\boldsymbol{\beta}_t^*$ have here?
 
-        What specific property does $\boldsymbol{\beta}_t$ have here?
+        \begin{solution}
+
+          \textbf{Formulation 1:}
+
+          Suppose $\boldsymbol{S}$ and $\boldsymbol{\mu}_t =
+            \EE\left[\boldsymbol{r}_t\right]$ are the covariance matrix and the
+          mean of the returns of the $50$ stocks we picked, respectively.
+          Additionally, let $\boldsymbol{e} = (1,\ldots, 1)\in \mathbb{R}^{50}$ denote the vector of all $1$'s. Since
+          $r_{b, t}$ is deterministic, $\mathbb{V}\left[r_{b,
+                  t}-\boldsymbol{\beta}_t^\top \mathbf{r}_t\right] =
+            \mathbb{V}\left[\boldsymbol{\beta}_t^\top \mathbf{r}_t\right] =
+            \EE\left[\boldsymbol{\beta}_t^\top \mathbf{r}_t
+              \mathbf{r}_t^\top\boldsymbol{\beta}_t\right] =
+            \boldsymbol{\beta}_t^\top \boldsymbol{S}\boldsymbol{\beta}_t$
+          and $\boldsymbol{\beta}_t^\top\mathbf{r}_t \approx r_{b, t}$, we have
+          $$
+            \boldsymbol{\beta}_t^*
+            =\operatorname{argmin}_{\boldsymbol{\beta}_t} \sqrt{\boldsymbol{\beta}_t^\top \boldsymbol{S}\boldsymbol{\beta}_t}
+            =\operatorname{argmin}_{\boldsymbol{\beta}_t} \frac{1}{2}\boldsymbol{\beta}_t^\top \boldsymbol{S}\boldsymbol{\beta}_t
+            \quad \text{ given } \quad \boldsymbol{\beta}_t^\top
+            \EE\left[\mathbf{r}_t\right] = \boldsymbol{\beta}_t^\top
+            \boldsymbol{\mu}_t= r_{b, t}, \quad \boldsymbol{\beta}_t^\top\boldsymbol{e} = 1
+          $$
+          Applying the Lagrange multipliers, we have Lagrangian
+          $$
+            L \equiv L(\boldsymbol{\beta}_t, \lambda, \gamma):=\frac{1}{2} \boldsymbol{\beta}_t^{\top} \boldsymbol{S} \boldsymbol{\beta}_t+\lambda\left(1-\boldsymbol{\beta}_t^{\top} \boldsymbol{e}\right)+\gamma\left(r_{b, t}-\boldsymbol{\beta}_t^{\top} \boldsymbol{\mu}_t\right)
+          $$
+          The first-order necessary condition then yields
+          \begin{align}
+            F O C : \frac{\partial L}{\partial \boldsymbol{\beta}_t}=\boldsymbol{S} \boldsymbol{\beta}_t-\lambda \boldsymbol{e}-\gamma \boldsymbol{\mu}_t=\mathbf{0}
+            \quad \Longrightarrow \quad \boldsymbol{\beta}_t=\boldsymbol{S}^{-1}(\lambda \boldsymbol{e}+\gamma \boldsymbol{\mu}_t)
+            \label{eq: optimal portfolio weights}
+          \end{align}
+          Since $\boldsymbol{\beta}_t^{\top} \boldsymbol{\mu}_t=r_{b, t}$ and $\boldsymbol{\beta}_t^{\top} \boldsymbol{e}=1$, we obtain
+          $$
+            \begin{aligned}
+              e^{\top} \boldsymbol{S}^{-1}(\lambda e+\gamma \boldsymbol{\mu}_t)                  & =1,       \\
+              \boldsymbol{\mu}_t^{\top} \boldsymbol{S}^{-1}(\lambda e+\gamma \boldsymbol{\mu}_t) & =r_{b, t}
+            \end{aligned} \quad \Longrightarrow \quad \begin{aligned}
+              \boldsymbol{e}^{\top} \boldsymbol{S}^{-1} e \lambda+\boldsymbol{e}^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t \gamma                      & =1,       \\
+              \boldsymbol{\mu}_t^{\top} \boldsymbol{S}^{-1} \boldsymbol{e} \lambda+\boldsymbol{\mu}_t^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t \gamma & =r_{b, t}
+            \end{aligned}
+          $$
+
+          Now, for simplicity, we set $A=\boldsymbol{e}^{\top}
+            \boldsymbol{S}^{-1} \boldsymbol{e}, B=\boldsymbol{e}^{\top}
+            \boldsymbol{S}^{-1}
+            \boldsymbol{\mu}_t=\boldsymbol{\mu}_t^{\top}
+            \boldsymbol{S}^{-1} \boldsymbol{e}$, and $C=$
+          $\boldsymbol{\mu}_t^{\top} \boldsymbol{S}^{-1}
+            \boldsymbol{\mu}_t$ and obtain
+          \begin{align}
+            \begin{gathered}
+              {\left[\begin{array}{ll}
+                    A & B \\
+                    B & C
+                  \end{array}\right]\left[\begin{array}{l}
+                    \lambda \\
+                    \gamma
+                  \end{array}\right]=\left[\begin{array}{c}
+                    1 \\
+                    r_{b, t}
+                  \end{array}\right]}
+              \Longrightarrow
+              \left[\begin{array}{l}
+                  \lambda^* \\
+                  \gamma^*
+                \end{array}\right]=\left[\begin{array}{ll}
+                  A & B \\
+                  B & C
+                \end{array}\right]^{-1}\left[\begin{array}{c}
+                  1 \\
+                  r_{b, t}
+                \end{array}\right]=\frac{1}{A C-B^2}\left[\begin{array}{cc}
+                  C  & -B \\
+                  -B & A
+                \end{array}\right]\left[\begin{array}{c}
+                  1 \\
+                  r_{b, t}
+                \end{array}\right]=\frac{1}{\Delta}\left[\begin{array}{c}
+                  C-B r_{b, t} \\
+                  -B+A r_{b, t}
+                \end{array}\right]
+            \end{gathered}
+            \label{eq: MVO lambda gamma}
+          \end{align}
+          where $\Delta=A C-B^2$.
+          Then, plug in \cref{eq: optimal portfolio weights}, we get
+          $$
+            \boldsymbol{\beta}_t^*=\lambda^* \boldsymbol{S}^{-1} \boldsymbol{e}+\gamma^* \boldsymbol{S}^{-1} \boldsymbol{\mu}_t
+          $$
+
+          This is clearly the minimum as $\frac{\partial^2 L}{\partial \boldsymbol{\beta}_t^2}=\boldsymbol{S}$ is positive definite.
+
+          We call $\boldsymbol{\beta}_t^*$ a mean-variance efficient portfolio/allocation with respect to $r_{b, t}$.
+
+          \textbf{Properties:}
+          By construction, the expected return of the optimal portfolio is
+          $$
+            r_{b, t}=\boldsymbol{\beta}_t^{*^{\top}} \boldsymbol{\mu}_t
+          $$
+
+          Some algebra shows that the variance of the optimal portfolio is
+          \begin{align*}
+            \sigma_{b,t}^{*^2}                          & =\boldsymbol{\beta}_t^{*^{\top}} \boldsymbol{S}\boldsymbol{\beta}_t^*                                                                                                                                                                                                                                                                 \\
+                                                        & =\left(\lambda^* \boldsymbol{S}^{-1} \boldsymbol{e}+\gamma^* \boldsymbol{S}^{-1} \boldsymbol{\mu}_t\right)^{\top} \boldsymbol{\Sigma}\left(\lambda^* \boldsymbol{S}^{-1} \boldsymbol{e}+\gamma^* \boldsymbol{S}^{-1} \boldsymbol{\mu}_t\right)                                                                                        \\
+                                                        & =\lambda^{*^2} \boldsymbol{e}^{\top} \boldsymbol{S}^{-1} \boldsymbol{e}+2 \lambda^* \gamma^* \boldsymbol{e}^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t+\gamma^{*^2} \boldsymbol{\mu}_t^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t                                                                                               \\
+                                                        & =\lambda^*\left(\lambda^* \boldsymbol{e}^{\top} \boldsymbol{S}^{-1} \boldsymbol{e}+\gamma^* \boldsymbol{e}^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t\right)+\gamma^*\left(\lambda^* \boldsymbol{e}^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t+\gamma^* \boldsymbol{\mu}_t^{\top} \boldsymbol{S}^{-1} \boldsymbol{\mu}_t\right) \\
+                                                        & =\lambda^*\left(\lambda^* A+\gamma^* B\right)+\gamma^*\left(\lambda^* B+\gamma^* C\right)                                                                                                                                                                                                                                             \\
+            \cref{eq: MVO lambda gamma} \Longrightarrow & =\lambda^* \cdot 1+\gamma^* \cdot r_{b, t}                                                                                                                                                                                                                                                                                            \\
+            \cref{eq: MVO lambda gamma} \Longrightarrow & =\frac{1}{\Delta}\left(C-B r_{b, t}\right)+\frac{1}{\Delta}\left(-B+A r_{b, t}\right) r_{b, t}                                                                                                                                                                                                                                        \\
+                                                        & =\frac{A r_{b, t}^2-2 B r_{b, t}+C}{\Delta}
+          \end{align*}
+
+          Hence, we have $\sigma_{b,t}^{*^2}$ as a quadratic function of $r_{b, t}$:
+          $$
+            \sigma_{b,t}^{*^2}=\frac{A r_{b, t}^2-2 B r_{b, t}+C}{\Delta}
+          $$
+
+          If we let $r_{b, t}$ vary, the efficient portfolios
+          $\boldsymbol{\beta}_t^*$ form a a hyperbola in the
+          $\left(\sigma^*\left(r_{b, t}\right), r_{b, t}\right)$ plane and a
+          parabola in the $\left(\sigma^{*^2}\left(r_{b, t}\right), r_{b,
+              t}\right)$-plane, and we call it the efficient frontier.
+          \vspace*{0.5em}
+
+          \hrule
+
+          \textbf{Formulation 2:}
+
+          Since minimizing the given loss function amounts to minimizing the
+          MSE which falls under the context of linear regression, we can
+          view this index tracking problem as a regression problem. Since
+          the covaraince matrix is assumed to be constant over time, we can
+          specify a rolling window, say $30$ days, and treat pairs $\{(r_{b,
+                t - i}, \mathbf{r}_{t - i}))\}$, $i = 0, 1, \ldots, 29$ as
+          samples. Let's denote $\mathbf{y}_t = (r_{b, t}, r_{b, t - 1},
+            \ldots, r_{b, t - 29}) \in \mathbb{R}^{30}$ as the regressand, and
+          $\mathbf{R}_t = \begin{bmatrix}
+              \mathbf{r}_{t}^\top \\
+              \vdots              \\
+              \mathbf{r}_{t - 29}^\top
+            \end{bmatrix}$ as regressors. Then, for time $t$, we can assume
+          $$
+            \mathbf{y}_t = \mathbf{R}_t \boldsymbol{\beta}_t + \boldsymbol{\epsilon}_t \quad \text{ where }\quad \boldsymbol{\epsilon}_t \sim \mathcal{N}\left(\boldsymbol{0}, \mathbf{\Omega}_t\right)
+          $$
+          By classical linear regression, we have
+          $$
+            \boldsymbol{\beta}_t^{*} = \left(\mathbf{R}_t^\top \mathbf{R}_t\right)^{-1}\mathbf{R}_t^\top \mathbf{y}_t
+          $$
+          By the Gauss-Markov theorem, $\boldsymbol{\beta}_t^{*}$ is the best unbiased linear predictor under the assumptions of classical
+          linear regression.
+        \end{solution}
   \item In this part, we no longer assume that covariances amongst stocks are
         time invariant. Propose a solution to minimizing the tracking error using the
         Kalman filter.
+
+        \begin{solution}
+          Leveraging the powerful Kalman filter, we can update our view on $\boldsymbol{\beta}_t$ from every single new observations on $r_{b, t}$.
+
+          \textbf{State Equation \& Observations Equation:}
+
+          Set $\mathbf{x}_{t} = \boldsymbol{\beta}_t \in \mathbb{R}^{50}$, $\mathbf{F}_{t} = \mathbf{I}_{50}\in \mathbb{R}^{50 \times 50}$,
+          $\mathbf{w}_{t}\sim \mathcal{N}\left(\boldsymbol{0}, \mathbf{Q}_{t}\right)$, $\mathbf{Q}_{t} = \boldsymbol{0}$,
+          $\mathbf{y}_{t} = r_{b, t}\in \mathbb{R}$,
+          $\mathbf{H}_{t} = \mathbf{r}_{t}^\top\in \mathbb{R}^{1\times 50}$,
+          $\mathbf{v}_{t} = v \sim \mathcal{N}\left(0, \mathbf{R}_{t}\right)$ and $\mathbf{R}_{t} = 0.3$.
+
+          \textbf{Initial State:}
+
+          Naturally, we set the initial state variable
+          $\mathbf{x}_0  \sim \mathcal{N}\left(\boldsymbol{\mu}_{0}, \mathbf{P}_{0}\right)$
+          where $\boldsymbol{\mu}_{0} = (1, \ldots, 1)\in \mathbb{R}^{50}$ and $\mathbf{P}_{0} = \mathbf{I}_{50} * 0.1$.
+
+          Therefore, by our construction, we have the linear state space model:
+          \begin{align*}
+            \begin{aligned}
+               & \mathbf{x}_{t}=\mathbf{F}_{t} \mathbf{x}_{t-1}+\mathbf{w}_{t} \\
+               & \mathbf{y}_{t}=\mathbf{H}_{t} \mathbf{x}_{t}+\mathbf{v}_{t}
+            \end{aligned}\quad \text{ where } \quad
+            \mathbf{x}_{0} \sim \mathcal{N}\left(\boldsymbol{\mu}_{0}, \mathbf{P}_{0}\right),\quad
+            \mathbf{w}_{t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{Q}_{t}\right), \quad
+            \mathbf{v}_{t} \sim \mathcal{N}\left(\mathbf{0}, \mathbf{R}_{t}\right)
+          \end{align*}
+          Additionally, the initial state $\mathbf{x}_{0}$ and the noise terms $\mathbf{w}_{t},
+            \mathbf{v}_{t}$ are all assumed to be mutually independent.
+        \end{solution}
   \item Download daily market data and create an example that illustrates your
         methodology. How does the tracking portfolio of the Kalman filter perform?
+
+        \begin{solution}
+          By comparing errors to $r_{b, t}$, the Kalman filter performs a lot better than the rolling window regression scheme.
+
+          For detailed codes, please check the attached Jupyter notebook.
+        \end{solution}
 \end{enumerate}
 Hint: For (c), compare your Kalman filter to a solution based on (a) where the
 covariance matrix is estimated on rolling windows. Can you match the performance
