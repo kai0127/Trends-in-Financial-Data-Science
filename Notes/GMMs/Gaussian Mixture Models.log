@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  25 OCT 2023 14:14
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  25 OCT 2023 14:41
  restricted system commands enabled.
  file:line:error style messages enabled.
-**"/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex"
-("/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex"
+**"/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex"
+("/Users/linda/Desktop/LaTeX/Notes/GMMs/Gaussian Mixture Models.tex"
 LaTeX2e <2022-11-01> patch level 1
 Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
 Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
@@ -990,15 +990,34 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@expandcount=\count345
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/usr/local/texlive/2023/texmf-dist/tex/latex/enumitem/enumitem.sty
+))) (/usr/local/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip64
+\subfigcapskip=\skip65
+\subfigcaptopadj=\dimen302
+\subfigbottomskip=\skip66
+\subfigcapmargin=\dimen303
+\subfiglabelskip=\skip67
+\c@subfigure=\count346
+\c@lofdepth=\count347
+\c@subtable=\count348
+\c@lotdepth=\count349
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip68
+\subfig@bottom=\skip69
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \enitkv@toks@=\toks59
-\labelindent=\skip64
-\enit@outerparindent=\dimen302
+\labelindent=\skip70
+\enit@outerparindent=\dimen304
 \enit@toks=\toks60
 \enit@inbox=\box86
-\enit@count@id=\count346
-\enitdp@description=\count347
+\enit@count@id=\count350
+\enitdp@description=\count351
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2022/01/05 v1.2f Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup7
@@ -1013,37 +1032,38 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 Package: caption 2023/03/12 v3.6j Customizing captions (AR)
  (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
-\caption@tempdima=\dimen303
-\captionmargin=\dimen304
-\caption@leftmargin=\dimen305
-\caption@rightmargin=\dimen306
-\caption@width=\dimen307
-\caption@indent=\dimen308
-\caption@parindent=\dimen309
-\caption@hangindent=\dimen310
+\caption@tempdima=\dimen305
+\captionmargin=\dimen306
+\caption@leftmargin=\dimen307
+\caption@rightmargin=\dimen308
+\caption@width=\dimen309
+\caption@indent=\dimen310
+\caption@parindent=\dimen311
+\caption@hangindent=\dimen312
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count348
-\c@continuedfloat=\count349
+\c@caption@flags=\count352
+\c@continuedfloat=\count353
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: subfigure package is loaded.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count350
+\lst@mode=\count354
 \lst@gtempboxa=\box87
 \lst@token=\toks61
-\lst@length=\count351
-\lst@currlwidth=\dimen311
-\lst@column=\count352
-\lst@pos=\count353
-\lst@lostspace=\dimen312
-\lst@width=\dimen313
-\lst@newlines=\count354
-\lst@lineno=\count355
-\lst@maxwidth=\dimen314
+\lst@length=\count355
+\lst@currlwidth=\dimen313
+\lst@column=\count356
+\lst@pos=\count357
+\lst@lostspace=\dimen314
+\lst@width=\dimen315
+\lst@newlines=\count358
+\lst@lineno=\count359
+\lst@maxwidth=\dimen316
  (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count356
-\lst@skipnumbers=\count357
+\c@lstnumber=\count360
+\lst@skipnumbers=\count361
 \lst@framebox=\box88
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
@@ -1052,9 +1072,9 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
  (/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty (/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexbase/luatexbase-cctb.sty
 Package: luatexbase-cctb 2015/10/04 v1.3 luatexbase interface to LuaTeX (legacy subpackage) 
 )
-\ltj@lst@japanese@min=\count358
+\ltj@lst@japanese@min=\count362
 \CatcodeTableLTJlistings=\catcodetable15
-\ltj@lst@frame@lslimit=\dimen315
+\ltj@lst@frame@lslimit=\dimen317
  (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \lst@WFtoken=\toks62
@@ -1063,62 +1083,62 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip65
-\f@nch@O@elh=\skip66
-\f@nch@O@erh=\skip67
-\f@nch@O@olh=\skip68
-\f@nch@O@orh=\skip69
-\f@nch@O@elf=\skip70
-\f@nch@O@erf=\skip71
-\f@nch@O@olf=\skip72
-\f@nch@O@orf=\skip73
-) ("./Homework Template.aux")
-\openout1 = Homework Template.aux
+\f@nch@headwidth=\skip71
+\f@nch@O@elh=\skip72
+\f@nch@O@erh=\skip73
+\f@nch@O@olh=\skip74
+\f@nch@O@orh=\skip75
+\f@nch@O@elf=\skip76
+\f@nch@O@erf=\skip77
+\f@nch@O@olf=\skip78
+\f@nch@O@orf=\skip79
+) ("./Gaussian Mixture Models.aux")
+\openout1 = Gaussian Mixture Models.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 287.
-LaTeX Font Info:    Trying loading font information for TS1+cmr on input line 287.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 286.
+LaTeX Font Info:    Trying loading font information for TS1+cmr on input line 286.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 287.
-LaTeX Font Info:    ... okay on input line 287.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 286.
+LaTeX Font Info:    ... okay on input line 286.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 8.54097pt on input line 287.
+(Font)              scaled to size 8.54097pt on input line 286.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 8.54097pt on input line 287.
+(Font)              scaled to size 8.54097pt on input line 286.
  (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count359
-\scratchdimen=\dimen316
+\scratchcounter=\count363
+\scratchdimen=\dimen318
 \scratchbox=\box89
-\nofMPsegments=\count360
-\nofMParguments=\count361
+\nofMPsegments=\count364
+\nofMParguments=\count365
 \everyMPshowfont=\toks63
-\MPscratchCnt=\count362
-\MPscratchDim=\dimen317
-\MPnumerator=\count363
-\makeMPintoPDFobject=\count364
+\MPscratchCnt=\count366
+\MPscratchDim=\dimen319
+\MPnumerator=\count367
+\makeMPintoPDFobject=\count368
 \everyMPtoPDFconversion=\toks64
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1134,11 +1154,11 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Link coloring ON on input line 287.
- ("./Homework Template.out") ("./Homework Template.out")
+Package hyperref Info: Link coloring ON on input line 286.
+ ("./Gaussian Mixture Models.out") ("./Gaussian Mixture Models.out")
 \@outlinefile=\write5
 
-\openout5 = Homework Template.out
+\openout5 = Gaussian Mixture Models.out
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1177,16 +1197,16 @@ Package hyperref Info: Link coloring ON on input line 287.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count365
+\c@lstlisting=\count369
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 11.23196pt on input line 291.
+(Font)              scaled to size 11.23196pt on input line 290.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 11.23196pt on input line 291.
+(Font)              scaled to size 11.23196pt on input line 290.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 11.23196pt on input line 297.
+(Font)              scaled to size 11.23196pt on input line 296.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 11.23196pt on input line 297.
-("./Homework Template.toc"
+(Font)              scaled to size 11.23196pt on input line 296.
+("./Gaussian Mixture Models.toc"
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 8.54097pt on input line 1.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
@@ -1194,50 +1214,81 @@ LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 )
 \tf@toc=\write6
 
-\openout6 = Homework Template.toc
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 300.
-LaTeX Font Info:    Trying loading font information for U+msa on input line 301.
+\openout6 = Gaussian Mixture Models.toc
+<images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg, id=22, 550.055pt x 335.2525pt>
+File: images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg Graphic file (type jpg)
+<use images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg>
+Package luatex.def Info: images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg  used on input line 303.
+(luatex.def)             Requested size: 179.96368pt x 109.68217pt.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 7.01999pt on input line 303.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 7.01999pt on input line 303.
+<images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg, id=23, 991.705pt x 323.2075pt>
+File: images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg Graphic file (type jpg)
+<use images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg>
+Package luatex.def Info: images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg  used on input line 304.
+(luatex.def)             Requested size: 287.9375pt x 93.8412pt.
+<images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg, id=24, 959.585pt x 644.4075pt>
+File: images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg Graphic file (type jpg)
+<use images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg>
+Package luatex.def Info: images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg  used on input line 305.
+(luatex.def)             Requested size: 179.95102pt x 107.97456pt.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
+(Font)              scaled to size 6.23999pt on input line 314.
+LaTeX Font Info:    Trying loading font information for U+msa on input line 314.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying loading font information for U+msb on input line 301.
+LaTeX Font Info:    Trying loading font information for U+msb on input line 314.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 6.23999pt on input line 301.
+(Font)              scaled to size 4.68pt on input line 314.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 4.68pt on input line 301.
+(Font)              scaled to size 3.9pt on input line 314.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 6.23999pt on input line 301.
+(Font)              scaled to size 4.68pt on input line 314.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 4.68pt on input line 301.
+(Font)              scaled to size 3.9pt on input line 314.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 4.68pt on input line 344.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 341.
+(Font)              scaled to size 7.79999pt on input line 415.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 341.
+(Font)              scaled to size 7.79999pt on input line 415.
  [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] ("./Homework Template.aux")
-Package rerunfilecheck Info: File `"Homework Template".out' has not changed.
+<./images/2023_10_24_49f2b6ba34e1516c186eg-05.jpg><./images/2023_10_24_49f2b6ba34e1516c186eg-09.jpg><./images/2023_10_24_49f2b6ba34e1516c186eg-30.jpg>] [2]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 611.
+LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/sc' undefined
+(Font)              No change on input line 613.
+ [3] [4] ("./Gaussian Mixture Models.aux")
+Package rerunfilecheck Info: File `"Gaussian Mixture Models".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 )
 
 Here is how much of LuaTeX's memory you used:
- 33471 strings out of 478285
- 125244,1977958 words of node,token memory allocated
- 1019 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 178 attribute, 59 glue_spec, 27 attribute_list, 2 write, 12 user_defined nodes
-   avail lists: 1:15,2:4739,3:153,4:269,5:196,6:40,7:724,8:3,9:300,10:1,11:24
- 52276 multiletter control sequences out of 65536+600000
- 75 fonts using 167146967 bytes
- 106i,12n,115p,1838b,481s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on Homework Template.pdf (1 page, 25052 bytes).
+ 33815 strings out of 478285
+ 244640,1977958 words of node,token memory allocated
+ 1520 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 389 attribute, 63 glue_spec, 47 attribute_list, 2 write, 13 user_defined, 1 pdf_action nodes
+   avail lists: 1:39,2:59076,3:469,4:643,5:1003,6:100,7:9315,8:88,9:1344,10:4,11:589
+ 52546 multiletter control sequences out of 65536+600000
+ 91 fonts using 200980039 bytes
+ 106i,16n,115p,1837b,788s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Gaussian Mixture Models.pdf (4 pages, 324014 bytes).
 
-PDF statistics: 50 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 131072)
- 24 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 158 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 131072)
+ 40 words of extra memory for PDF output out of 10000 (max. 100000000)
 
