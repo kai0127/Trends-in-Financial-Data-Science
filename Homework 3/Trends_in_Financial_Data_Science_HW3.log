@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  20 NOV 2023 15:41
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  25 NOV 2023 22:38
  restricted system commands enabled.
  file:line:error style messages enabled.
 **"/Users/linda/Desktop/LaTeX/Homework 3/Trends_in_Financial_Data_Science_HW3.tex"
@@ -1228,18 +1228,18 @@ Package rerunfilecheck Info: File `Trends_in_Financial_Data_Science_HW3.out' has
 
 Here is how much of LuaTeX's memory you used:
  33490 strings out of 478285
- 305800,1977958 words of node,token memory allocated
+ 305793,1977958 words of node,token memory allocated
  1067 words of node memory still in use:
    11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 191 attribute, 60 glue_spec, 29 attribute_list, 2 write, 13 user_defined nodes
-   avail lists: 1:39,2:62189,3:550,4:680,5:1353,6:106,7:14131,8:27,9:1008,10:7,11:850
+   avail lists: 1:39,2:62453,3:558,4:686,5:1365,6:107,7:14173,8:27,9:1012,10:7,11:853
  52289 multiletter control sequences out of 65536+600000
  76 fonts using 167561535 bytes
  106i,12n,115p,1850b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Trends_in_Financial_Data_Science_HW3.pdf (2 pages, 108368 bytes).
+Output written on Trends_in_Financial_Data_Science_HW3.pdf (2 pages, 108407 bytes).
 
-PDF statistics: 100 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+PDF statistics: 101 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  11 named destinations out of 1000 (max. 131072)
  40 words of extra memory for PDF output out of 10000 (max. 100000000)
 
