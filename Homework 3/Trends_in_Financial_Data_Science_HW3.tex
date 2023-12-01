@@ -301,20 +301,26 @@ WordSpace=1.7,
 \section{Topic: Random Feature Maps}
 
 Given a set of functions of a single variable
-\(\left\{\phi_{i}(t)\right\}_{i=1}^{N}\) and discrete observations
-\(\left(t_{j}\right)_{j=1}^{M}\) one can form both the \(N \times M\) design
+\(\left\{\phi_{i}(t)\right\}_{i=1}^{M}\) and discrete observations
+\(\left(t_{j}\right)_{j=1}^{N}\) one can form both the \(N \times M\) design
 matrix \(\boldsymbol{\Phi}=\left[\Phi_{j
 i}\right]:=\left[\phi_{i}\left(t_{j}\right)\right]\) and the \(N \times N\)
 kernel \(\mathbf{K}=\left[K\left(t_{j}, t_{l}\right)\right]:=\boldsymbol{\Phi} \boldsymbol{\Phi}^\top\). As
 we will see in later lectures, often \(M \gg N\) and in fact in most cases
-\(M=\infty\). In this exercise we will consider random feature map functions.
-
+\(M=\infty\) (e.g. Fourier series). In this exercise we will consider random feature map functions.
+$$
+\boldsymbol{\Phi} := \begin{bmatrix}
+  \phi_1(t_1) & \cdots & \phi_{M}(t_1) \\
+  \vdots & \ddots & \vdots \\
+  \phi_1(t_N) & \cdots & \phi_{M}(t_N)
+  \end{bmatrix} \in \mathbb{R}^{N \times M}
+$$
 \begin{enumerate}
   \item[(a)] Suppose \(\phi_{i}\left(t_{j}\right)\) are simply white noise
   vectors, e.g. each entry in the design matrix is an i.i.d. realization of
   random mean zero Gaussian with variance 1. In this case one can think of each
-  feature map \(\phi_{\mathbf{w}}\left(t_{j}\right)\equiv \mathbf{w}\)
-  as a random constant vector function taking a value \(\mathbf{w}\). Because
+  feature map \(\phi_{\mathbf{w}_i}:= \left(\phi_i(t_{1}), \ldots, \phi_i(t_{N})\right)\equiv \mathbf{w}_i\)
+  as a random constant vector function taking a value \(\mathbf{w}_i\). Because
   one is drawing \(M\) such random vectors, the feature maps are \(M\) random
   vector-valued constant functions. Construct the kernel matrix and find its
   eigenvectors and eigenvalues. For fixed \(N=100\), plot the histogram of the
@@ -360,13 +366,49 @@ can be thought of as GPs.
     t^{\prime}\right)=\min \left(t, t^{\prime}\right) \) and that the kernel of
     \cref{eq:brownian bridge} is \( K_{\mathrm{BB}}\left(t, t^{\prime}\right)=\min \left(t,
     t^{\prime}\right)-t t^{\prime} \).
-    
+    \begin{solution}WLOG, suppose $t'\le t$.
+
+      \textbf{The Kernel of a Brownian Motion:}  By the assumption above, 
+      $W(t')~\text{and}~W(t)-W(t')~\text{are independent}$, we have
+      \begin{align*}
+        K_{\mathrm{BM}}\left(t, t^{\prime}\right)
+        &=\EE[W(t')W(t)]\\
+        &=\EE[W(t')(W(t)-W(t'))+W(t')^2]\\
+        &=\EE[W(t')]\cdot\EE[W(t)-W(t')]+\EE[W(t')^2]\\
+        &=0+Var[W(t')] \\
+        &= t'\\
+        \text{by symmetry}~\Longrightarrow&=\min(t',t).
+        \end{align*}
+
+        \textbf{The Kernel of a Brownian Bridge:} A Brownian bridge $X(t)$
+        from $0$ to $0$ over $[0, T]$ can be
+        expressed as: 
+        $$
+        X(t) = W(t) - \frac{t}{T}\cdot W(T), \quad 0\le t\le T.
+        $$ 
+        where $W(t)$ is a Brownian motion. For this question in particular,
+        setting $T=1$, we have $X(t) = W(t) - t\cdot W(1)$, $0\le t\le 1$.
+        
+        By the definition of a kernel, we have
+        \begin{align*}
+          K_{\mathrm{BB}}\left(t, t^{\prime}\right)
+          &=\mathbb{E}[(W(t) - t\cdot W(1))(W(t') - t'\cdot W(1))]\\
+          &=\mathbb{E}[W(t)W(t') - tW(1)W(t') - t'W(1)W(t) + tt'W(1)W(1)]\\
+          &=\min(t',t) - t\min(t',1) - t'\min(1,t) + tt'\cdot \min(1,1)\\
+          0\le t'\le  t\le 1\Longrightarrow
+          &=\min(t',t) - tt'
+        \end{align*}
+      
+    \end{solution}
     \item[(b)] Implement the kernels \cref{eq:brownian motion} and \cref{eq:brownian bridge} in Scikit-Learn (e.g. see the
     kernels they currently have implemented and inherit from the kernel class)
     and show that paths generated using \cref{eq:brownian motion} have properties of Brownian motion
     paths, while those generated using \cref{eq:brownian bridge} have properties of a Brownian bridge.
     Plot 100 paths generated from the priors of each model.
     
+    \begin{solution}
+      See the attached Jupyter notebook.
+    \end{solution}
     \item[(c)] Brownian bridge can be thought of as Brownian motion conditioned
     to pass through \( y(1)=0 \). Within the GP framework, one should therefore
     be able to simulate Brownian bridge paths using the posterior density
@@ -377,6 +419,9 @@ can be thought of as GPs.
     \mathcal{N}\left(0, K_{\mathrm{BB}}\left(t, t^{\prime}\right)\right) \).
     Plot 100 paths of the posterior density of Brownian Motion trained on \( (t,
     y)=(1,0) \).
+    \begin{solution}
+      See the attached Jupyter notebook.
+    \end{solution}
 \end{enumerate}
 
 
