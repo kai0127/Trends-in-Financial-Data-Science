@@ -442,8 +442,7 @@ We will come back shortly to the question of what constitutes a valid Kernel.
 
 \textbf{Bayesian View:}
 
-From the definition in terms of the design matrix, we see that when
-evaluated on the train/test dataset, all the kernel matrices
+From the definition in terms of the design matrix, we see that when evaluated on the train/test dataset, all the kernel matrices
 $K\left(\mathbf{X}_{*}, \mathbf{X}_{*}\right), K\left(\mathbf{X}_{*},
   \mathbf{X}\right), K\left(\mathbf{X}, \mathbf{X}_{*}\right)$ and $K(\mathbf{X},
   \mathbf{X})$ are all positive semidefinite. As a result, this suggests that
@@ -499,7 +498,7 @@ However in the ML community the two names are used interchangeably. As a
 reminder, a Gaussian Process is a familiar concept in stochastic theory:
 
 \begin{definition}\textbf{(Gaussian Fields)}
-  A continuous real (stochastic) function $Y_{\mathrm{x}}:=Y(\mathrm{x}):
+  A continuous real (stochastic) function $Y_{\mathbf{x}}:=Y(\mathbf{x}):
     \mathbb{R}^{D} \rightarrow R$ is a Gaussian Field if and only if for any set of
   points $\left(x_{i}\right)_{i=1}^{k}$, the $k-$ dimensional variable
   $$
@@ -536,8 +535,8 @@ What is a Kernel? It is clear that \cref{eq:kernel as Gaussian Field} is a Gauss
 the kernel matrices entering into the equation are all positive semidefinite.
 This motivates the following
 
-\begin{definition}
-  \textbf{(Kernel)} A kernel is a continuous function $K: \mathbb{R}^{D} \times \mathbb{R}^{D}
+\begin{definition}\label{def: Mercer Conditions}
+  \textbf{(Kernel, Mercer Conditions)} A kernel is a continuous function $K: \mathbb{R}^{D} \times \mathbb{R}^{D}
     \rightarrow \mathbb{R}$ with the following properties (\href{https://en.wikipedia.org/wiki/Mercer%27s_theorem}{Mercer Conditions}):
   \begin{enumerate}
     \item $K$ is symmetric: $K(\mathbf{x}, \mathbf{y})=K(\mathbf{y}, \mathbf{x})$
@@ -618,33 +617,32 @@ formulas \cref{eq: posterior predictive distribution} for this Kernel would corr
 \subsection{Feature Map Kernel: Connection to Stochastic Processes/Fields}
 \textbf{1-D Features: The Kernel of a Stochastic Process}
 
-For a one-dimensional square-intergrable zero-mean continuous process $Y_{t}$
+\begin{theorem}
+  For a one-dimensional square-intergrable zero-mean continuous process $Y_{t}$
 over a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ indexed over the closed
 interval $[a, b]$ the following function $K_{Y}(s, t)$ is a valid Kernel (show
 this!):
 $$
   K_{Y Y}(s, t)=\mathbb{E}\left[Y_{s} Y_{t}\right]
 $$
+\end{theorem}
 
 In time-series analysis the above Kernel is known as the level-Autocovariance
-Function (ACF).
-
-Square-integrability is needed to ensure that the total variance $V=\int_{a}^{b}
+Function (ACF). Square-integrability is needed to ensure that the total variance $V=\int_{a}^{b}
   \mathbb{E}\left[Y_{t}^{2}\right] d t=\int_{a}^{b} K_{Y Y}(t, t) d t$ of the
 process is finite.
 
-
-Corollary
-
-Given a square-integrable $\Pi_{t}=\int_{a}^{t} \Delta_{s} Y_{s} d s$ the
+\begin{corollary}
+  Given a square-integrable $\Pi_{t}=\int_{a}^{t} \Delta_{s} Y_{s} d s$ the
 following is a valid Kernel:
 
 $$
-  K_{\Pi \Pi}\left(t, t^\top\right)=\mathbb{E}\left[\Pi_{t} \Pi_{t}^\top\right]=\mathbb{E}\left[\int_{a}^{t} \Delta_{s} Y_{s} d s \int_{a}^{t^\top} \Delta_{s}^\top Y_{s}^\top d s^\top\right]
+  K_{\Pi \Pi}\left(t, t^{\prime}\right)=\mathbb{E}\left[\Pi_{t} \Pi_{t}^{\prime}\right]=\mathbb{E}\left[\int_{a}^{t} \Delta_{s} Y_{s} d s \int_{a}^{t^{\prime}} \Delta_{s}^{\prime} Y_{s}^{\prime} d s^{\prime}\right]
 $$
 
 The above theorem and corollary allow us to construct kernels corresponding to a
 any specified stochastic process.
+\end{corollary}
 
 \begin{example}
   \textbf{(White-Noise Kernel)} The Kernel of $d W_{t} \sim N(0, d t)$ is
@@ -665,9 +663,9 @@ any specified stochastic process.
     K_{B M}(s, t)=\min (t, s) .
   $$
   Note that for time-varying vol process $d X_{t}=\sigma(t) d W_{t}$ the Kernel is
-  $K\left(t, t^\top\right)=\min \left(\int_{0}^{t} \sigma^{2}(s) d s,
-    \int_{0}^{t^\top} \sigma^{2}\left(s^\top\right) d s^\top\right)=\min \left(Q V
-    S(t), Q V S\left(t^\top\right)\right)$ where $Q V
+  $K\left(t, t^{\prime}\right)=\min \left(\int_{0}^{t} \sigma^{2}(s) d s,
+    \int_{0}^{t^{\prime}} \sigma^{2}\left(s^{\prime}\right) d s^{\prime}\right)=\min \left(Q V
+    S(t), Q V S\left(t^{\prime}\right)\right)$ where $Q V
     S(t)=\mathbb{E}\left[X_{t}^{2}\right]=\mathbb{E}\left[\int_{0}^{t} d
       X_{s}^{2}\right]=\int_{0}^{t} \sigma^{2}(s) d s$ is the quadratic variance swap
   of $X_{t}$.
@@ -677,7 +675,7 @@ any specified stochastic process.
   \textbf{(Bachelier Local-Vol Kernel)} The Kernel of the Bachelier Local-Vol process $d X_{t}=\sigma^{2}\left(X_{t},
     t\right) d W_{t}$ is:
   $$
-    K_{L V}(s, t)=\mathbb{E}\left[X_{s} X_{t}\right]=\min \left(Q V S(t), Q V S\left(t^\top\right)\right)
+    K_{L V}(s, t)=\mathbb{E}\left[X_{s} X_{t}\right]=\min \left(Q V S(t), Q V S\left(t^{\prime}\right)\right)
   $$
   where $Q V S(t)=\mathbb{E}\left[X_{t}^{2}\right]=\mathbb{E}\left[\int_{0}^{t} d
       X_{s}^{2}\right]=\mathbb{E}\left[\int_{0}^{t} \sigma^{2}\left(X_{s}, s\right) d
@@ -716,7 +714,7 @@ $V=\int_{C} \mathbb{E}\left[Y_{\mathbf{x}}^{2}\right] d \mathbf{x}=\int_{C} K_{Y
     \mathbf{Y}_{t}=\int_{0}^{t} d \mathbf{W}_{s}, \quad \mathbb{E}\left[d W_{t, i} d W_{t, i}\right]=C_{i j} d t
   $$
   Define $x:=(t, i), \quad t \in[0,1], i \in 1, \ldots, N$ as well as the r.v.
-  $Z_{\mathrm{x}}:=Y_{t, i}$ we have:
+  $Z_{\mathbf{x}}:=Y_{t, i}$ we have:
   $$
     K_{N d B M}\left(\mathbf{x}, \mathbf{x}^{\prime}\right)=\mathbb{E}\left[Z_{\mathbf{x}}, Z_{\mathbf{x}^{\prime}}\right]=\mathbb{E}\left[Y_{t, i} Y_{t^{\prime}, i^{\prime}}\right]=\min \left(t, t^{\prime}\right) C_{i i^{\prime}}
   $$
@@ -727,16 +725,11 @@ Simply replace the asset index $i$, with $\tau=T-t$ of a continuously rolled
 constant time-to-maturity strategy. As there is a continuum of $\tau$ we have
 $\mathbf{Y}_{t}=\left(Y_{t, \tau}\right)_{\tau} \in
   \mathbb{R}_{+}^{\mathbb{R}}$. Ignoring the carry drift, we are then modeling:
-
 $$
   \mathbf{Y}_{t}=\int_{0}^{t} d \mathbf{W}_{s}, \quad \mathbb{E}\left[d W_{t, \tau} d W_{t, \tau^{\prime}}\right]=C\left(\tau, \tau^{\prime}\right) d t
 $$
-
 Define $x:=(t, \tau), \quad t \in[0,1], \tau \in \mathbb{R}_{+}$as well as the
-r.v.
-
-$Z_{\mathrm{x}}:=Y_{t, \tau}$ we have:
-
+r.v. $Z_{\mathbf{x}}:=Y_{t, \tau}$ we have:
 $$
   K\left(\mathbf{x}, \mathbf{x}^{\prime}\right)=\mathbb{E}\left[Z_{\mathbf{x}}, Z_{\mathbf{x}^{\prime}}\right]=\mathbb{E}\left[Y_{t, \tau} Y_{t^{\prime}, \tau^{\prime}}\right]=\min \left(t, t^{\prime}\right) C\left(\tau, \tau^{\prime}\right)
 $$
@@ -825,9 +818,9 @@ paths can be seen below:
   \begin{itemize}
     \item OU Kernel in \cref{eq: OU kernel}.
 
-    \item RBF Kernel: $K_{R B F}\left(\mathrm{x}, \mathrm{x}^\top\right)=K_{R B
+    \item RBF Kernel: $K_{R B F}\left(\mathbf{x}, \mathbf{x}^\top\right)=K_{R B
             F}(\tau)=\exp \left(-\tau^{2} / 2 \ell^{2}\right)$, where
-          $\tau=\sqrt{\tau}=\sqrt{\left|\mathrm{x}-\mathrm{x}^{prime}\right|}$ where
+          $\tau=\sqrt{\tau}=\sqrt{\left|\mathbf{x}-\mathbf{x}^{\prime}\right|}$ where
           $\ell>0$ is the scale hyperparameter of the Kernel. Why is this a valid
           Kernel?
 
@@ -847,12 +840,12 @@ paths can be seen below:
               \alpha \ell^{2}}\right)^{-\alpha}$
 
     \item Anisotropic stationary Kernels: Simply set
-          $\tau^{2}=\left(\mathrm{x}-\mathrm{x}^{prime}\right)^\top
-            \mathbf{S}^{-1}\left(\mathrm{x}-\mathrm{x}^{prime}\right)$ where $\mathbf{S}$ is
+          $\tau^{2}=\left(\mathbf{x}-\mathbf{x}^{\prime}\right)^\top
+            \mathbf{S}^{-1}\left(\mathbf{x}-\mathbf{x}^{\prime}\right)$ where $\mathbf{S}$ is
           a positive-definite matrix.
 
     \item Anisotropic factor models: In the above we simply specify the $D \times
-            D$ matrix $\mathrm{S}$ by its dimensionally reduced factor structure
+            D$ matrix $\mathbf{S}$ by its dimensionally reduced factor structure
           $\mathbf{S}=\mathbf{V} \mathbf{V}^\top+\mathbf{R}$ where $\mathbf{V}$ is a $D
             \times k$ matrix specifying the loadings of the $k$ factors and $\mathbf{R}$
           is a diagonal positive definite matrix specifying the idiosyncratic variances
@@ -867,7 +860,7 @@ paths can be seen below:
 Generating from the prior amounts to choosing a set of test grid points
 $\mathbf{X}_{*}=\left(\mathbf{x}_{*, i}\right)_{i=1}^{M}$ and generating
 different realizations of $\mathbf{y}_{*}=\left(y_{*, i}\right)_{i=1}^{M}$ by
-drawing from the following multivariate Gaussian (prior) distribution 
+drawing from the following multivariate Gaussian (prior) distribution
 $$
   \mathbf{y}_{*} \mid \mathbf{X}_{*} \sim N\left(0, K\left(\mathbf{X}_{*}, \mathbf{X}_{*}\right)\right)
 $$
@@ -875,10 +868,10 @@ $$
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=.6\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-23}
-      \caption{Sample paths from the prior of the RBF Kernel $K\left(x_{1},
+  \caption{Sample paths from the prior of the RBF Kernel $K\left(x_{1},
       x_{2}\right)=\exp \left(-\left|x_{1}-x_{2}\right|^{2} /
       \sigma^{2}\right)$}
-      \label{fig:RBF Kernel prior}
+  \label{fig:RBF Kernel prior}
 \end{figure}
 
 \textbf{Training and Generating From The Posterior}
@@ -896,250 +889,207 @@ where the conditional mean and covariance are as in (16).
   \centering
   \includegraphics[width=0.6\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-25}
   \caption{Sample paths from the posterior of the RBF Kernel $K\left(x_{1}, x_{2}\right)=\exp \left(-\left|x_{1}-x_{2}\right|^{2} /
-  \sigma^{2}\right)$ based on a training set of only 9 samples.}
+      \sigma^{2}\right)$ based on a training set of only 9 samples.}
   \label{fig:RBF Kernel posterior}
 \end{figure}
 
 \section{Model Selection and Hyperparameter Optimization}
 
-\section*{What is GPR Model Selection? I}
-As we noted earlier, the training of a Gaussian Process (16) for a fixed Kernel
+\textbf{What is GPR Model Selection?}
+
+As we noted earlier, the training of a Gaussian Process \cref{eq: posterior predictive distribution} for a fixed Kernel
 does not involve fitting any parameters. In other words, we have solved the
 $L_{2}$ optimization problem for the predictions $\mathbf{y}_{*}$ conditional on
 $\mathbf{X}_{*}$ and training data $\mathbf{y}, \mathbf{X}$ in a single
 optimization step.
 
 However, in many cases the Kernel itself may depend, generally in a non-linear
-fashion, on a set of hyperparameters $\theta$, $K\left(\mathrm{x},
-\mathrm{x}^{\prime}\right)=K\left(\mathrm{x}, \mathrm{x}^{\prime} ;
-\theta\right)$. For example, the $\ell$ parameter in the RBF Kernel is a
-hyperparameter.
+fashion, on a set of hyperparameters $\boldsymbol{\theta}$, $K\left(\mathbf{x},
+  \mathbf{x}^{\prime}\right)=K\left(\mathbf{x}, \mathbf{x}^{\prime};
+  \boldsymbol{\theta}\right)$. For example, the $\ell$ parameter in the RBF Kernel is a
+hyperparameter. If $\ell$ is too small, the bandwidth of the Kernel may be too narrow and the
+model overfits; if $\ell$ is too large, the bandwidth of the Kernel may be too wide and the
+model underfits. The optimal $\ell$ balances the bias-variance tradeoff.
 
-\section*{What is GPR Model Selection? II}
-If $\ell$ is too small, the bandwidth of the Kernel may be too narrow and the
-model overfits:
+\begin{figure}[!htp]
+  \begin{minipage}{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-60}
+    \caption{An RBF fit with narrow bandwidth.}
+    \label{fig:RBF Kernel narrow bandwidth}
+  \end{minipage}
+  \begin{minipage}{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-61}
+    \caption{An RBF fit with wide bandwidth.}
+    \label{fig:RBF Kernel wide bandwidth}
+  \end{minipage}
+  \begin{minipage}{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-62}
+    \caption{The optimal bandwidth RBF fit.}
+    \label{fig:RBF Kernel optimal bandwidth}
+  \end{minipage}
+\end{figure}
 
-\begin{center}
-\includegraphics[width=\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-60}
-\end{center}
-
-Figure 6: An RBF fit with narrow bandwidth.
-
-\section*{What is GPR Model Selection? III}
-If $\ell$ is too large, the bandwidth of the Kernel may be too wide and the
-model underfits:
-
-\begin{center}
-\includegraphics[width=\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-61}
-\end{center}
-
-Figure 7: An RBF fit with wide bandwidth.
-
-\section*{What is GPR Model Selection? IV}
-The optimal $\ell$ balances the bias-variance tradeoff.
-
-\begin{center}
-\includegraphics[width=\textwidth]{images/2023_11_26_5b299dbd302e8f129737g-62}
-\end{center}
-
-Figure 8: The optimal bandwidth RBF fit.
-
-One way to find $\theta_{\text {opt }}$ would be through grid search and
-crossvalidation. However in bayesian modelling there is typically insufficient
+One way to find $\boldsymbol{\theta}_{\text {opt}}$ would be through grid search and
+cross-validation. However in bayesian modelling there is typically insufficient
 training data to adopt this approach. What are the alternatives?
 
-\section*{Optimizing the Likelihood of the Data I}
+\textbf{Optimizing the Likelihood of the Data}
+
 Within the Bayesian framework, hyperparameter optimization amounts to optimizing
 the likelihood of the data as a function of the hyperparameters:
 
 $$
-\begin{aligned}
-L(\theta \mid \mathbf{y}, \mathbf{X}) & =\log p(\mathbf{y} \mid \mathbf{X} ; \boldsymbol{\theta}) \\
-& =-\frac{1}{2} \mathbf{y}^{\prime}\left(K(\mathbf{X}, \mathbf{X} ; \boldsymbol{\theta})+\sigma^{2} \mathbf{I}\right)^{-1} \mathbf{y} \\
-& -\frac{1}{2} \log \left|\left(K(\mathbf{X}, \mathbf{X} ; \boldsymbol{\theta})+\sigma^{2} \mathbf{I}\right)\right|-\frac{n}{2} \log 2 \pi
-\end{aligned}
+  L(\boldsymbol{\theta} \mid \mathbf{y}, \mathbf{X}) =\log p(\mathbf{y} \mid \mathbf{X} ; \boldsymbol{\theta})
+  =-\frac{1}{2} \mathbf{y}^{\prime}\left(K(\mathbf{X}, \mathbf{X} ; \boldsymbol{\theta})+\sigma^{2} \mathbf{I}\right)^{-1} \mathbf{y} -\frac{1}{2} \log \left|\left(K(\mathbf{X}, \mathbf{X} ; \boldsymbol{\theta})+\sigma^{2} \mathbf{I}\right)\right|-\frac{n}{2} \log 2 \pi
 $$
 
-\section*{Optimizing the Likelihood of the Data II}
 In general (63) is non-trivial both because of the non-linear dependence in
-$\theta$ and because of the fact that at gradient optimization step the inverse
+$\boldsymbol{\theta}$ and because of the fact that at gradient optimization step the inverse
 of $K(\mathbf{X}, \mathbf{X} ; \boldsymbol{\theta})+\sigma^{2} \mathbf{I}$ would
 have to be computed.
 
 Fortunately, in many problems one does not require many hyperparameters to
-optimize over. Quite often, using a simple Kernel such as the RBF one suffices
-in getting good results. However, hyperparameter optimization is in fact one of
-the biggest bottlenecks of the GPR approach, especially in the limit of large
+optimize over. Quite often, using a simple Kernel such as the RBF kernel suffices
+in getting good results. However, \textbf{hyperparameter optimization is in fact one of
+  the biggest bottlenecks of the GPR approach}, especially in the limit of large
 amounts of data. On the other hand, Bayesian approach is precisely most useful
-in the oposite limit of small amounts of data which is especially relevant to
+in the opposite limit of small amounts of data which is especially relevant to
 finance.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Links to SVD/PCA: Mercer's Theorem, Karhunen-Loève Expansion And Their Generalizations}
+\section{Links to SVD/PCA}
 \subsection{Mercer's Theorem}
 In a previous section we found that a sufficient condition for a Kernel to be
 valid is to express it as a covariance function, or alternatively a quadratic
-outer product of a set of feature maps, $K\left(\mathrm{x},
-\mathrm{x}^{\prime}\right)=\boldsymbol{\Phi}(\mathrm{x})
-\boldsymbol{\Phi}\left(\mathrm{x}^{\prime}\right)^{\prime}=\sum_{\alpha}
-\phi_{\alpha}(\mathrm{x}) \phi_{\alpha}\left(\mathrm{x}^{\prime}\right)$ in
-which case the second Mercer condition follows directly.
+outer product of a set of feature maps, $K\left(\mathbf{x},
+  \mathbf{x}^{\prime}\right)=\boldsymbol{\Phi}(\mathbf{x})
+  \boldsymbol{\Phi}\left(\mathbf{x}^{\prime}\right)^\top=\sum_{\alpha}
+  \phi_{\alpha}(\mathbf{x}) \phi_{\alpha}\left(\mathbf{x}^{\prime}\right)$ in
+which case the second Mercer condition follows directly. This is great, however, under what condition
+can we decompose a Kernel as an outer product of feature maps? The answer is given by the Mercer's theorem.
 
-Under what condition does the reverse hold, i.e. that we can decompose a Kernel
-as an outer product of feature maps? The following theorem shows that the Mercer
+\begin{theorem}\textbf{(Mercer's Theorem, 1909)}
+  Every valid Kernel in $1$-$D$, i.e. a symmetric function $K(s, t), s, t \in[a, b]$ satisfying the Mercer condition \cref{def: Mercer Conditions}, can be expressed
+  as:
+  $$
+    K(s, t)=\sum_{i=1}^{\infty} \lambda_{i} e_{i}(s) e_{i}(t)
+  $$
+  where $\left\{\lambda_{i} \geq 0, e_{i}(t)\right\}_{i=1}^{\infty}$ are the
+  solutions of the following Friedholm Integral Eigenvalue equation:
+  $$
+    \int_{a}^{b} K_{Y}(s, t) e_{k}(s) d s=\lambda_{k} e_{k}(t)
+  $$
+  and $\left\{e_{i}(t)\right\}_{i=1}^{\infty}$ are orthonormal w.r.t. the Hilbert
+  norm $\left\langle e_{i}, e_{j}\right\rangle_{\mathcal{H}}:=\int_{a}^{b} e_{i}(t)
+    e_{j}(t) d t=\delta_{i j}$.
+\end{theorem}
 
-\section*{Mercer's Theorem II}
-Theorem (Merce, '1909)
-
-Every valid Kernel in $1-D$, i.e. a symmetric function
-
-$K(s, t), s, t \in[a, b]$ satisfying the Mercer condition (66), can be expressed
-as:
-
-$$
-K(s, t)=\sum_{i=1}^{\infty} \lambda_{i} e_{i}(s) e_{i}(t)
-$$
-
-where $\left\{\lambda_{i} \geq 0, e_{i}(t)\right\}_{i=1}^{\infty}$ are the
-solutions of the following Friedholm Integral Eigenvalue equation:
-
-$$
-\int_{a}^{b} K_{Y}(s, t) e_{k}(s) d s=\lambda_{k} e_{k}(t)
-$$
-
-and $\left\{e_{i}(t)\right\}_{i=1}^{\infty}$ are orthonormal wrt the Hilbert
-norm
-
-$\left\langle e_{i}, e_{j}\right\rangle_{\mathcal{H}}:=\int_{a}^{b} e_{i}(t)
-e_{j}(t) d t=\delta_{i j}$.
-
-\section*{Mercer's Theorem III}
 The feature maps $e_{i}(t)$ are the functional analogue of PCA factors of the
-Kernel. Indeed, they are orthonormal wrt the Hilbert norm
-
+Kernel. Indeed, they are orthonormal w.r.t. the Hilbert norm
 $\langle,\rangle_{\mathcal{H}}$ and so they form a complete basis of functions
 which are linear superspositions of the factors. What can we say about such
 functions?
-
-\section*{The Hilbert Space of the Kernel I}
+\subsection{The Hilbert Space of the Kernel}
 Consider the functions generated by this Mercer orthonormal basis associated
 with a given Kernel:
-
-$$
-f(t)=\sum_{i=0}^{\infty} \alpha_{i} e_{i}(t)
-$$
-
+\begin{align}
+  f(t)=\sum_{i=0}^{\infty} \alpha_{i} e_{i}(t)
+  \label{eq: functions generated by this Mercer orthonormal basis}
+\end{align}
+  
 It is easy to check that these functions form a real vector space embodied with
-an inner product $\langle\rangle=,\langle,\rangle_{\mathcal{H}}$. In other words
-these functions form a Hilbert Space $H$.
-
-\section*{The Hilbert Space of the Kernel II}
-What type of functions are in $H$ ?
+an inner product $\langle\rangle=\langle,\rangle_{\mathcal{H}}$. In other words
+these functions form a Hilbert Space $\mathcal{H}$. What type of functions are in $\mathcal{H}$?
 
 For example, if each of the basis functions
 $\left\{e_{i}(t)\right\}_{i=1}^{\infty}$ were differentiable it is clear that if
-one were to consider functions in (47) generated by finitely many of the basis
+one were to consider functions in \cref{eq: functions generated by this Mercer orthonormal basis} generated by finitely many of the basis
 vectors, then the result would be differentiable as well.
 
 As differentiable functions have zero quadratic variation, so would this imply
-that the Hilbert space $H$ only consists of deterministic functions?
-
-\section*{The Hilbert Space of the Kernel III}
-It turns out the answer is no precisely because the expansions in
-
-(47) constitue of countably infnite series of superpositions of
-$\left\{e_{i}(t)\right\}$.
+that the Hilbert space $H$ only consists of deterministic functions? It turns
+out the answer is no precisely because the expansions in \cref{eq: functions generated by this Mercer orthonormal basis} constitue of
+countably infnite series of superpositions of $\left\{e_{i}(t)\right\}$.
 
 In fact, if the Kernel is a covariance of a given square-integrable stochastic
 process, then it turns out that there exists a sequence of functions in
-$\mathrm{H}$ which converges in $L_{2}$-sense to any given path of the process.
+$\mathcal{H}$ which converges in $L_{2}$-sense to any given path of the process.
 
-\section*{Karhunen-Loève (KL) Expansion I}
+\subsection{Karhunen-Loève (KL) Expansion}
 Suppose $K(t, s)=\mathbb{E}\left[Y_{t} Y_{s}\right]$ for a zero-mean
-square-integrable process over a probability space $(\Omega, F, \mathbf{P})$
+square-integrable process over a probability space $(\Omega, \mathcal{F}, \mathbb{P})$
 indexed over the closed interval $[a, b]$. Then $K(t, s)$ is a Mercer Kernel and
 can be written as $K(s, t)=\sum_{i=1}^{\infty} \lambda_{i} e_{i}(s) e_{i}(t)$
 for some $\left\{\lambda_{i} \geq 0, e_{i}(t)\right\}_{i=1}^{\infty}$. Then we
 have the following theorem
 
-\section*{Karhunen-Loève (KL) Expansion II}
-Theorem (Karhunen-Loève ( $K L$ ) Expansion)
-
-Any given path $Y_{t}$ of the process can be written as:
-
+\begin{theorem}\textbf{(Karhunen-Loève (KL) Expansion)}
+  Any given path $Y_{t}$ of the process can be written as:
 $$
-Y_{t}=L_{L^{2}} \sum_{k=1}^{\infty} \sqrt{\lambda_{k}} \xi_{k} e_{k}(t)=\sum_{k=1}^{\infty} Y_{k, t}
+  Y_{t}=_{L^{2}} \sum_{k=1}^{\infty} \sqrt{\lambda_{k}} \xi_{k} e_{k}(t)=\sum_{k=1}^{\infty} Y_{k, t}
 $$
-
 where $\xi_{k}$ are each independently drawn with zero mean and unit variance
-and can be found by projecting the path onto the $k-t h$ basis:
-
+and can be found by projecting the path onto the $k-$th basis:
 $$
-\xi_{k}=\frac{1}{\sqrt{\lambda_{k}}} \int_{a}^{b} Y_{t} e_{k}(t) d t
+  \xi_{k}=\frac{1}{\sqrt{\lambda_{k}}} \int_{a}^{b} Y_{t} e_{k}(t) d t
 $$
+\end{theorem}
 
-\section*{Karhunen-Loève (KL) Expansion III}
-The $\mathrm{KL}$ expansion can be thought of as a functional generalization of
+The KL expansion can be thought of as a functional generalization of
 PCA where $Y_{k, t}$ is the projection of $Y_{t}$ on to the $k$-th PCA component
-$e_{k}(t)$ of the Kernel $K_{Y}(s, t)$.
-
-In fact, similar to PCA the KL expansion can be thought of as the optimal MSE
+$e_{k}(t)$ of the Kernel $K_{Y}(s, t)$. In fact, similar to PCA the KL expansion can be thought of as the optimal MSE
 minimizer as follows
 
-\section*{Karhunen-Loève (KL) Expansion IV}
-Theorem (The KL Expansion is MSE-Optimal)
-
-For any order $K \geq 1$, the first- $K$ terms in the $K L$ expansion optimize
+\begin{theorem}\textbf{(The KL Expansion is MSE-Optimal)}
+  For any order $K \geq 1$, the first- $K$ terms in the $K L$ expansion optimize
 the MSE as follows:
-
 $$
-\mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \sqrt{\lambda_{k}} \xi_{k} e_{k}(t)\right|^{2} \leq \mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \eta_{k} \phi_{k}(t)\right|^{2}
+  \mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \sqrt{\lambda_{k}} \xi_{k} e_{k}(t)\right|^{2} \leq \mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \eta_{k} \phi_{k}(t)\right|^{2}
 $$
-
 where $\left\{\phi_{k}(t)\right\}_{k=1}^{K}$ is any other set of orthonormal
 functions.
+\end{theorem}
 
-\section*{KL Basis For Brownian Motion I}
-If the underlying process is $Y_{t}=W_{t}=\int_{0}^{t} d W_{s}$ then $K_{Y}(t,
-s)=\min (t, s)$ and the $\mathrm{KL}$ basis is known analytically. Assuming $[a,
-b]=[0,1]$ :
+\begin{example}\textbf{(KL Basis For Brownian Motion)}
+  If the underlying process is $Y_{t}=W_{t}=\int_{0}^{t} d W_{s}$ then $K_{Y}(t,
+  s)=\min (t, s)$ and the KL basis is known analytically. Assuming $[a,b]=[0,1]$:
 
 $$
-\begin{aligned}
-e_{k}(t) & =\sqrt{(2) \sin \left(\left(k-\frac{1}{2}\right) \pi t\right)} \\
-\lambda_{k} & =\frac{1}{\left(k-\frac{1}{2}\right)^{2} \pi^{2}}
-\end{aligned}
+    e_{k}(t)=\sqrt{(2) \sin \left(\left(k-\frac{1}{2}\right) \pi t\right)}, \qquad
+    \lambda_{k} =\frac{1}{\left(k-\frac{1}{2}\right)^{2} \pi^{2}}
 $$
-
 and therefore each Brownian Path admits the following Wiener representation:
-
 $$
-W_{t}=\sqrt{2} \sum_{k=1}^{\infty} \xi_{k} \frac{\sin \left(\left(k-\frac{1}{2}\right) \pi t\right)}{\left(k-\frac{1}{2}\right) \pi}
+  W_{t}=\sqrt{2} \sum_{k=1}^{\infty} \xi_{k} \frac{\sin \left(\left(k-\frac{1}{2}\right) \pi t\right)}{\left(k-\frac{1}{2}\right) \pi}
 $$
+\end{example}
 
-\section*{KL Basis For Brownian Motion II}
 Note that
 
 \begin{itemize}
   \item The scaled process $\sqrt{c} W_{t / c}$ in (53) is a Brownian motion on
-  $[0, c]$.
+        $[0, c]$.
 
   \item The KL eigenfunctions in (51) for Brownian Motion are in fact Fourier
-  components with a suitable phase.
+        components with a suitable phase.
 
   \item What distinguishes Brownian paths $W_{t}$ from all other paths is that
-  the variance of each random Fourier mode of $W_{t}$ decays quadratically with
-  $k$ and in fact equals $1 / \lambda_{k}=1 /(k-1 / 2)^{2} \pi^{2}$.
+        the variance of each random Fourier mode of $W_{t}$ decays quadratically with
+        $k$ and in fact equals $1 / \lambda_{k}=1 /(k-1 / 2)^{2} \pi^{2}$.
 
   \item The projection formula (49) for the case of Browninan Motion reduces to
-  a suitable inverse Fourier transform (iFFT). The random coefficients $\xi_{k}$
-  of a path $Y_{t}$ are the (random) coordinates of $Y_{t}$ in the PCA basis of
-  $K_{Y}(t, s)$ and (49) can be thought of as the inverse- $\mathrm{KL}$ (iKL)
-  transform with respect to the basis of $K_{Y}$.
+        a suitable inverse Fourier transform (iFFT). The random coefficients $\xi_{k}$
+        of a path $Y_{t}$ are the (random) coordinates of $Y_{t}$ in the PCA basis of
+        $K_{Y}(t, s)$ and (49) can be thought of as the inverse- $\mathrm{KL}$ (iKL)
+        transform with respect to the basis of $K_{Y}$.
 
 \end{itemize}
 
-\section*{KL Expansion as MSE Minimization}
+\textbf{KL Expansion as MSE Minimization}
+
 As a PCA basis of $K_{Y}$, the KL basis in (7) also minimizes the MSE when
 approximating any given realized path $Y_{t}$ generated by the process in the
 following sense. Given any orthonormal basis of
@@ -1147,27 +1097,30 @@ $\left\{\phi_{k}\right\}_{k=1}^{\infty}$ of $L^{2}$, the truncated KL basis
 provides the best MSE approximation of $Y_{t}$ in the sense that
 
 $$
-\mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \sqrt{\lambda_{k}} \xi_{k} e_{k}(t)\right|^{2} \leq \mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \eta_{k} \phi_{k}(t)\right|^{2}
+  \mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \sqrt{\lambda_{k}} \xi_{k} e_{k}(t)\right|^{2} \leq \mathbb{E}\left|Y_{t}-\sum_{k=1}^{K} \eta_{k} \phi_{k}(t)\right|^{2}
 $$
 
 for all $K \geq 1$.
 
-\section*{Example: A Different Representation of Brownian Paths}
-An alternative representation of Brownian Motion also due to Wiener is:
+\begin{example}\textbf{(A Different Representation of Brownian Paths)}
+  An alternative representation of Brownian Motion also due to Wiener is:
 
-$$
-W_{t}=\xi_{0} t+\sqrt{2} \sum_{k=1}^{\infty} \xi_{k} \frac{\sin \pi k t}{\pi k}
-$$
+\begin{align}
+  W_{t}=\xi_{0} t+\sqrt{2} \sum_{k=1}^{\infty} \xi_{k} \frac{\sin \pi k t}{\pi k}
+  \label{eq:A Different Representation of Brownian Paths}
+\end{align}
+\end{example}
 
-However (55) is not MSE-optimal. In fact the linear in $t$ term is not even
+
+However \cref{eq:A Different Representation of Brownian Paths} is not MSE-optimal. In fact the linear in $t$ term is not even
 orthogonal to the Fourier ones. In other words (55) does not decompose $W_{t}$
 into uncorrelated sources of risk and is not MSE optimal at any order.
 
-\section*{The Spectral Theorem I}
+\subsection{The Spectral Theorem}
 So far, Mercer's Theorem involved Kernels $K\left(t, t^{\prime}\right), t,
-t^{\prime} \in[a, b]$, which led to the KL expansion of paths of Gaussian
+  t^{\prime} \in[a, b]$, which led to the KL expansion of paths of Gaussian
 Processes. Do similar results exists for (stochastic) functions of higher
-dimensional features $\mathrm{x} \in V$ and more general vector fields $V$ ? For
+dimensional features $\mathbf{x} \in V$ and more general vector fields $V$? For
 example if $V=\mathbb{R}^{D}$ then instead of continuous stochastic paths
 corresponding to Gaussian Processes, one would be considering stochastic
 continuous surfaces corresponding to Gaussian Fields.
@@ -1177,157 +1130,155 @@ prior to Mercer's 1909 work in a series of his papers in 1904-1910 and later
 were fully developed by von Neumann and Stone in the 1920s. All such results are
 known as Spectral Theorem $(s)$. For an overview, see steen72spectralhist.
 
-\section*{The Spectral Theorem II}
 Let's work backwards and state one of the Spectral Theorems which is perhaps the
 closest generalization of Mercer's Theorem:
 
-Theorem (Spectral Thm: Compact Self-Adjoint Operators)
-
-Every compact self-adjoint operator $K: \mathcal{H} \rightarrow R$, where
+\begin{theorem}\textbf{(Spectral Theorem: Compact Self-Adjoint Operators)}
+  Every compact self-adjoint operator $K: \mathcal{H} \rightarrow R$, where
 $\mathcal{H}$ is some Hilbert space of functions $\phi: V \rightarrow
-\mathbb{R}$, has a countable real basis $\left(\lambda_{i} \in \mathbb{R},
-e_{i}(x)\right)_{i=1}^{\infty}, x \in V$ such that
-
+  \mathbb{R}$, has a countable real basis $\left(\lambda_{i} \in \mathbb{R},
+  e_{i}(x)\right)_{i=1}^{\infty}, x \in V$ such that
 $$
-K\left(x, x^{\prime}\right)=\sum_{i=0}^{\infty} \lambda_{i} e_{i}(x) e_{i}\left(x^{\prime}\right)
+  K\left(x, x^{\prime}\right)=\sum_{i=0}^{\infty} \lambda_{i} e_{i}(x) e_{i}\left(x^{\prime}\right)
 $$
-
 with $\lambda_{i} \rightarrow 0$. If $K$ is positive semidefinite, i.e. if
 $\langle\phi, K \phi\rangle_{\mathcal{H}} \geq 0$ for all $\phi \in \mathcal{H}$
 then the $\lambda_{i}$ are non-negative.
+\end{theorem}
+\vspace*{0.4em}
+\hrule
 
-\section*{The Spectral Theorem III}
 To gain intuition on the previous theorem, we need to clarify what a compact,
 self-adjoint and positive semidefinite operator is. These are all concepts in
 infinite dimensional functional calculus generalizing the analogous concepts in
 finite dimensional linear algebra.
 
-\section*{Hilbert-Schmidt Operators I}
+\textbf{Hilbert-Schmidt Operators}
+
 Following Feldman's notes on the matter, similar to results in finite
 dimemsional linear algebra where a matrix $\mathbf{A} \in \mathbb{R}^{m \times
-n}$ can be thought of as a linear operator $\mathbf{A}: \mathbb{R}^{n}
-\rightarrow \mathbb{R}^{m}$ mapping a column vector $\mathbf{u} \in
-\mathbb{R}^{n}$ to a row vector $\mathbf{v}=\mathbf{A} \mathbf{u} \in
-\mathbb{R}^{m}$ by left-multiplication, given two measurable spaces $(X,
-\mu),(Y, \nu)$ one can think of a real-valued function of two variables $K(x,
-y), x \in X, y \in Y$ as the following linear operator from the Hilbert Space of
+    n}$ can be thought of as a linear operator $\mathbf{A}: \mathbb{R}^{n}
+  \rightarrow \mathbb{R}^{m}$ mapping a column vector $\mathbf{u} \in
+  \mathbb{R}^{n}$ to a row vector $\mathbf{v}=\mathbf{A} \mathbf{u} \in
+  \mathbb{R}^{m}$ by left-multiplication, given two measurable spaces $(X,
+  \mu),(Y, \nu)$ one can think of a real-valued function of two variables $K(x,
+  y), x \in X, y \in Y$ as the following linear operator from the Hilbert Space of
 square-integrable functions $\mathcal{H}_{Y}=L_{2}(Y, \nu)$ of $Y$ to that of
-$\mathcal{H}_{X}=L_{2}(X, \mu)$ of $X$ :
-
+$\mathcal{H}_{X}=L_{2}(X, \mu)$ of $X$:
 $$
-(K f)(x):=\int_{Y} K(x, y) f(y) d \nu(y)=\langle\cdot, K f\rangle_{\mathcal{H}}
+  (K f)(x):=\int_{Y} K(x, y) f(y) d \nu(y)=\langle\cdot, K f\rangle_{\mathcal{H}}
 $$
-
 Or $K: \mathcal{H}_{Y} \rightarrow \mathcal{H}_{X}$ is simply the linear
-convolution operator wrt the second variable of $K$.
+convolution operator w.r.t. the second variable of $K$.
 
-\section*{Hilbert-Schmidt Operators II}
 Similarly to the finite-dimensional case where $\mathbf{A}$ could alternatively
 be considered to act on the row vectors by right-multiplication to produce
 column vectors, one defines the adjoint of $K$ as $K^{\dagger}: \mathcal{H}_{X}
-\rightarrow \mathcal{H}_{Y}$ as:
-
+  \rightarrow \mathcal{H}_{Y}$ as:
 $$
-\left(K^{\dagger} g\right)(y):=\int_{X} g(x) K(x, y) d \nu(X):=\left\langle K^{\dagger} g, \cdot\right\rangle_{\mathcal{H}}
+  \left(K^{\dagger} g\right)(y):=\int_{X} g(x) K(x, y) d \nu(X):=\left\langle K^{\dagger} g, \cdot\right\rangle_{\mathcal{H}}
 $$
-
 An operator $K$ is self-adjoint if $K^{\dagger}=K$. It is clear that if
 $K\left(x, x^{\prime}\right)=K\left(x^{\prime}, x\right)$ is a symmetric
 real-valued function of two variables $x, x^{\prime} \in(X, \mu)$ then $K$ is
 also self-adjoint.
 
-\section*{Compact Operators on $L_{2}$ Hilbert Spaces I}
-\section*{Definition}
-A linear operator $C: \mathcal{H}_{1} \rightarrow \mathcal{H}_{2}$ is compact if
+\textbf{Compact Operators on $L_{2}$ Hilbert Spaces}
+\begin{definition}
+  A linear operator $C: \mathcal{H}_{1} \rightarrow \mathcal{H}_{2}$ is compact if
 for every bounded sequence $\left(f_{i}(x)\right)_{i=1}^{\infty} \in
-\mathcal{H}_{1}$ there is a subsequence of $\left(\left(C
-f_{i}\right)(x)\right)_{i=1}^{\infty} \in \mathcal{H}_{2}$ which is bounded.
+  \mathcal{H}_{1}$ there is a subsequence of $\left(\left(C
+  f_{i}\right)(x)\right)_{i=1}^{\infty} \in \mathcal{H}_{2}$ which is bounded.
+\end{definition}
 
-\section*{Proposition}
-If $\mathcal{H}_{1}$ and $\mathcal{H}_{2}$ are Hilbert spaces with inner
+\begin{proposition}
+  If $\mathcal{H}_{1}$ and $\mathcal{H}_{2}$ are Hilbert spaces with inner
 products $\langle,\rangle_{1}$ and $\langle,\rangle_{2}$ respectively, then an
 operator $C: \mathcal{H}_{1} \rightarrow \mathcal{H}_{2}$ is compact if and only
 if $C$ is completely continuous, i.e. $\left\|C f_{n}-C f\right\|_{2}^{2}
-\rightarrow 0$ whenever $\left\langle g, f_{n}\right\rangle_{1}
-\rightarrow\langle g, f\rangle_{1}$ for all $g$ in $\mathcal{H}_{1}$. Such
+  \rightarrow 0$ whenever $\left\langle g, f_{n}\right\rangle_{1}
+  \rightarrow\langle g, f\rangle_{1}$ for all $g$ in $\mathcal{H}_{1}$. Such
 operators are also called continuous with respect of the the weak topology.
+\end{proposition}
+\vspace*{0.4em}
+\hrule
 
-\section*{Relevance to ML and Gaussian Processes I}
-\section*{Example}
+\textbf{Relevance to ML and Gaussian Processes}
+
+\begin{example}
 Let a function $C: V_{1} \times V_{2} \rightarrow \mathbb{R}$ be a continuous
 real-valued two-variable function whose domain $V_{1} \times V_{2}$ is a compact
 vector space (for example $V_{i}=[0,1]^{D_{i}}$ ). Then when viewed as a linear
 operator $C: \mathcal{H}_{L_{2}\left(V_{2}, \nu\right)} \rightarrow
-\mathcal{H}_{L_{2}\left(V_{1}, \mu\right)}$ from the Hilbert spaces of
+  \mathcal{H}_{L_{2}\left(V_{1}, \mu\right)}$ from the Hilbert spaces of
 $L_{2}$-integrable functions on $V_{2}$ and to that on $V_{1}, C$ is a compact
 operator.
+\end{example}
 
-\section*{Relevance to ML and Gaussian Processes II}
-\section*{Corollary}
-A symmetric real-valued function $K(\mathbf{x}, \mathbf{y})$ defined on compact
+\begin{corollary}
+  A symmetric real-valued function $K(\mathbf{x}, \mathbf{y})$ defined on compact
 domains of $R^{D}$ is a self-adjoint compact operator in the Hilbert space of
 squre-integrable functions on the same domain, and as a result has a countably
 discrete spectrum so that:
 
 $$
-K(\mathbf{x}, \mathbf{y})=L_{2} \sum_{i=1}^{\infty} \lambda_{i} e_{i}(\mathbf{x}) e_{i}(\mathbf{y})
+  K(\mathbf{x}, \mathbf{y})=L_{2} \sum_{i=1}^{\infty} \lambda_{i} e_{i}(\mathbf{x}) e_{i}(\mathbf{y})
 $$
 
 where $\left\langle e_{i}, e_{j}\right\rangle=\delta_{i j}$. If in addition $K$
 is a positive semidefinite operator, e.g. $\langle g, K f\rangle \geq 0$ for all
 $f, g \in \mathcal{H}$, then the spectrum is non-negative $\lambda_{i} \geq 0$.
+\end{corollary}
 
-\section*{Relevance to ML and Gaussian Processes III}
 Once we establish a countably-infinite non-negative spectrum of $K$, all the
-Karhunen-Loève Expansion results also follow. In particular
+Karhunen-Loève Expansion results also follow.
 
 In particular, if (59) holds where $K\left(x,
-x^{\prime}\right)=E\left[Y_{\mathbf{x}} Y_{x^{\prime}}\right]$ is the covariance
+  x^{\prime}\right)=E\left[Y_{\mathbf{x}} Y_{\mathbf{x}^{\prime}}\right]$ is the covariance
 kernel of any $L_{2}$ integrable continuous stochastic field, then the basis
-$e_{i}$ can approximate optimally any realization of $Y_{\mathrm{x}}$ to
+$e_{i}$ can approximate optimally any realization of $Y_{\mathbf{x}}$ to
 arbitrary finite accuracy.
 
 $$
-\mathbb{E}\left|Y_{\mathbf{x}}-\sum_{i=1}^{L} \sqrt{\lambda_{i}} \xi_{i} e_{i}(\mathbf{x})\right|^{2} \leq \mathbb{E}\left|Y_{\mathbf{x}}-\sum_{i=1}^{L} \eta_{i} \phi_{i}(\mathbf{x})\right|^{2}
+  \mathbb{E}\left|Y_{\mathbf{x}}-\sum_{i=1}^{L} \sqrt{\lambda_{i}} \xi_{i} e_{i}(\mathbf{x})\right|^{2} \leq \mathbb{E}\left|Y_{\mathbf{x}}-\sum_{i=1}^{L} \eta_{i} \phi_{i}(\mathbf{x})\right|^{2}
 $$
 
-\section*{Posterior Prediction In the Mercer Basis I}
+\subsection{Posterior Prediction In the Mercer Basis}
 Suppose we know how to diagonalize a Kernel so we know its spectral basis (59).
 Then the posterior expectation formula (16) can be written as (show this!):
 
 $$
-\begin{aligned}
-\mathbb{E}\left[\mathbf{y}_{*} \mid \mathbf{X}_{*}, \mathbf{y}, \mathbf{X}\right] & =K\left(\mathbf{X}_{*}, \mathbf{X}\right)\left[K(\mathbf{X}, \mathbf{X})+\sigma^{2} \mathbf{I}\right]^{-1} \mathbf{y} \\
-& =\sum_{k} \frac{\lambda_{k}}{\lambda_{k}+\sigma^{2}} \mathbf{P}_{k}\left(\mathbf{X}_{*}, \mathbf{X}\right) \mathbf{y}
-\end{aligned}
+    \mathbb{E}\left[\mathbf{y}_{*} \mid \mathbf{X}_{*}, \mathbf{y}, \mathbf{X}\right]
+    =K\left(\mathbf{X}_{*}, \mathbf{X}\right)\left[K(\mathbf{X}, \mathbf{X})+\sigma^{2} \mathbf{I}\right]^{-1} \mathbf{y} 
+    =\sum_{k} \frac{\lambda_{k}}{\lambda_{k}+\sigma^{2}} \mathbf{P}_{k}\left(\mathbf{X}_{*}, \mathbf{X}\right) \mathbf{y}
 $$
 
-\section*{Posterior Prediction In the Mercer Basis II}
 where the matrices $\mathbf{P}_{k}$ in (62) are defined as:
 
 $$
-\mathbf{P}\left(\mathbf{X}_{*}, \mathbf{X}\right):=\left[\begin{array}{ccc}
-e_{k}\left(\mathbf{x}_{*, 1}\right) e_{k}\left(\mathbf{x}_{1}\right) & \cdots & e_{k}\left(\mathbf{x}_{*, 1}\right) e_{k}\left(\mathbf{x}_{n}\right) \\
-\vdots & & \vdots \\
-e_{k}\left(\mathbf{x}_{*, m}\right) e_{k}\left(\mathbf{x}_{1}\right) & \cdots & e_{k}\left(\mathbf{x}_{*, m}\right) e_{k}\left(\mathbf{x}_{n}\right)
-\end{array}\right]
+  \mathbf{P}\left(\mathbf{X}_{*}, \mathbf{X}\right):=\left[\begin{array}{ccc}
+      e_{k}\left(\mathbf{x}_{*, 1}\right) e_{k}\left(\mathbf{x}_{1}\right) & \cdots & e_{k}\left(\mathbf{x}_{*, 1}\right) e_{k}\left(\mathbf{x}_{n}\right) \\
+      \vdots                                                               &        & \vdots                                                               \\
+      e_{k}\left(\mathbf{x}_{*, m}\right) e_{k}\left(\mathbf{x}_{1}\right) & \cdots & e_{k}\left(\mathbf{x}_{*, m}\right) e_{k}\left(\mathbf{x}_{n}\right)
+    \end{array}\right]
 $$
 
 and are projection matrices $P_{k}(\mathbf{x}, \mathbf{y})=e_{k}(\mathbf{x})
-e_{k}(\mathbf{y})$ evaluated on the train-test data.
+  e_{k}(\mathbf{y})$ evaluated on the train-test data.
 
 Question: how does the posterior covariance look like in the Mercer basis?
 
-\section*{Computing the Mercer Basis}
+\textbf{Computing the Mercer Basis}
+
 Typically, computing the Mercer Basis involves solving the Friedholm equation
 (7):
 
 $$
-\int_{V} K(\mathbf{x}, \mathbf{y}) e_{k}(\mathbf{y}) d \mu(V)=\lambda_{k} e_{k}(\mathbf{x})
+  \int_{V} K(\mathbf{x}, \mathbf{y}) e_{k}(\mathbf{y}) d \mu(V)=\lambda_{k} e_{k}(\mathbf{x})
 $$
 
 which is typically not analytically tractable even if the kernel $K(\mathbf{x},
-\mathbf{y})$ is. Therefore, for most general kernels, the equation is not known
+  \mathbf{y})$ is. Therefore, for most general kernels, the equation is not known
 functionally. However, for any train-test data, one can always diagonalize the
 kernel $K\left(\mathbf{X}_{*}, \mathbf{X}\right)$ matrix and each eigenspace
 contribution of this matrix would be a restriction of (63) to the data.
