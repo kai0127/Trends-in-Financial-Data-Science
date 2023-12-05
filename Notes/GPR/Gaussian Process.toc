@@ -12,6 +12,6 @@
 \contentsline {section}{\numberline {6}Links to SVD/PCA}{7}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Mercer's Theorem}{7}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}The Hilbert Space of the Kernel}{7}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Karhunen-Loève (KL) Expansion}{7}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.3}Karhunen-Loève (KL) Expansion}{8}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}The Spectral Theorem}{8}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}Posterior Prediction In the Mercer Basis}{9}{subsection.6.5}%

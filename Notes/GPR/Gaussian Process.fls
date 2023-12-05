@@ -620,6 +620,15 @@ INPUT ./images/2023_11_26_5b299dbd302e8f129737g-23.jpg
 INPUT ./images/2023_11_26_5b299dbd302e8f129737g-25.jpg
 INPUT ./images/2023_11_26_5b299dbd302e8f129737g-25.jpg
 INPUT ./images/2023_11_26_5b299dbd302e8f129737g-25.jpg
+INPUT ./images/samples.png
+INPUT ./images/samples.png
+INPUT ./images/samples.png
+INPUT ./images/kernel.png
+INPUT ./images/kernel.png
+INPUT ./images/kernel.png
+INPUT ./images/corr.png
+INPUT ./images/corr.png
+INPUT ./images/corr.png
 INPUT ./images/2023_11_26_5b299dbd302e8f129737g-60.jpg
 INPUT ./images/2023_11_26_5b299dbd302e8f129737g-60.jpg
 INPUT ./images/2023_11_26_5b299dbd302e8f129737g-60.jpg

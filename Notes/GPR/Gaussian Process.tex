@@ -893,6 +893,41 @@ where the conditional mean and covariance are as in (16).
   \label{fig:RBF Kernel posterior}
 \end{figure}
 
+\textbf{The Shape Of The Generated Path}
+
+Why is the generated path so smooth? Shouldn't it be bouncing up and down since it's sampling from a Gaussian distribution?
+
+\begin{figure}[!htp]
+  \begin{minipage}{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/samples.png}
+    \caption{A 25 dimensional multivariate Gaussian R.V. sample from the corresponding RBF kernel. Here $f_i\equiv y_i$.}
+    \label{fig:sample from RBF kernel}
+  \end{minipage}
+  \begin{minipage}{0.33\textwidth}
+    \centering
+    \includegraphics[width=0.89\textwidth]{images/kernel.png}
+    \caption{Color map showing correlations between dimensions.}
+    \label{fig:RBF Kernel correlations between dimensions}
+  \end{minipage}
+  \begin{minipage}{0.33\textwidth}
+    \centering
+    \includegraphics[width=0.78\textwidth]{images/corr.png}
+    \caption{The zoomed in correlation of the first two samples.}
+    \label{fig:RBF Kernel zoomed in correlation of the first two samples}
+  \end{minipage}
+\end{figure}
+
+In the above example, we generated a path $\{x_i, y_i\}_{i=1}^{25}$ using the
+(Gaussian) prior distribution (directly treat $\mathbf{x}$ as test data) where
+its covariance matrix is specfied by \(\mathbf{x} = (1, 2, \ldots, 25)\) and the
+RBF kernel. The generated \(\mathbf{y}\in\mathbb{R}^{25}\), in \cref{fig:sample
+from RBF kernel} is a single sample from this distribution. We can see from
+\cref{fig:RBF Kernel correlations between dimensions} that adjacent samples are
+heavily correlated, whereas distant samples are not, and this is exactly why the
+sample path generated from this RBF prior is relatively smooth instead of bouncing up
+and down.
+
 \section{Model Selection and Hyperparameter Optimization}
 
 \textbf{What is GPR Model Selection?}
