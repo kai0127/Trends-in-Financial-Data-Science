@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  5 DEC 2023 08:18
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  5 DEC 2023 08:21
  restricted system commands enabled.
  file:line:error style messages enabled.
 **"/Users/linda/Desktop/LaTeX/Notes/GPR/Gaussian Process.tex"
@@ -1295,139 +1295,139 @@ LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 
 \openout6 = Gaussian Process.toc
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 9.35999pt on input line 305.
+(Font)              scaled to size 9.35999pt on input line 319.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 9.35999pt on input line 305.
+(Font)              scaled to size 9.35999pt on input line 319.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 9.35999pt on input line 305.
+(Font)              scaled to size 9.35999pt on input line 319.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 9.35999pt on input line 305.
+(Font)              scaled to size 9.35999pt on input line 319.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 6.23999pt on input line 337.
+(Font)              scaled to size 6.23999pt on input line 351.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 4.68pt on input line 337.
+(Font)              scaled to size 4.68pt on input line 351.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 387.
+(Font)              scaled to size 7.79999pt on input line 369.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 387.
+(Font)              scaled to size 7.79999pt on input line 369.
  [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-Underfull \hbox (badness 1205) in paragraph at lines 430--440
+Underfull \hbox (badness 1205) in paragraph at lines 444--454
 []\TU/Vollkorn(0)/m/n/10.95 From the def-i-ni-tion in terms of the de-sign ma-trix, we see that when eval-u-ated on the train/test dataset, all the ker-nel ma-tri-ces
  []
 
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 486.
+(Font)              No change on input line 500.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 498.
-<images/2023_11_26_5b299dbd302e8f129737g-22.jpg, id=99, 596.2275pt x 422.57875pt>
+(Font)              No change on input line 512.
+[2]
+<images/2023_11_26_5b299dbd302e8f129737g-22.jpg, id=113, 596.2275pt x 422.57875pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-22.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-22.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-22.jpg  used on input line 512.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-22.jpg  used on input line 526.
 (luatex.def)             Requested size: 215.9586pt x 153.06319pt.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 6.23999pt on input line 513.
+(Font)              scaled to size 6.23999pt on input line 527.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 524.
-[2]
+(Font)              No change on input line 538.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 545.
+(Font)              No change on input line 559.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 575.
-<images/2023_11_26_5b299dbd302e8f129737g-35.jpg, id=115, 642.4pt x 353.32pt>
+(Font)              No change on input line 589.
+<images/2023_11_26_5b299dbd302e8f129737g-35.jpg, id=116, 642.4pt x 353.32pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-35.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-35.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-35.jpg  used on input line 582.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-35.jpg  used on input line 596.
 (luatex.def)             Requested size: 287.9375pt x 158.36714pt.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 3.9pt on input line 583.
+(Font)              scaled to size 3.9pt on input line 597.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 3.9pt on input line 583.
+(Font)              scaled to size 3.9pt on input line 597.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 591.
+(Font)              No change on input line 605.
  [3<./images/2023_11_26_5b299dbd302e8f129737g-22.jpg><./images/2023_11_26_5b299dbd302e8f129737g-35.jpg>]
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 634.
-LaTeX Font Info:    Trying loading font information for U+dsrom on input line 637.
+(Font)              No change on input line 648.
+LaTeX Font Info:    Trying loading font information for U+dsrom on input line 651.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 647.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
 (Font)              No change on input line 661.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 672.
+(Font)              No change on input line 675.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 696.
+(Font)              No change on input line 686.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 737.
+(Font)              No change on input line 710.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 741.
+(Font)              No change on input line 751.
+LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
+(Font)              No change on input line 755.
  [4]
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 748.
+(Font)              No change on input line 762.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 759.
-<images/2023_11_26_5b299dbd302e8f129737g-55.jpg, id=149, 640.3925pt x 352.31625pt>
+(Font)              No change on input line 773.
+<images/2023_11_26_5b299dbd302e8f129737g-55.jpg, id=151, 640.3925pt x 352.31625pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-55.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-55.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-55.jpg  used on input line 803.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-55.jpg  used on input line 817.
 (luatex.def)             Requested size: 215.9586pt x 118.80751pt.
 LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 809.
-<images/2023_11_26_5b299dbd302e8f129737g-23.jpg, id=151, 871.255pt x 358.33875pt>
+(Font)              No change on input line 823.
+<images/2023_11_26_5b299dbd302e8f129737g-23.jpg, id=153, 871.255pt x 358.33875pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-23.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-23.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-23.jpg  used on input line 862.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-23.jpg  used on input line 876.
 (luatex.def)             Requested size: 431.91722pt x 177.64342pt.
  [5<./images/2023_11_26_5b299dbd302e8f129737g-55.jpg>]
-<images/2023_11_26_5b299dbd302e8f129737g-25.jpg, id=166, 882.29625pt x 384.43625pt>
+<images/2023_11_26_5b299dbd302e8f129737g-25.jpg, id=167, 882.29625pt x 384.43625pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-25.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-25.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-25.jpg  used on input line 882.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-25.jpg  used on input line 896.
 (luatex.def)             Requested size: 431.91722pt x 188.19356pt.
-<images/2023_11_26_5b299dbd302e8f129737g-60.jpg, id=167, 751.80875pt x 370.38374pt>
+<images/2023_11_26_5b299dbd302e8f129737g-60.jpg, id=168, 751.80875pt x 370.38374pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-60.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-60.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-60.jpg  used on input line 908.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-60.jpg  used on input line 922.
 (luatex.def)             Requested size: 719.85474pt x 354.66574pt.
  [6<./images/2023_11_26_5b299dbd302e8f129737g-23.jpg><./images/2023_11_26_5b299dbd302e8f129737g-25.jpg>]
-<images/2023_11_26_5b299dbd302e8f129737g-61.jpg, id=177, 763.85374pt x 378.41376pt>
+<images/2023_11_26_5b299dbd302e8f129737g-61.jpg, id=178, 763.85374pt x 378.41376pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-61.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-61.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-61.jpg  used on input line 918.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-61.jpg  used on input line 932.
 (luatex.def)             Requested size: 719.85474pt x 356.63283pt.
-<images/2023_11_26_5b299dbd302e8f129737g-62.jpg, id=178, 764.8575pt x 376.40625pt>
+<images/2023_11_26_5b299dbd302e8f129737g-62.jpg, id=179, 764.8575pt x 376.40625pt>
 File: images/2023_11_26_5b299dbd302e8f129737g-62.jpg Graphic file (type jpg)
 <use images/2023_11_26_5b299dbd302e8f129737g-62.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-62.jpg  used on input line 927.
+Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-62.jpg  used on input line 941.
 (luatex.def)             Requested size: 719.85474pt x 354.27565pt.
  [7<./images/2023_11_26_5b299dbd302e8f129737g-60.jpg><./images/2023_11_26_5b299dbd302e8f129737g-61.jpg>] [8<./images/2023_11_26_5b299dbd302e8f129737g-62.jpg>] [9] [10]
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 5.45999pt on input line 1224.
+(Font)              scaled to size 5.45999pt on input line 1238.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 5.45999pt on input line 1224.
+(Font)              scaled to size 5.45999pt on input line 1238.
  [11] [12] ("./Gaussian Process.aux")
 Package rerunfilecheck Info: File `"Gaussian Process".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 )
 
 Here is how much of LuaTeX's memory you used:
- 34208 strings out of 478285
- 305805,1977958 words of node,token memory allocated
+ 34209 strings out of 478285
+ 305804,1977958 words of node,token memory allocated
  2186 words of node memory still in use:
    11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 697 attribute, 63 glue_spec, 75 attribute_list, 2 write, 13 user_defined nodes
-   avail lists: 1:33,2:68470,3:470,4:741,5:1369,6:120,7:11088,8:55,9:1155,10:20,11:714
+   avail lists: 1:29,2:70682,3:470,4:734,5:1060,6:127,7:11940,8:55,9:1179,10:20,11:724
  52786 multiletter control sequences out of 65536+600000
  132 fonts using 235905479 bytes
- 106i,16n,128p,1829b,764s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,16n,128p,1829b,617s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-BoldItalic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gaussian Process.pdf (12 pages, 540176 bytes).
+Output written on Gaussian Process.pdf (12 pages, 540552 bytes).
 
-PDF statistics: 330 PDF objects out of 1000 (max. 8388607)
- 275 compressed objects within 3 object streams
- 100 named destinations out of 1000 (max. 131072)
+PDF statistics: 331 PDF objects out of 1000 (max. 8388607)
+ 276 compressed objects within 3 object streams
+ 101 named destinations out of 1000 (max. 131072)
  120 words of extra memory for PDF output out of 10000 (max. 100000000)
 
