@@ -256,9 +256,9 @@ WordSpace=1.7,
 
 \usepackage{tikz}
 \usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage{multicol}
-\usepackage{wrapfig}
+\usepackage{subcaption} % for subplots
+\usepackage{multicol}   % for multicolumns
+\usepackage{wrapfig}    % for inserting figures in multicolumns
 \usepackage{enumitem}
 \setlist{topsep=0pt}
 
@@ -959,8 +959,9 @@ amounts of data. On the other hand, Bayesian approach is precisely most useful
 in the oposite limit of small amounts of data which is especially relevant to
 finance.
 
-\section*{Links to SVD/PCA: Mercer's Theorem, Karhunen-Loève Expansion And Their Generalizations}
-\section*{Mercer's Theorem I}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Links to SVD/PCA: Mercer's Theorem, Karhunen-Loève Expansion And Their Generalizations}
+\subsection{Mercer's Theorem}
 In a previous section we found that a sufficient condition for a Kernel to be
 valid is to express it as a covariance function, or alternatively a quadratic
 outer product of a set of feature maps, $K\left(\mathrm{x},
@@ -1316,170 +1317,13 @@ functionally. However, for any train-test data, one can always diagonalize the
 kernel $K\left(\mathbf{X}_{*}, \mathbf{X}\right)$ matrix and each eigenspace
 contribution of this matrix would be a restriction of (63) to the data.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Topic: EM Algorithm in GMMs}
-
-To estimate the GMM, we will want to maximize the log-likelihood function
-\begin{align}
-  \log p(\mathbf{x} \mid \boldsymbol{\pi}, \boldsymbol{\mu}, \boldsymbol{\Sigma})=\sum_{n=1}^{N} \log \left\{\sum_{k=1}^{K} \pi_{k} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{k}, \boldsymbol{\Sigma}_{k}\right)\right\}
-  \label{eq:log likelihood}
-\end{align}
-
-\begin{topic}
-  \textbf{First-order condition for $\boldsymbol{\mu}_{k}$:}
-
-  Taking the partial derivative of \cref{eq:log likelihood} with respect to $\boldsymbol{\mu}_{k}$, we
-  obtain the first order condition
-  $$
-    0= \sum_{n=1}^{N} \underbrace{\frac{\pi_{k} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{k}, \boldsymbol{\Sigma}_{k}\right)}{\sum_{j} \pi_{j} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{j}, \boldsymbol{\Sigma}_{j}\right)}}_{\gamma\left(z_{n k}\right)} \boldsymbol{\Sigma}_{k}^{-1}\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}\right)
-    \quad\Longrightarrow\quad
-    \boldsymbol{\Sigma}_{k}^{-1} \cdot \left(\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}_{n}\right)
-    =\boldsymbol{\Sigma}_{k}^{-1} \cdot \left(\sum_{n=1}^{N} \gamma\left(z_{n k}\right)\right) \boldsymbol{\mu}_{k}
-    \quad\Longrightarrow\quad
-    \boldsymbol{\mu}_{k}=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}_{n}
-  $$
-
-  where $ N_{k}:=\sum_{n=1}^{N} \gamma\left(z_{n k}\right)$.
-
-  Interpretation:
-
-  \begin{itemize}
-    \item $N_{k}$ is the "effective number of points" assigned to the $k$-th
-          cluster; and
-
-    \item The mean $\boldsymbol{\mu}_{k}$ of the $k$-th Gaussian component is a
-          weighted mean of all of the points in the data set for which the weighting
-          factor for the data point, $\mathbf{x}_{n}$, is given by the posterior
-          probability $\gamma\left(z_{n k}\right)$ that component $k$ was responsible
-          for generating $\mathbf{x}_{n}$.
-
-  \end{itemize}
-
-  \textbf{First-order condition for $\boldsymbol{\Sigma}_{k}$:}
-
-  Taking the partial derivative of \cref{eq:log likelihood} with respect to $\boldsymbol{\Sigma}_{k}$,
-  it is easy to see that we obtain the first order condition
-  $$
-    \boldsymbol{\Sigma}_{k}=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}\right)\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}\right)^\top
-  $$
-  Note that this equation is of the same form as that of a single Gaussian trained on the
-  data set, but with (a) each data point weighted by the corresponding posterior
-  probability and (b) the denominator given by the effective number of points
-  associated with the corresponding component.
-
-  \textbf{First-order condition for $\pi_{k}$:}
-
-  Let us maximize the log likelihood function with respect to $\pi_{k}$, subject to the constraint $\sum_{k=1}^K \pi_{k} = 1$.
-  The resulting Lagrangian takes the form
-
-  $$
-    L:=\log p(\mathbf{x} \mid \boldsymbol{\pi}, \boldsymbol{\mu}, \boldsymbol{\Sigma})+\lambda\left(\sum_{k=1}^{K} \pi_{k}-1\right)
-  $$
-
-  where $\lambda$ is a Lagrange multiplier. Taking the partial derivative of (14)
-  with respect to $\pi_{k}$, we obtain the first order condition
-
-  \begin{align}
-    0 = \frac{\partial L}{\partial \pi_k}
-    =\lambda+\sum_{n=1}^{N} \frac{\mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{k}, \boldsymbol{\Sigma}_{k}\right)}{\sum_{j} \pi_{j} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{j}, \boldsymbol{\Sigma}_{j}\right)}
-    =\lambda +  \frac{1}{\pi_k}\sum_{n=1}^{N}\gamma\left(z_{n k}\right)
-    \label{eq: EM first order wrt pi_k}
-  \end{align}
-
-
-  Multiply both sides of \cref{eq: EM first order wrt pi_k} by $\pi_{k}$ and then summing over $k$, we obtain
-  $$
-    0 =\sum_{k=1}^K \left(\lambda\pi_k + \pi_k \cdot \frac{1}{\pi_k}\sum_{n=1}^{N} \gamma\left(z_{n k}\right)\right)
-    = \lambda\left(\sum_{k=1}^K \pi_k\right) + \sum_{n=1}^{N} \sum_{k=1}^K \gamma\left(z_{n k}\right)
-    \xlongequal[\quad \sum_{k=1}^K z_{n k} = 1\quad ]{\quad \sum_{k=1}^K \pi_{k} = 1\quad }
-    \lambda + \sum_{n=1}^{N} 1
-    \quad \Longrightarrow\quad
-    \lambda = -N
-  $$
-
-  Inserting $\lambda = -N$ into \cref{eq: EM first order wrt pi_k},  we conclude that
-
-  $$
-    \pi_{k}=\frac{N_{k}}{N}
-  $$
-
-  Interpretation: The mixing coefficient for the $k$-th component is given by the average
-  of the responsibilities which that component takes for explaining the data
-  points.
-  \vspace{1em}
-
-  \hrule
-
-  In all, we have the first order necessary conditions are
-  $$
-    \boldsymbol{\mu}_{k}=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}_{n}, \quad
-    \boldsymbol{\Sigma}_{k}=\frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}\right)\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}\right)^\top, \quad
-    \pi_{k}=\frac{N_{k}}{N},
-  $$
-  We note that this is not a closed-form solution for the
-  parameters of the GMM. (Why?)
-
-  However, we can try to solve the problem using an iterative scheme as follows.
-  This scheme is a version of the Expectation-Maximization (EM) algorithm applied
-  to the GMM.
-
-
-  \begin{labelalgorithm}[H]{cheb_moments}{EM-GMMs}{EM Algorithm for Gaussian Mixtures}
-    \begin{algorithmic}[1]
-      \Procedure{\thealgorithmname}{ $\boldsymbol{\mu}_{k}, \boldsymbol{\Sigma}_{k}, \pi_{k}, \mathbf{x}_{n}$}
-      \State $\delta, tol = 1, 0.005$
-      \State $\boldsymbol{\mu}_{k} \gets \boldsymbol{\mu}_{k}^{0}$
-      \State $\boldsymbol{\Sigma}_{k} \gets \boldsymbol{\Sigma}_{k}^{0}$
-      \State $\pi_{k} \gets \pi_{k}^{0}$
-      \State $L \gets \sum_{n=1}^{N} \log \left\{\sum_{k=1}^{K} \pi_{k}^0 \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{k}^0, \boldsymbol{\Sigma}_{k}^{0}\right)\right\}$
-      \While {$\delta \ge tol$}
-      \State \textbf{E step:} Evaluate the responsibilities using the current parameter values
-      \State $\gamma\left(z_{n k}\right) \gets \frac{\pi_{k} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{k}, \mathbf{\Sigma}_{k}\right)}{\sum_{j=1}^{K} \pi_{j} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{j}, \boldsymbol{\Sigma}_{j}\right)}$
-      \State \textbf{M step:} Re-estimate the parameters using the current responsibilities
-      \State $N_{k} \gets \sum_{n=1}^{N} \gamma\left(z_{n k}\right)$
-      \State $\boldsymbol{\mu}_{k}^{\text {new }} \gets \frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}_{n}$
-      \State $\boldsymbol{\Sigma}_{k}^{\text {new }} \gets \frac{1}{N_{k}} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}^{\text {new }}\right)\left(\mathbf{x}_{n}-\boldsymbol{\mu}_{k}^{\text {new }}\right)^\top$
-      \State $\pi_{k}^{\text {new }} \gets \frac{N_{k}}{N}$
-      \State $L^{\text {new }} \gets \sum_{n=1}^{N} \log \left\{\sum_{k=1}^{K} \pi_{k}^{\text {new }} \mathcal{N}\left(\mathbf{x}_{n} \mid \boldsymbol{\mu}_{k}^{\text {new }}, \boldsymbol{\Sigma}_{k}^{\text {new }}\right)\right\}$
-      \State $\delta \gets |L^{\text {new }} - L|$
-      \State $\boldsymbol{\mu}_{k}, \boldsymbol{\Sigma}_{k}, \pi_{k}, L \gets \boldsymbol{\mu}_{k}^{\text {new }}, \boldsymbol{\Sigma}_{k}^{\text {new }}, \pi_{k}^{\text {new }}, L^{\text {new }}$
-      \EndWhile
-      \State \Return $\boldsymbol{\mu}_{k}, \boldsymbol{\Sigma}_{k}, \pi_{k}$
-      \EndProcedure
-    \end{algorithmic}
-  \end{labelalgorithm}
-
-  In general, The log likelihood function of GMMs are not convex, and
-  hence there will be multiple local maxima. While EM is not guaranteed to find
-  the largest of these, it is guaranteed to converge monotonically to a local
-  optima. See Bishop (2006, Section 9.4) for a proof.
-
-  \textbf{EM Algorithm in GMMs v.s. K-Means:}
-  \begin{remark}\hfill
-    \begin{enumerate}
-      \item In comparison, the EM algorithm for GMMs takes many more iterations to
-            converge than standard $K$-means clustering. Each iteration of the EM
-            algorithm is also significantly more expensive. To speed up convergence it is
-            common to first perform $K$-means clustering to find suitable starting points,
-            and then perform the EM algorithm from these.
-
-      \item Note that (a) the covariance matrices can be initialized to the sample
-            covariances of the clusters found by $K$-means, and (b) the mixing
-            coefficients can be set to the fractions of data points assigned to the
-            respective clusters.
-    \end{enumerate}
-  \end{remark}
-\end{topic}
-
-\begin{thebibliography}{1}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{2}
   \bibitem{Bishop2006}
-  Bishop, Christopher M. (2006). Pattern
-  Recognition And Machine Learning. Springer. URL:
-  \href{https://www.microsoft.com/enus/research/uploads/prod/2006/01/Bishop-PatternRecognition-and-Machine-Learning-2006.pdf}{https://www.microsoft.com/enus/research/uploads/prod/2006/01/Bishop-PatternRecognition-and-Machine-Learning-2006.pdf}.
+  Rasmussen, et al. (2006). Gaussian Processes In Machine Learning.
 
-
+  \bibitem{Sheffield2007}
+  Sheffield, S. (2007). "Gaussian Free Fields for Mathematicians". In: 139 (3-4), pp. 521-541.
 \end{thebibliography}
 
 
