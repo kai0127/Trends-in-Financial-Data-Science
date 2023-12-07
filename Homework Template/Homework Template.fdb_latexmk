@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1698257663 "/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex" "Homework Template.pdf" "Homework Template" 1698257668 0
-  "/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex" 1698257663 8394 cfd46781f635710843bf76335267e1e8 ""
+["lualatex"] 1701782290 "/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex" "Homework Template.pdf" "Homework Template" 1701782295 0
+  "/Users/linda/Desktop/LaTeX/Homework Template/Homework Template.tex" 1701782290 8540 ad50817923239a9ebcadc3e7b5b2de67 ""
   "/Users/linda/Library/Fonts/Vollkorn-Bold.otf" 1525855805 504600 83467cfa4400474b6d068d7d268da90e ""
   "/Users/linda/Library/Fonts/Vollkorn-Italic.otf" 1525854575 411584 7b726e6369ee5630e2928aa5b34d2154 ""
   "/Users/linda/Library/Fonts/Vollkorn-Regular.otf" 1525855801 485528 2a74db36878fd191bb3c2f4c6575a19f ""
@@ -157,6 +157,7 @@
   "/usr/local/texlive/2023/texmf-dist/tex/latex/base/tuenc.def" 1654720880 26445 9ed4a9401f29cbb58ef6909cd5aec01f ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption.sty" 1678653221 55778 14d5c99aa26410e440820bb9ea5b8b3a ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty" 1678653221 71836 1a735454ad10692452eb2f2fc37f3865 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/latex/caption/subcaption.sty" 1678653221 12462 ecf33913ce1e8012075d24e1f47f0d9b ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/cleveref/cleveref.sty" 1525128982 329481 7fc6b003158402a4c694bc0a1b729308 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/doublestroke/dsfont.sty" 1137110062 230 7bc61880b468bfd38aedc173be7c3486 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
@@ -230,7 +231,9 @@
   "/usr/local/texlive/2023/texmf-dist/tex/latex/thmtools/thmtools.sty" 1676670716 1913 a44407bb22a93490c0d0c33535360626 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/tools/bm.sty" 1654720880 13231 b52297489a0e9d929aae403417d92a02 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/tools/calc.sty" 1654720880 10214 de3e21cfc0eccc98ca7f8dac0ef263d2 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/latex/tools/multicol.sty" 1654720880 32329 5d201ab4b4c773e7c876c2a052b07be3 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty" 1655066402 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1655411236 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/local/texlive/2023/texmf-dist/tex/luatex/ctablestack/ctablestack.sty" 1443736950 1510 9c109bd1f6a9fc69b2f6096ee416d958 ""
@@ -311,10 +314,10 @@
   "/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexja/patches/lltjp-listings.sty" 1653941231 14914 340890023fe5b05f4034feae149cab10 ""
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696053482 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1694803921 11876210 49080bdcf9fb115e6dd63b7a21cafe03 ""
-  "Homework Template.aux" 1698257667 662 6a700d7ccfb8fc4c43556f4cef5641c2 "lualatex"
-  "Homework Template.out" 1698257667 101 0043c2a6a1f79a25b1083f0a33689746 "lualatex"
-  "Homework Template.tex" 1698257663 8394 cfd46781f635710843bf76335267e1e8 ""
-  "Homework Template.toc" 1698257667 67 56ab5bb8af95cd0a857545005bd97735 "lualatex"
+  "Homework Template.aux" 1701782294 662 6a700d7ccfb8fc4c43556f4cef5641c2 "lualatex"
+  "Homework Template.out" 1701782294 101 0043c2a6a1f79a25b1083f0a33689746 "lualatex"
+  "Homework Template.tex" 1701782290 8540 ad50817923239a9ebcadc3e7b5b2de67 ""
+  "Homework Template.toc" 1701782294 67 56ab5bb8af95cd0a857545005bd97735 "lualatex"
   (generated)
   "Homework Template.aux"
   "Homework Template.log"

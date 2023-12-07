@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Contextualization: Why do we need the kernel trick?}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Feature Map Regression}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}The Kernel Trick}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Topic: Gaussian Process}{3}{section.2}%
+\contentsline {section}{\numberline {3}Topic: Kernel Design}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Valid Kernels}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Feature Map Kernel: Connection to Stochastic Processes/Fields}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Application: Futures Curve Modeling}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Stationary Kernels}{5}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Bayesian Learning With GPs}{6}{section.4}%
+\contentsline {section}{\numberline {5}Model Selection and Hyperparameter Optimization}{6}{section.5}%
+\contentsline {section}{\numberline {6}Links to SVD/PCA}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Mercer's Theorem}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}The Hilbert Space of the Kernel}{7}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Karhunen-Loève (KL) Expansion}{8}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}The Spectral Theorem}{8}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Posterior Prediction In the Mercer Basis}{9}{subsection.6.5}%
