@@ -1,0 +1,765 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb}
+
+%%%%% Matrix stretcher
+% use it as:
+%\begin{pmatrix}[1.5]
+% ...
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\extrafootertext[1]{%
+    \bgroup
+    \renewcommand\thefootnote{\fnsymbol{footnote}}%
+    \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+    \footnotetext[0]{#1}%
+    \egroup
+}
+
+
+%%%%%%%%%%%%% Colors %%%%%%%%%%%%%
+\usepackage[dvipsnames]{xcolor}
+
+\definecolor{C0}{HTML}{1d1d1d}
+\definecolor{C1}{HTML}{1e3668}
+\definecolor{C2}{HTML}{199d8b}
+\definecolor{C3}{HTML}{d52f4c}
+\definecolor{C4}{HTML}{5ab2d6}
+\definecolor{C5}{HTML}{ffb268}
+\definecolor{C6}{HTML}{ff7300} % for commenting - {fire orange}dd571c
+\definecolor{C7}{HTML}{777b7e} % for remarks - {steel grey}
+\color{C0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%% Fonts %%%%%%%%%%%%% 
+%\usepackage{fontspec}
+\usepackage[no-math]{fontspec} % for text
+
+\emergencystretch=8pt
+\hyphenpenalty=1000 % default 50
+\tolerance=800      % default 200
+%\righthyphenmin=4
+%\lefthyphenmin=4
+
+%%% Text Font: Vollkorn + Math Font: Latin Modern (default) %%%
+\setmainfont{Vollkorn}[
+UprightFont = Vollkorn-Regular,
+ItalicFont =Vollkorn-Italic, 
+BoldItalicFont={Vollkorn-BoldItalic},
+BoldFont = Vollkorn-Bold,
+RawFeature=+lnum,
+WordSpace=1.7,
+] 
+
+%%% We need this for math font packages other than latin modern %%%
+% \usepackage{unicode-math}        % for math
+
+%%% Text Font: Palatino + Math Font: Asana-Math %%%
+%\setmainfont{Palatino}[
+%BoldFont = Palatino-Bold,
+%ItalicFont = Palatino-Italic,
+%BoldItalicFont={Palatino-BoldItalic},
+%RawFeature=+lnum,
+%WordSpace=1.7,
+%]
+%\setmathfont{asana-math}
+
+%%% Text Font: Arno Pro + Math Font: Minion Pro %%%
+%\setmainfont{Arno Pro}[
+%UprightFont = *-Regular,
+%ItalicFont = Vollkorn-Italic, 
+%BoldItalicFont={*-BoldItalic},
+%BoldFont = *-Bold,
+%RawFeature=+lnum,
+%WordSpace=1.7,
+%Scale= 1.1
+%] 
+% Minion Pro is too expensive
+
+%%% Math Fonts %%%
+%\setmathfont{Vollkorn}
+%\setmathfont{Latin Modern Math}
+%\setmathfont{TeX Gyre Pagella Math}
+%\setmathfont{TeX Gyre Termes Math}
+%\setmathfont{TeX Gyre DejaVu Math}
+%\setmathfont[Scale=MatchLowercase]{DejaVu Math TeX Gyre}
+%\setmathfont{XITS Math}
+%\setmathfont{Libertinus Math}
+%\setmathfont[Scale=MatchUppercase]{Asana Math}
+%\setmathfont{STIX Two Math}
+
+%\usepackage{kpfonts-otf}
+%\setmathfont{KpMath-Regular.otf}[version=regular]
+%\setmathfont{KpMath-Bold.otf}[version=bold]
+%\setmathfont{KpMath-Semibold.otf}[version=semibold]
+%\setmathfont{KpMath-Sans.otf}[version=sans]
+%\setmathfont{KpMath-Light.otf}[version=light]
+
+
+%%% CJK Fonts %%%
+\usepackage[scale=.78]{luatexja-fontspec}
+\setmainjfont{BabelStone Han}[AutoFakeBold]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package simplifies the insertion of external multi-page PDF or PS documents.
+\usepackage{pdfpages}
+
+% cref
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=C4,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+
+\usepackage[nameinlink,noabbrev,capitalize]{cleveref}
+% \crefname{ineq}{}{}
+% \crefname{equation}{}{}
+% \creflabelformat{ineq}{#2{\textup{(1)}}#3}
+% \creflabelformat{equation}{#2\textup{(#1)}#3}
+
+%%%%%%%%%%%%% Environments %%%%%%%%%%%%%%%%
+%amsthm has three separate predefined styles:	
+%
+%\theoremstyle{plain} is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%
+%\theoremstyle{definition} adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+%
+%\theoremstyle{remark} is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+
+%%%  theorem-like environment %%%
+\theoremstyle{plain} % default theorem style
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{property}[theorem]{Property}
+
+\newtheorem{definition}[theorem]{Definition}
+
+%%% definition-like environment %%%
+%\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+
+
+%%% framed package is great %%%
+\usepackage{framed}
+\newenvironment{solution}
+{\color{C2}\normalfont\begin{framed}\begingroup\textbf{Solution:} }
+  {\endgroup\end{framed}}
+
+\newenvironment{topic}
+{\color{C2}\normalfont\begin{framed}\begingroup }
+  {\endgroup\end{framed}}
+
+\newtheoremstyle{remark}% name of the style to be used
+  {}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {\color{C3}}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\color{C3}\bfseries}% name of head font
+  {.}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {}
+\theoremstyle{remark}
+\newtheorem{remarkx}[theorem]{Remark}
+\newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\remarkx}
+  {\popQED\endremarkx}
+  
+\newenvironment{point}
+  {\O~~}
+  {}
+
+\usepackage{thmtools}
+\usepackage{thm-restate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package is for the long equal sign \xlongequal{}
+\usepackage{extarrows}
+
+%%%%%%%%%%%% Algorithms %%%%%%%%%%%%
+\usepackage{etoolbox} 
+\usepackage{setspace}
+\usepackage{algorithm}
+\AtBeginEnvironment{algorithmic}{\onehalfspacing}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+
+\algrenewcommand\algorithmicindent{2em}
+\let\Algorithm\algorithm
+\renewcommand\algorithm[1][]{\Algorithm[#1]}%\fontsize{11}{16}\selectfont}
+
+\newenvironment{labelalgorithm}[4][t]{%
+\begin{algorithm}[#1]
+%\newcommand{\thealgorithmlabel}{#2}
+\newcommand{\thealgorithmname}{#3}
+%\newcommand{\thealgorithmcap}{#4}
+\customlabel{alg:name:#2}{\textproc{#3}}
+%\customlabel{alg:cap:#2}{#4}
+\caption{#4}\label{alg:#2}
+}{\end{algorithm}}
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{}%
+}
+\makeatother
+
+%\algdef{SE}[FUNCTION]{Procedure}{EndProcedure}%
+%   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+%   {\algorithmicend\ \algorithmicclass}%
+
+\algnewcommand\algorithmicclass{\textbf{class}}
+\algdef{SE}[FUNCTION]{Class}{EndClass}%
+   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+   {\algorithmicend\ \algorithmicclass}%
+
+% Tells algorithmicx not to print an empty line if `noend' is set 
+\makeatletter
+\ifthenelse{\equal{\ALG@noend}{t}}%
+  {\algtext*{EndClass}}
+  {}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Page Formatting
+\usepackage[
+    paper=a3paper,
+    inner=22mm,         % Inner margin
+    outer=22mm,         % Outer margin
+    bindingoffset=0mm, % Binding offset
+    top=28mm,           % Top margin
+    bottom=22mm,        % Bottom margin
+    %showframe,         % show how the type block is set on the page
+]{geometry}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{.7em}
+
+
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{subcaption} % for subplots
+\usepackage{multicol}   % for multicolumns
+\usepackage{wrapfig}    % for inserting figures in multicolumns
+\usepackage{enumitem}
+\setlist{topsep=0pt}
+
+\usepackage{bm}
+
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,breaklines=true}
+% \setlength{\parskip}{1em}
+% \setlength{\parindent}{0em}
+\usepackage{dsfont}
+\newcommand{\bOne}{\mathds{1}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\CoV}{\operatorname{Co\mathbb{V}}}
+
+% header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\small   \bfseries Notes}
+\fancyhead[C]{\small   \bfseries Fall 2023}
+\fancyhead[R]{\small   \bfseries Zhou}
+
+
+\begin{document}
+
+\begin{center}
+  \text{\Large{Principal Component Analysis
+    }}
+
+  {\text{Kaiwen Zhou}}
+\end{center}
+\vspace{2em}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Readings}
+In addition to the lecture notes, the following are required readings:
+
+\begin{itemize}
+  \item Chapter 2.3.1, 2.3.2, 2.3.5, 2.4.1-2.4.4, 2.5.1, 2.5.2, 5.5.1-5.5.2 in in Golub and Van Loan (2013). Each one of these sections is short and quick to read.
+  \item Chapter 14.1, 14.5.1, 14.7.2 in Friedman, Hastie, and Tibshirani (2017)
+  \item Chapter 12.2 in Bishop (2006)
+\end{itemize}
+
+The Singular Value Decomposition
+
+\section*{The Singular Value Decomposition I}
+Proposition (The Singular Value Decomposition)
+
+For any matrix $\mathbf{X} \in \mathbb{R}^{m \times n}$, there exist orthogonal matrices
+
+$$
+\begin{aligned}
+& \mathbf{U}=\left[\mathbf{u}_{1}, \ldots, \mathbf{u}_{m}\right] \in \mathbb{R}^{m \times m} \\
+& \mathbf{V}=\left[\mathbf{v}_{1}, \ldots, \mathbf{v}_{n}\right] \in \mathbb{R}^{n \times n}
+\end{aligned}
+$$
+
+and a $m \times n$ diagonal matrix
+
+$$
+\boldsymbol{\Sigma}=\operatorname{diag}\left(\sigma_{1}, \ldots, \sigma_{p}\right) \in \mathbb{R}^{m \times n}, p:=\min \{m, n\}
+$$
+
+with $\sigma_{1} \geq \sigma_{2} \geq \ldots \geq \sigma_{p} \geq 0$, such that
+
+$$
+\mathbf{X}=\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{\prime}
+$$
+
+\section*{The Singular Value Decomposition II}
+The decomposition
+
+$$
+\mathbf{X}=\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{\prime}
+$$
+
+is called the singular value decomposition (SVD) of $\mathbf{X}$. The following naming convention is common
+
+$$
+\begin{aligned}
+& \sigma_{i}: \text { singular value }, \\
+& \mathbf{u}_{i}: \text { left singular vector }, \\
+& \mathbf{v}_{i}: \text { right singular vector } .
+\end{aligned}
+$$
+
+\section*{The Singular Value Decomposition III}
+\section*{Remark}
+Note that we can also think of the SVD as decomposing a rank-r as a sum of rank-1 matrices:
+
+$$
+\mathbf{X}=\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{\prime}=\sum_{i=1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{\prime}
+$$
+
+If $r=\min (m, n)$ then (9) corresponds to the full-rank SVD. Otherwise it would correspond to (9) a truncated SVD decomposition.
+
+\section*{Properties of the SVD I}
+We denote by $\|\cdot\|_{2}$ and $\|\cdot\|_{F}$ the $I^{2}$ - and Frobenius norms. The following proposition shows that the $l^{2}$ - and Frobenius norms of a matrix can be easily determined from its SVD.
+
+\section*{Proposition}
+If $\mathbf{X} \in \mathbb{R}^{m \times n}$ and $p:=\min \{m, n\}$, then the following identities hold
+
+$$
+\begin{aligned}
+\|\mathbf{X}\|_{F} & :=\sqrt{\sum_{i=1, j=1}^{m, n}\left|a_{i j}\right|^{2}}=\sqrt{\sigma_{1}^{2}+\ldots+\sigma_{p}^{2}}, \\
+\|\mathbf{X}\|_{2} & :=\max \frac{\|\mathbf{X} \mathbf{v}\|_{2}}{\|\mathbf{v}\|_{2}}=\sigma_{1}, \\
+\min \frac{\|\mathbf{X} \mathbf{v}\|_{2}}{\|\mathbf{v}\|_{2}} & =\sigma_{n}(m \geq n) .
+\end{aligned}
+$$
+
+\section*{Properties of the SVD II}
+\section*{Proposition (Eckart-Young Theorem)}
+Suppose $\mathbf{X}=\sum_{i=1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{\prime}, k<r=\operatorname{rank}(\mathbf{X})$ and denote by $\mathbf{X}_{k}:=\sum_{i=1}^{k} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{\prime}$ the $k$-truncated $S V D$ of $\mathbf{X}$. Then $\mathbf{X}_{k}$ is the best rank- $k$ approximation of $\mathbf{X}$ both in the $I^{2}$-norm and the Frobenius norm, that is
+
+$$
+\min _{\mathbf{Y} \text { s.t. } \operatorname{rank}(\mathbf{Y})=k}\|\mathbf{X}-\mathbf{Y}\|_{2}=\left\|\mathbf{X}-\mathbf{X}_{k}\right\|_{2}=\sigma_{k+1}
+$$
+
+and
+
+$$
+\min _{\mathbf{Y} \text { s.t. } \operatorname{rank}(\mathbf{Y})=k}\|\mathbf{X}-\mathbf{Y}\|_{F}^{2}=\left\|\mathbf{X}-\mathbf{X}_{k}\right\|_{F}^{2}=\sum_{k+1}^{N} \sigma_{i}^{2}
+$$
+
+\section*{Properties of the SVD III}
+Suppose we now interpret $\mathbf{X}$ as a linear map $\mathbf{X}: \mathbb{R}^{m} \rightarrow \mathbb{R}^{n}$ which takes a vector $\mathbf{y} \in R^{m}$ and maps it to $\mathbf{z}=\mathbf{X}^{\prime} y \in \mathbb{R}^{n}$.
+
+In this case it turns out the SVD of $\mathbf{X}$ can be used in order to compute the orthogonal projection of the linear map onto the range and null spaces of $\mathbf{X}$ as follows
+
+\section*{Properties of the SVD IV}
+\section*{Proposition}
+Suppose $\mathbf{X}=\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{\prime}$ with $r=\operatorname{rank}(\mathbf{X})$. Writing $\mathbf{U}, \mathbf{V}$ in the form
+
+$$
+\begin{aligned}
+& \mathbf{U}=\left[\mathbf{U}_{r} \widetilde{\mathbf{U}}_{r}\right] \text { where } \mathbf{U}_{r} \in \mathbb{R}^{m \times r} \text { and } \widetilde{\mathbf{U}}_{r} \in \mathbb{R}^{m \times(m-r)}, \\
+& \mathbf{V}=\left[\mathbf{V}_{r} \widetilde{\mathbf{V}}_{r}\right] \text { where } \mathbf{V}_{r} \in \mathbb{R}^{n \times r} \text { and } \widetilde{\mathbf{V}}_{r} \in \mathbb{R}^{n \times(n-r)},
+\end{aligned}
+$$
+
+then ${ }^{2}$
+
+$\mathbf{U}_{r} \mathbf{U}_{r}^{\prime}$ : orth proj onto range $(\mathbf{X})$,
+
+$\widetilde{\mathbf{V}}_{r} \widetilde{\mathbf{V}}_{r}^{\prime}$ : orth proj onto $(\mathbf{X})$,
+
+$\mathbf{V}_{r} \mathbf{V}_{r}^{\prime}$ : orth proj onto null $(\mathbf{X})^{\perp}=$ range $\left(\mathbf{X}^{\prime}\right)$,
+
+$\widetilde{\mathbf{U}}_{r} \widetilde{\mathbf{U}}_{r}^{\prime}$ : orth proj onto range $(\mathbf{X})^{\perp}=\operatorname{null}\left(\mathbf{X}^{\prime}\right)$.
+
+\section*{Properties of the SVD V}
+In other words, we have the following picture.
+
+$\mathbf{A}=\mathbf{U S V}^{\prime}$
+
+
+\section*{Properties of the SVD VI}
+Proposition (SVD and Linear Regression)
+
+Suppose $\mathbf{b} \in \mathbb{R}^{m}$ and $\mathbf{A}=\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{\prime} \in \mathbb{R}^{m \times n}$ with $r=\operatorname{rank}(\mathbf{A})$ and
+
+$$
+\begin{aligned}
+\mathbf{U} & =\left[\mathbf{u}_{1}, \ldots, \mathbf{u}_{m}\right] \\
+\mathbf{V} & =\left[\mathbf{v}_{1}, \ldots, \mathbf{v}_{n}\right]
+\end{aligned}
+$$
+
+Then:
+
+\begin{enumerate}
+  \item The solution to
+\end{enumerate}
+
+$$
+\min _{\mathbf{x}}\|\mathbf{A} \mathbf{x}-\mathbf{b}\|_{2}
+$$
+
+is given by
+
+$$
+\mathbf{x}^{*}=\sum_{i=1}^{r} \frac{\mathbf{u}_{i}^{\prime} \mathbf{b}}{\sigma_{i}} \mathbf{v}_{i}
+$$
+
+and
+
+$$
+\left\|\mathbf{A x}^{*}-\mathbf{b}\right\|_{2}^{2}=\sum_{i=r+1}^{m}\left(\mathbf{u}_{i}^{\prime} \mathbf{b}\right)^{2}
+$$
+
+\section*{Properties of the SVD VII}
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item If $m \geq n$ and $\operatorname{rank}(\mathbf{X})=n$, we have that
+\end{enumerate}
+
+$$
+\mathbf{x}^{*}=\left(\mathbf{A}^{\prime} \mathbf{A}\right)^{-1} \mathbf{A}^{\prime} \mathbf{b}
+$$
+
+\section*{Properties of the SVD VIII}
+\section*{Remark}
+Note that \#2 is the "standard situation" we encountered in previous lectures where $\mathbf{A}$ has full column rank, so that $\mathbf{A}^{\prime} \mathbf{A}$ is invertible and the solution can be computed from the normal equations.
+
+${ }^{2}$ Note that null $(\mathbf{X})^{\perp}=\operatorname{range}\left(\mathbf{X}^{\prime}\right)$ and $\operatorname{range}(\mathbf{X})^{\perp}=\operatorname{null}\left(\mathbf{X}^{\prime}\right)$.
+
+\section*{The Moore-Penrose Generalized Inverse I}
+The previous proposition motivates the following definition.
+
+Suppose $\mathbf{A}=\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{\prime}=\sum_{i=1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}$ with $r=\operatorname{rank}(\mathbf{A})$. Then we define the Moore-Penrose inverse of $\mathbf{A}$ by
+
+$$
+\mathbf{A}^{+}:=\mathbf{V} \boldsymbol{\Sigma}^{+} \mathbf{U}^{\prime}
+$$
+
+where
+
+$$
+\boldsymbol{\Sigma}^{+}:=\operatorname{diag}\left(\sigma_{1}^{-1}, \ldots, \sigma_{r}^{-1}, 0, \ldots, 0\right) \in \mathbb{R}^{n \times m}
+$$
+
+It is easy to verify that $\mathbf{A}^{+}$satisfies the four Moore-Penrose conditions
+
+$$
+\begin{aligned}
+\mathbf{A A}^{+} \mathbf{A} & =\mathbf{A} \\
+\mathbf{A}^{+} \mathbf{A} \mathbf{A}^{+} & =\mathbf{A}^{+} \\
+\left(\mathbf{A A}^{+}\right)^{\prime} & =\mathbf{A A}^{+} \\
+\left(\mathbf{A}^{+} \mathbf{A}\right)^{\prime} & =\mathbf{A}^{+} \mathbf{A} .
+\end{aligned}
+$$
+
+\section*{The Moore-Penrose Generalized Inverse II}
+The Moore-Penrose inverse ${ }^{3}$ is an example of a pseudo inverse or generalized inverse of a matrix. There is an infinite number of ways in which one can define a pseudo inverse. What makes the Moore-Penrose inverse useful is that it is unique. In other words, there is no other inverse that satisfies the Moore-Penrose conditions above.
+
+Note that from the Moore-Penrose conditions it follows that $\mathbf{A A}^{+}$ and $\mathbf{A}^{+} \mathbf{A}$ are orthogonal projections onto range $(\mathbf{A})$ and range $\left(\mathbf{A}^{\prime}\right)$, respectively.
+
+${ }^{3}$ The interested reader might want to consult Moore (1920) and Penrose (1955), the original papers on this topic.
+
+\section*{Principal Component Analysis}
+\section*{PCA - Setup and Motivation I}
+The goal of Principal Component Analysis (PCA) of a set of $n$ i.i.d. $p$-dimensional observations $\left\{\mathbf{x}_{i}\right\}_{i=1}^{n} \in \mathbb{R}^{p \times 1}$ is to find the best rank- $k$ linear approximation to this data:
+
+$$
+\mathbf{x}_{i}=\boldsymbol{\mu}+\mathbf{W}_{k} \mathbf{z}_{i}+\varepsilon_{i}
+$$
+
+where $\boldsymbol{\mu}:=n^{-1} \sum_{i=1}^{n} \mathbf{x}_{i}, \mathbf{W}_{k} \in \mathbb{R}^{p \times k}$ with $\mathbf{W}_{k}^{\prime} \mathbf{W}_{k}=\mathbf{I}_{k} \in \mathbb{R}^{k \times k}$, $\{\varepsilon\}_{i=1}^{n} \in \mathbb{R}^{p \times 1}$ and $\left\{\mathbf{z}_{i}\right\}_{i=1}^{n} \in \mathbb{R}^{k \times 1}$.
+
+Note that because we only measure the $n$-observations of the r.v. $\mathbf{x}$, the $k$-components of the r.v. $\mathbf{z}$, are typically called latent or hidden factors.
+
+\section*{PCA - Setup and Motivation II}
+Because the observations are i.i.d., it does not matter in which order they arrive. However in time-series applications the index $i$ is time $t$.
+
+One common application of (33) is in risk modeling where $\mathbf{x}_{t}=\mathbf{r}_{t} \in \mathbb{R}^{p}$ is the returns of a set of $p$ assets at time $t$ and one seeks to identify the top- $k$ systemic linear factors that correlate with these returns.
+
+As standard portfolio theory tells us that only idiosyncratic exposure diversifies, by varying $k$ in the latent factor model (33) one then hopes to find the maximal number of systemic factors in the asset universe in order to control the systemic exposure and understand all non-diversifiable risks.
+
+\section*{PCA - Setup and Motivation III}
+Therefore, PCA in risk modeling attempts to address several goals:
+
+\begin{enumerate}
+  \item Reconstruction and prediction
+\end{enumerate}
+
+1.1 For a fixed $k$ find the optimal factors and their loading that capture most of the reconstruction error in-sample
+
+1.2 Predict likely factor realizations and reconstruction error from new data out-of-sample.
+
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item Probabilistic inference and generative modeling
+\end{enumerate}
+
+2.1 Identify confidences for both error reconstruction and prediction
+
+2.2 Generate future scenarios as a function of systemic risks
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Missing Data inference
+\end{enumerate}
+
+\section*{PCA - Reconstruction I}
+Note that in (33) we can always assume that $\boldsymbol{\mu} \equiv 0$. If that is not the case we demean our data by letting $\mathbf{x}_{i} \leftarrow \mathbf{x}_{i}-\boldsymbol{\mu}$.
+
+For simplicity, let us assume our data is demeaned, and we are seeking a linear model such that
+
+$$
+\mathbf{x}_{i}=\mathbf{W}_{k} \mathbf{z}_{i}+\varepsilon_{i}
+$$
+
+\section*{PCA - Reconstruction II}
+We can think about fitting such a model by minimizing the reconstruction error
+
+$$
+\mathbf{z}_{i}^{*}, \mathbf{W}_{k}^{*}=\min _{\left\{\mathbf{z}_{i}\right\}, \mathbf{W}_{k}} \sum_{i=1}^{n}\left\|\mathbf{x}_{i}-\mathbf{W}_{\mathbf{z}_{i}}\right\|_{2}^{2}
+$$
+
+Or in matrix notation:
+
+$$
+\mathbf{Z}^{*}, \mathbf{W}_{k}^{*}=\min _{\mathbf{Z}, \mathbf{W}_{k}}\left\|\mathbf{X}-\mathbf{Z} \mathbf{W}_{k}^{\prime}\right\|_{F}^{2} .
+$$
+
+\section*{PCA - Reconstruction III}
+By the Ekhart-Young theorem we know that $\mathbf{X}_{k}=\mathbf{U}_{k} \boldsymbol{\Sigma}_{k} \mathbf{V}_{k}^{\prime}$ optimizes the Frobenius norm so one possible solution is:
+
+$$
+\mathbf{Z}^{*}=\mathbf{U}_{k} \boldsymbol{\Sigma}_{k}, \quad \mathbf{W}_{k}^{*}=\mathbf{V}_{k}
+$$
+
+Note, that the solution is not unique (Question: what is the full set of solutions?).
+
+With this choice of solution, the $k-$ unit vectors $\mathbf{W}_{k}^{*}$ are called the top- $k$ principal components of the data $\mathbf{X}$. We will drop the subscript $k$ for simplicity.
+
+\section*{PCA - Prediction}
+For fixed $\mathbf{W}$, the optimal latent factor realizations are:
+
+$$
+\mathbf{Z}_{\mathbf{W}}^{*}=\mathbf{X W}\left(\mathbf{W}^{\prime} \mathbf{W}\right)^{-1}=\mathbf{X W}
+$$
+
+or in vector notation, with non-zero $\mu$ :
+
+$$
+\mathbf{z}_{\mathbf{W}}^{*}=\left(\mathbf{W}^{\prime} \mathbf{W}\right)^{-1} \mathbf{W}^{\prime}(\mathbf{x}-\boldsymbol{\mu})=\mathbf{W}^{\prime}(\mathbf{x}-\boldsymbol{\mu})
+$$
+
+If $\mathbf{W}$ happens to be the optimal loading $\mathbf{W}=\mathbf{W}^{*}$ and $\mathbf{x}$ is a newly observed out-of-sample point, then the above two formulas can also be used for prediction. So how do we find $\mathbf{W}^{*}$ ?
+
+\section*{Computing the PCA I}
+If we substitute $\mathbf{Z}_{\mathbf{W}}^{*}$ back into the loss function, the resulting loss only depends on $\mathbf{W}$ and $\mathbf{X}$ and the optimization reduces to:
+
+$$
+\begin{aligned}
+\mathbf{W}^{*} & =\min _{\mathbf{W}, \mathbf{W}^{\prime} \mathbf{W}=\mathbf{I}_{k}}\left\|\mathbf{X P}_{\mathbf{W}}\right\|_{F}^{2}, \quad \mathbf{P}_{\mathbf{W}}:=\left(\mathbf{I}-\mathbf{W} \mathbf{W}^{\prime}\right) \\
+& :=\min _{\mathbf{W}, \mathbf{W}^{\prime} \mathbf{W}=\mathbf{I}_{k}} J_{M S E}^{P C A}(\mathbf{X}, \mathbf{W})
+\end{aligned}
+$$
+
+or in vector notation:
+
+$$
+\left\{\mathbf{w}_{i}^{*}\right\}=\min _{\left\{\mathbf{w}_{i}\right\}, \mathbf{w}_{i}^{\prime} \mathbf{w}_{j}=\delta_{i j}} \mathbb{E}\left\|\mathbf{x}-\sum_{\ell=1}^{k} \mathbf{w}_{\ell}^{\prime} \mathbf{x} \mathbf{w}_{\ell}\right\|^{2}
+$$
+
+\section*{Computing the PCA II}
+Note that because $\mathbf{P}_{w}$ is a projection operator onto the space spanned by $\left\{\mathbf{w}_{i}\right\}$ then the principal components $\left\{\mathbf{w}_{i}\right\}_{i=1}^{k}$ optimize the mean square error compression of the original $p$ - dimensional signal $x$ onto a $k$-dimensional subspace. In other words $\left\{\mathbf{w}_{i}\right\}_{i=1}^{k}$ span the $k$ - dimensional subspace with the optimal mean-square reconstruction error $J_{M S E}^{P C A}$ of the original dataset.
+
+How do we find the top $k$ - principal components?
+
+\section*{Computing the PCA III}
+One can show that the reconstruction error can be rewritten as
+
+$$
+\begin{aligned}
+J_{M S E}^{P C A} & =\operatorname{Tr}\left[\mathbf{C}_{x}\right]-\operatorname{Tr}\left[\mathbf{C}_{x} \mathbf{W} \mathbf{W}^{\prime}\right] \\
+& =\operatorname{Tr}\left[\mathbf{C}_{x}\right]-\operatorname{Tr}\left[\mathbf{W}^{\prime} \mathbf{C}_{x} \mathbf{W}\right]
+\end{aligned}
+$$
+
+where $\mathbf{C}_{x}:=\mathbf{X}^{\prime} \mathbf{X}=\mathbb{E}\left[\mathbf{x}^{\prime} \mathbf{x}\right]$ is the covariance matrix of the data.
+
+\section*{Computing the PCA IV}
+As the first term in the rhs of (44) does not depend on $\mathbf{W}$ then the PCA are the set of $k$ - unit vectors which optimize the second term. In vector notation this amounts to the following quadratic optimization:
+
+$$
+\left\{\mathbf{w}_{i}^{*}\right\}_{i=1}^{k}=\max _{\left\{\mathbf{w}_{i}\right\}, \mathbf{w}_{i}^{\prime} \mathbf{w}_{j}=\delta_{i j}} \sum_{\ell=1}^{k} \mathbf{w}_{\ell}^{\prime} \mathbf{C}_{x} \mathbf{w}_{\ell}
+$$
+
+One can show (how?) that the necessary conditions for optimiality in (45) amount to the problem of finding the $k$-eigenvectors with the top eigenvalues of $\mathbf{C}_{x}$.
+
+\section*{Computing the PCA $\vee$}
+Another way to see this is to note that since $\mathbf{C}_{x}$ is a symetric positive semidefinite matrix, then it can be decomposed in terms of its eigenvectors and eigenvalues as $\mathbf{C}_{x}=\sum_{\ell=1}^{p} \lambda_{\ell} \mathbf{e}_{\ell} \mathbf{e}_{\ell}^{\prime}$ where $\lambda_{1} \geq \lambda_{2} \geq \ldots \lambda_{p} \geq 0$ and $\left\{\mathbf{e}_{i}\right\}_{i=1}^{p}$ form an orthonormal basis of $\mathbb{R}^{p}$.
+
+As a result, any $\mathbf{w} \in \mathbb{R}^{p}$ can be decomposed into the eigenvector basis as $\mathbf{w}=\sum_{i=1}^{p} b_{p} \mathbf{e}_{p}$. By substituting into (45) one can show that $\mathbf{w}_{\ell}=\mathbf{e}_{\ell}, \ell=1, \ldots, k$ is a solution.
+
+\section*{Computing the PCA VI}
+The top- $k$ PCA can be identified with the unit eigenvectors corresponding to the top- $k$ eigenvalues of the covariance of the data, and the optimal MSE is therefore:
+
+$$
+J_{M S E}^{P C A, *}=\sum_{\ell=1}^{p} \lambda_{\ell}-\sum_{\ell=1}^{k} \lambda_{\ell}=\sum_{\ell=k+1}^{p} \lambda_{\ell}
+$$
+
+Question: Are the PCA components unique? How about the optimal reconstruction error above? More on this later.
+
+\section*{Computing the SVD}
+By now it should be clear that computing the rank- $r$ truncated SVD approximation of a matrix in the Eckart-Young Theorem (14)
+
+$$
+\begin{aligned}
+\mathbf{X} & =\sum_{i=1}^{r} \sigma_{i} \mathbf{u}_{i} \mathbf{v}_{i}^{\prime}+\mathbf{E}_{r} \\
+& =\mathbf{U}_{r} \boldsymbol{\Sigma}_{r} \mathbf{V}_{r}^{\prime}+\mathbf{E}_{r}
+\end{aligned}
+$$
+
+can be reduced to a PCA computation. We leave the details as an exercise.
+
+\section*{Probabilistic PCA - Motivation}
+So far we have no notion of confidence for our estimate of the PCA components, latent factor realizations, or our predictions. For that, we need a probabilistic approach.
+
+The confidences of our in-sample estimates are what one usually associates with probabilistic statistical inference. The probabilistic theory of predictions is what is typically associated with generative modeling.
+
+We will next develop the probabilistic PCA framework while exposing its salient features. However, we will postpone discussing the Expectation-Maximization Algorithm used in missing data probabilistic inference, for a later lecture.
+
+\section*{Probabilistic PCA - Formalism I}
+A probabilistic formulation of the linear model (33) reproduced below (we drop the subscript of $\mathbf{W}_{k}$ for simplicity):
+
+$$
+\mathbf{x}_{i}=\boldsymbol{\mu}+\mathbf{W} \mathbf{z}_{i}+\varepsilon_{i}
+$$
+
+can easily be achieved by assigning distributional priors to the $k$-dimensional latent variable $\mathbf{z} \in \mathbb{R}^{k}$ and the noise $\varepsilon \in \mathbb{R}^{p}$. However, the linear model considered so far corresponds to a correlated factor model due to the fact that the factor loadings are constrained to be unitary $\mathbf{W}^{\prime} \mathbf{W}=\mathbf{I}_{k}$.
+
+\section*{Probabilistic PCA - Formalism II}
+An equivalent formulation analyzed by Tipping \& Bishop (see Bishop (2006) 12.2) is to relax the unitary constraint of the loadings, and instead consider an arbitrary $\mathbf{W} \in \mathbb{R}^{p \times k}$ while constraining the factor realizations $\left\{\mathbf{z}_{i}\right\}$ correspond to an uncorrelated random variable $\mathbf{z} \in \mathbb{R}^{k}$.
+
+As a result, the unconditional distributions of the latent variables and the noise are:
+
+$$
+\mathbf{z} \sim \mathcal{N}\left(0, \mathbf{I}_{k}\right)=p(\mathbf{z}), \quad \varepsilon \sim \mathcal{N}\left(0, \sigma^{2} \mathbf{I}_{p}\right)=p(\varepsilon)
+$$
+
+\section*{Probabilistic PCA - Formalism III}
+Note: If in the matrix formulation $\mathbf{X}=\mathbf{Z W}^{\prime}+\mathbf{E}=\mathbf{U}_{k} \boldsymbol{\Sigma}_{k} \mathbf{V}_{k}^{\prime}+\mathbf{E}$ one were to optimize for $\mathbf{W}$ and $\mathbf{Z}$ by minimizing the reconstruction error, then the above choice of constraints would correspond to:
+
+$$
+\mathbf{Z}^{*}=\mathbf{U}_{k}, \quad \mathbf{W}^{*}=\mathbf{V}_{k} \boldsymbol{\Sigma}_{k}
+$$
+
+\section*{Probabilistic PCA - Formalism IV}
+From (50) and (49) we can read off the distribution of $\mathbf{x}$ conditioned on the latent variable $\mathbf{z}$ :
+
+$$
+\mathbf{x} \mid \mathbf{z} \sim \mathcal{N}\left(\mathbf{W} \mathbf{z}+\boldsymbol{\mu}, \sigma^{2} \mathbf{I}\right)=p\left(\mathbf{x} \mid \mathbf{z} ; \mathbf{W}, \sigma^{2}, \boldsymbol{\mu}\right)
+$$
+
+as well as the unconditional distribution of $\mathrm{x}$ :
+
+$$
+\mathbf{x} \sim \mathcal{N}\left(\boldsymbol{\mu}, \mathbf{C}:=\mathbf{W} \mathbf{W}^{\prime}+\sigma^{2} \mathbf{I}\right)=p\left(\mathbf{x} ; \mathbf{W}, \sigma^{2}, \boldsymbol{\mu}\right)
+$$
+
+One can verify that $\int p(\mathbf{x} \mid \mathbf{z}) p(\mathbf{z}) d \mathbf{z}=p(\mathbf{x})$.
+
+\section*{Probabilistic PCA - Formalism $V$}
+Because we have a probabilistic formulation, we can now find the optimal $\mathbf{W}$ and $\sigma^{2}$ which maximize the log-likelihood of the data:
+
+$$
+\begin{aligned}
+& \ln p\left(\mathbf{X} \mid \mu, \mathbf{W}, \sigma^{2}\right)=\sum_{i=1}^{n} \ln p\left(\mathbf{x}_{i} \mid \mathbf{W}, \boldsymbol{\mu}, \sigma^{2}\right) \\
+& =-\frac{n p}{2} \ln (2 \pi)-\frac{n}{2} \ln |\mathbf{C}|-\frac{1}{2} \sum_{i=1}^{n}\left(\mathbf{x}_{i}-\boldsymbol{\mu}\right)^{\prime} \mathbf{C}^{-1}\left(\mathbf{x}_{i}-\boldsymbol{\mu}\right) \\
+& =-\frac{n}{2}\left[p \ln (2 \pi)+\ln |\mathbf{C}|+\operatorname{Tr}\left[\mathbf{C}^{-1} \mathbf{C}_{\mathbf{x}}\right]\right]
+\end{aligned}
+$$
+
+where $\mathbf{C}_{x}=\mathbb{E}\left[(\mathbf{x}-\boldsymbol{\mu})^{\prime}(\mathbf{x}-\boldsymbol{\mu})\right]$ is the data covariance matrix which we encountered earlier in the reconstruction error formulation.
+
+\section*{Probabilistic PCA - Formalism VI}
+Minimizing (56) is not straightforward due to the non-linear nature of the log-likelihood. However, by using of the Woodbury matrix identity one can show
+
+$$
+\mathbf{C}^{-1}=\sigma^{-1}-\sigma^{-2} \mathbf{W} \mathbf{M}^{-1} \mathbf{W}^{\prime}
+$$
+
+where $\mathbf{M}:=\mathbf{W}^{\prime} \mathbf{W}+\sigma^{2} \mathbf{I}$ is a $k \times k$ matrix with typically $k \ll \min (n, p)$
+
+It turns out, that despite the non-linearities of the log-likelihood, an exact solution exists (see Bishop (2006) eq (12.45)) which reduces to (51) up to a $k$-dimensional rotation (why?) in the $\sigma^{2} \rightarrow 0$ limit.
+
+\section*{Probabilistic PCA - Formalism VII}
+Finally, once the factor loadings $\mathbf{W}$, noise $\sigma^{2}$ and expectation $\mu$ are learned from history, one often wants to know what a given new set of data $\mathbf{x}$ implies about the distribution of the latent variables $\mathbf{z}$. This information is captured by the posterior distribution of $\mathbf{z}$ given $\mathrm{x}$ and the model parameters, which one can show (how?) is given by:
+
+$$
+\mathbf{z} \mid \mathbf{x} \sim \mathcal{N}\left(\mathbf{M}^{-1} \mathbf{W}^{\prime}(\mathbf{x}-\boldsymbol{\mu}), \sigma^{-2} \mathbf{M}\right)=p\left(\mathbf{z} \mid \mathbf{x} ; \mathbf{W}, \sigma^{2}, \boldsymbol{\mu}\right)
+$$
+
+Note that in the limit of $\sigma^{2} \rightarrow 0$,
+
+$$
+\mathbb{E}[\mathbf{z} \mid \mathbf{x}] \rightarrow\left(\mathbf{W}_{M L}^{\prime} \mathbf{W}_{M L}\right)^{-1} \mathbf{W}_{M L}^{\prime}(\mathbf{x}-\mu)
+$$
+
+which is the projection to the principal components (38) which we had derived in the matrix notation.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{2}
+  \bibitem{Bishop2006}
+  Rasmussen, et al. (2006). Gaussian Processes In Machine Learning.
+
+  \bibitem{Sheffield2007}
+  Sheffield, S. (2007). "Gaussian Free Fields for Mathematicians". In: 139 (3-4), pp. 521-541.
+\end{thebibliography}
+
+
+
+\end{document}

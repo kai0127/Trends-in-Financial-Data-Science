@@ -1,0 +1,391 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb}
+
+%%%%% Matrix stretcher
+% use it as:
+%\begin{pmatrix}[1.5]
+% ...
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\extrafootertext[1]{%
+    \bgroup
+    \renewcommand\thefootnote{\fnsymbol{footnote}}%
+    \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+    \footnotetext[0]{#1}%
+    \egroup
+}
+
+
+%%%%%%%%%%%%% Colors %%%%%%%%%%%%%
+\usepackage[dvipsnames]{xcolor}
+
+\definecolor{C0}{HTML}{1d1d1d}
+\definecolor{C1}{HTML}{1e3668}
+\definecolor{C2}{HTML}{199d8b}
+\definecolor{C3}{HTML}{d52f4c}
+\definecolor{C4}{HTML}{5ab2d6}
+\definecolor{C5}{HTML}{ffb268}
+\definecolor{C6}{HTML}{ff7300} % for commenting - {fire orange}dd571c
+\definecolor{C7}{HTML}{777b7e} % for remarks - {steel grey}
+\color{C0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%% Fonts %%%%%%%%%%%%% 
+%\usepackage{fontspec}
+\usepackage[no-math]{fontspec} % for text
+
+\emergencystretch=8pt
+\hyphenpenalty=1000 % default 50
+\tolerance=800      % default 200
+%\righthyphenmin=4
+%\lefthyphenmin=4
+
+%%% Text Font: Vollkorn + Math Font: Latin Modern (default) %%%
+\setmainfont{Vollkorn}[
+UprightFont = Vollkorn-Regular,
+ItalicFont =Vollkorn-Italic, 
+BoldItalicFont={Vollkorn-BoldItalic},
+BoldFont = Vollkorn-Bold,
+RawFeature=+lnum,
+WordSpace=1.7,
+] 
+
+%%% We need this for math font packages other than latin modern %%%
+% \usepackage{unicode-math}        % for math
+
+%%% Text Font: Palatino + Math Font: Asana-Math %%%
+%\setmainfont{Palatino}[
+%BoldFont = Palatino-Bold,
+%ItalicFont = Palatino-Italic,
+%BoldItalicFont={Palatino-BoldItalic},
+%RawFeature=+lnum,
+%WordSpace=1.7,
+%]
+%\setmathfont{asana-math}
+
+%%% Text Font: Arno Pro + Math Font: Minion Pro %%%
+%\setmainfont{Arno Pro}[
+%UprightFont = *-Regular,
+%ItalicFont = Vollkorn-Italic, 
+%BoldItalicFont={*-BoldItalic},
+%BoldFont = *-Bold,
+%RawFeature=+lnum,
+%WordSpace=1.7,
+%Scale= 1.1
+%] 
+% Minion Pro is too expensive
+
+%%% Math Fonts %%%
+%\setmathfont{Vollkorn}
+%\setmathfont{Latin Modern Math}
+%\setmathfont{TeX Gyre Pagella Math}
+%\setmathfont{TeX Gyre Termes Math}
+%\setmathfont{TeX Gyre DejaVu Math}
+%\setmathfont[Scale=MatchLowercase]{DejaVu Math TeX Gyre}
+%\setmathfont{XITS Math}
+%\setmathfont{Libertinus Math}
+%\setmathfont[Scale=MatchUppercase]{Asana Math}
+%\setmathfont{STIX Two Math}
+
+%\usepackage{kpfonts-otf}
+%\setmathfont{KpMath-Regular.otf}[version=regular]
+%\setmathfont{KpMath-Bold.otf}[version=bold]
+%\setmathfont{KpMath-Semibold.otf}[version=semibold]
+%\setmathfont{KpMath-Sans.otf}[version=sans]
+%\setmathfont{KpMath-Light.otf}[version=light]
+
+
+%%% CJK Fonts %%%
+\usepackage[scale=.78]{luatexja-fontspec}
+\setmainjfont{BabelStone Han}[AutoFakeBold]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package simplifies the insertion of external multi-page PDF or PS documents.
+\usepackage{pdfpages}
+
+% cref
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=C4,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+
+\usepackage[nameinlink,noabbrev,capitalize]{cleveref}
+% \crefname{ineq}{}{}
+% \crefname{equation}{}{}
+% \creflabelformat{ineq}{#2{\textup{(1)}}#3}
+% \creflabelformat{equation}{#2\textup{(#1)}#3}
+
+%%%%%%%%%%%%% Environments %%%%%%%%%%%%%%%%
+%amsthm has three separate predefined styles:	
+%
+%\theoremstyle{plain} is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%
+%\theoremstyle{definition} adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+%
+%\theoremstyle{remark} is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+
+%%%  theorem-like environment %%%
+\theoremstyle{plain} % default theorem style
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{property}[theorem]{Property}
+
+\newtheorem{definition}[theorem]{Definition}
+
+%%% definition-like environment %%%
+%\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+
+
+%%% framed package is great %%%
+\usepackage{framed}
+\newenvironment{solution}
+{\color{C2}\normalfont\begin{framed}\begingroup\textbf{Solution:} }
+  {\endgroup\end{framed}}
+
+\newenvironment{topic}
+{\color{C2}\normalfont\begin{framed}\begingroup }
+  {\endgroup\end{framed}}
+
+\newtheoremstyle{remark}% name of the style to be used
+  {}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {\color{C3}}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\color{C3}\bfseries}% name of head font
+  {.}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {}
+\theoremstyle{remark}
+\newtheorem{remarkx}[theorem]{Remark}
+\newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\remarkx}
+  {\popQED\endremarkx}
+  
+\newenvironment{point}
+  {\O~~}
+  {}
+
+\usepackage{thmtools}
+\usepackage{thm-restate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package is for the long equal sign \xlongequal{}
+\usepackage{extarrows}
+
+%%%%%%%%%%%% Algorithms %%%%%%%%%%%%
+\usepackage{etoolbox} 
+\usepackage{setspace}
+\usepackage{algorithm}
+\AtBeginEnvironment{algorithmic}{\onehalfspacing}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+
+\algrenewcommand\algorithmicindent{2em}
+\let\Algorithm\algorithm
+\renewcommand\algorithm[1][]{\Algorithm[#1]}%\fontsize{11}{16}\selectfont}
+
+\newenvironment{labelalgorithm}[4][t]{%
+\begin{algorithm}[#1]
+%\newcommand{\thealgorithmlabel}{#2}
+\newcommand{\thealgorithmname}{#3}
+%\newcommand{\thealgorithmcap}{#4}
+\customlabel{alg:name:#2}{\textproc{#3}}
+%\customlabel{alg:cap:#2}{#4}
+\caption{#4}\label{alg:#2}
+}{\end{algorithm}}
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{}%
+}
+\makeatother
+
+%\algdef{SE}[FUNCTION]{Procedure}{EndProcedure}%
+%   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+%   {\algorithmicend\ \algorithmicclass}%
+
+\algnewcommand\algorithmicclass{\textbf{class}}
+\algdef{SE}[FUNCTION]{Class}{EndClass}%
+   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+   {\algorithmicend\ \algorithmicclass}%
+
+% Tells algorithmicx not to print an empty line if `noend' is set 
+\makeatletter
+\ifthenelse{\equal{\ALG@noend}{t}}%
+  {\algtext*{EndClass}}
+  {}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Page Formatting
+\usepackage[
+    paper=a3paper,
+    inner=22mm,         % Inner margin
+    outer=22mm,         % Outer margin
+    bindingoffset=0mm, % Binding offset
+    top=28mm,           % Top margin
+    bottom=22mm,        % Bottom margin
+    %showframe,         % show how the type block is set on the page
+]{geometry}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{.7em}
+
+
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{subcaption} % for subplots
+\usepackage{multicol}   % for multicolumns
+\usepackage{wrapfig}    % for inserting figures in multicolumns
+\usepackage{enumitem}
+\setlist{topsep=0pt}
+
+\usepackage{bm}
+
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,breaklines=true}
+% \setlength{\parskip}{1em}
+% \setlength{\parindent}{0em}
+\usepackage{dsfont}
+\newcommand{\bOne}{\mathds{1}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\CoV}{\operatorname{Co\mathbb{V}}}
+
+% header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\small   \bfseries Notes}
+\fancyhead[C]{\small   \bfseries Fall 2023}
+\fancyhead[R]{\small   \bfseries Zhou}
+
+
+\begin{document}
+
+\begin{center}
+  \text{\Large{Singular Value Decomposition
+    }}
+
+  {\text{Kaiwen Zhou}}
+\end{center}
+\vspace{2em}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Readings}
+In addition to the lecture notes, the following are required readings:
+
+\begin{itemize}
+  \item See for example paterek2007improvingRS
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contextualization: Blind Source Separation Problem}
+
+\section*{SVD with Missing Data}
+\section*{Setup I}
+Suppose have observations $\left\{\mathbf{x}_{i}\right\}_{i=1}^{n} \in \mathbb{R}^{p}$ such that any given $\mathbf{x}_{i}$ may contain missing values. Can we still obtain an estimate of the SVD of the matrix $\mathbf{X}$ ?
+
+In general, if the location of the missing values had non-trivial distribution, it is unclear if we the problem has a solution without a well informed prior. In the most extreme case, suppose $\mathbf{X}$ is a table of grayscale pixels corresponding to the image of a face with missing pixels. If the missing pixels constitute the entire left half of the image, we have no guarantee we can reconstruct them without any prior information by just looking at the right half pixels.
+
+\section*{Setup II}
+This type of problem arises frequently in Finance and often it does not have an easy solution. For example, if $\mathbf{X}$ were the time series of $n$ trades of $p$ assets, then a missing value of the $i j-$ th entry of $\mathbf{X}$ would correspond to a lack of trade for asset $j$ at time $i$. Can we compute the SVD principal components of $X$ anyway and impute the missing entries of the matrix $\mathbf{X}$ ?
+
+Such imputation would be useful to, say, a large portfolio manager of illiquid assets if they were required by regulators to mark their book every day.
+
+\section*{Setup III}
+It is precisely this type of imputation that is also useful to track the price of a home as a function of trades of comparable homes.
+
+Question: if we knew the $r$-truncated SVD of $\mathbf{X}$, how can we find the top- $k$ assets $j$ whose price time series is closest in $\ell_{2}$ sense to the time series of a fixed asset $i$ ?
+
+\section*{Setup IV}
+A similar problem was posed as a Kaggle competition by Netflix where the goal was to predict the user ratings of a set of movies based on the user ratings of the same movies given by a set of users in the training set. In this case the $i j-$ th entry of the extremely sparse matrix $\mathbf{X}$ would correspond to the rating by the $i-$ th user of the $j$-th movie.
+
+\section*{SVD via Generalized Hebbian Learning I}
+Let's focus on estimating the top SVD components. In this case if we had complete data, the solution would be
+
+$$
+\mathbf{u}^{*}, \mathbf{v}^{*}=\min _{\mathbf{u}, \mathbf{v}} \sum_{i j}\left|X_{i j}-u_{i} v j\right|^{2}
+$$
+
+but if $\mathbf{X}_{i j}$ is sparse, we will need to regularize the above loss and instead consider the following loss:
+
+$$
+\mathbf{u}_{1}, \mathbf{v}_{1}=\min _{\mathbf{u}, \mathbf{v}} \sum_{i j \in S}\left|X_{i j}-u_{i} v_{j}\right|^{2}+\lambda \sum_{i}\left(u_{i}^{2}+v_{i}^{2}\right) .
+$$
+
+In the above the set $S=\left\{\left(i_{\ell}, j_{\ell}\right\}_{\ell}^{K_{o b s}}=1\right.$ is the set of observed indices of $\mathbf{X}$ which in general could be quite sparse compared to the set of all indices of $\mathbf{X}$. The second term in (2) is a regularization term. Note that while the sum in the first term runs over the observed indices, the sum of the second term runs over all indices.
+
+\section*{SVD via Generalized Hebbian Learning II}
+Suppose $S_{1}=\{i \mid(i, k) \in S$ for some $k\}$ and
+
+$S_{2}=\{j \mid(k, j) \in S$ for some $k\}$ are the $K_{\text {obs }}$ row and column indices where $S_{1}$ and $S_{2}$ may repeat. Then, at a second order minimum the loss in (2) is optimized when
+
+$$
+\begin{aligned}
+& 0=\sum_{j \in S_{2}} R_{i j} v_{j}-\lambda u_{i} \\
+& 0=\sum_{i \in S_{1}} u_{i} R_{i j}-\lambda v_{j}
+\end{aligned}
+$$
+
+where $R_{i j}:=X_{i j}-u_{i} v_{j}$ is the reconstruction error.
+
+\section*{SVD via Generalized Hebbian Learning III}
+Hebbian learning is a simple iterative method where the equations (3) are solved via alternative gradient descent step with fixed learning rate $\alpha$. In other words, one starts with an initial guess of $\mathbf{u}$ and $\mathbf{v}$ and forms a new guess based on the following alternative gradient descent (Hebbian) step
+
+$$
+\begin{aligned}
+& u_{i}^{\text {new }}=u_{i}+\alpha\left(\sum_{j \in S_{2}}\left(X_{i j}-u_{i} v_{j}\right) v_{j}-\lambda u_{i}\right) \\
+& v_{i}^{\text {new }}=v_{j}+\alpha\left(\sum_{i \in S_{1}} u_{i}^{\text {new }}\left(X_{i j}-u_{i}^{n e w} v_{j}\right)-\lambda v_{j}\right)
+\end{aligned}
+$$
+
+until convergence is reached.
+
+\section*{SVD via Generalized Hebbian Learning IV}
+Modification of the algorithm exist when one lets $\alpha$ vary with each iteration of the algorithm depending on how far away the minimum is. Similarly to stochastic gradient descent, one can also subsample the observations $S$ at every step to ensure robustness.
+
+Note that only the known entries of $R_{i j}$ need to be stored so the algorithm has efficient sparse matrix implementation.
+
+Also note that once the top factors $\mathbf{u}^{(1)}$ and $\mathbf{v}^{(1)}$ are computed, one can perform the same Hebbian algorithm to the reconstruction error of $R_{i j}^{(1)}:=X_{i j}-u_{i}^{(1)} v_{j}^{(1)}$. In a similar manner one can compute the top- $k$ orthogonal SVD components.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{2}
+  \bibitem{Bishop2006}
+  Rasmussen, et al. (2006). Gaussian Processes In Machine Learning.
+
+  \bibitem{Sheffield2007}
+  Sheffield, S. (2007). "Gaussian Free Fields for Mathematicians". In: 139 (3-4), pp. 521-541.
+\end{thebibliography}
+
+
+
+\end{document}

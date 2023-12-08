@@ -1,0 +1,634 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb}
+
+%%%%% Matrix stretcher
+% use it as:
+%\begin{pmatrix}[1.5]
+% ...
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\extrafootertext[1]{%
+    \bgroup
+    \renewcommand\thefootnote{\fnsymbol{footnote}}%
+    \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+    \footnotetext[0]{#1}%
+    \egroup
+}
+
+
+%%%%%%%%%%%%% Colors %%%%%%%%%%%%%
+\usepackage[dvipsnames]{xcolor}
+
+\definecolor{C0}{HTML}{1d1d1d}
+\definecolor{C1}{HTML}{1e3668}
+\definecolor{C2}{HTML}{199d8b}
+\definecolor{C3}{HTML}{d52f4c}
+\definecolor{C4}{HTML}{5ab2d6}
+\definecolor{C5}{HTML}{ffb268}
+\definecolor{C6}{HTML}{ff7300} % for commenting - {fire orange}dd571c
+\definecolor{C7}{HTML}{777b7e} % for remarks - {steel grey}
+\color{C0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%% Fonts %%%%%%%%%%%%% 
+%\usepackage{fontspec}
+\usepackage[no-math]{fontspec} % for text
+
+\emergencystretch=8pt
+\hyphenpenalty=1000 % default 50
+\tolerance=800      % default 200
+%\righthyphenmin=4
+%\lefthyphenmin=4
+
+%%% Text Font: Vollkorn + Math Font: Latin Modern (default) %%%
+\setmainfont{Vollkorn}[
+UprightFont = Vollkorn-Regular,
+ItalicFont =Vollkorn-Italic, 
+BoldItalicFont={Vollkorn-BoldItalic},
+BoldFont = Vollkorn-Bold,
+RawFeature=+lnum,
+WordSpace=1.7,
+] 
+
+%%% We need this for math font packages other than latin modern %%%
+% \usepackage{unicode-math}        % for math
+
+%%% Text Font: Palatino + Math Font: Asana-Math %%%
+%\setmainfont{Palatino}[
+%BoldFont = Palatino-Bold,
+%ItalicFont = Palatino-Italic,
+%BoldItalicFont={Palatino-BoldItalic},
+%RawFeature=+lnum,
+%WordSpace=1.7,
+%]
+%\setmathfont{asana-math}
+
+%%% Text Font: Arno Pro + Math Font: Minion Pro %%%
+%\setmainfont{Arno Pro}[
+%UprightFont = *-Regular,
+%ItalicFont = Vollkorn-Italic, 
+%BoldItalicFont={*-BoldItalic},
+%BoldFont = *-Bold,
+%RawFeature=+lnum,
+%WordSpace=1.7,
+%Scale= 1.1
+%] 
+% Minion Pro is too expensive
+
+%%% Math Fonts %%%
+%\setmathfont{Vollkorn}
+%\setmathfont{Latin Modern Math}
+%\setmathfont{TeX Gyre Pagella Math}
+%\setmathfont{TeX Gyre Termes Math}
+%\setmathfont{TeX Gyre DejaVu Math}
+%\setmathfont[Scale=MatchLowercase]{DejaVu Math TeX Gyre}
+%\setmathfont{XITS Math}
+%\setmathfont{Libertinus Math}
+%\setmathfont[Scale=MatchUppercase]{Asana Math}
+%\setmathfont{STIX Two Math}
+
+%\usepackage{kpfonts-otf}
+%\setmathfont{KpMath-Regular.otf}[version=regular]
+%\setmathfont{KpMath-Bold.otf}[version=bold]
+%\setmathfont{KpMath-Semibold.otf}[version=semibold]
+%\setmathfont{KpMath-Sans.otf}[version=sans]
+%\setmathfont{KpMath-Light.otf}[version=light]
+
+
+%%% CJK Fonts %%%
+\usepackage[scale=.78]{luatexja-fontspec}
+\setmainjfont{BabelStone Han}[AutoFakeBold]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package simplifies the insertion of external multi-page PDF or PS documents.
+\usepackage{pdfpages}
+
+% cref
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=C4,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+
+\usepackage[nameinlink,noabbrev,capitalize]{cleveref}
+% \crefname{ineq}{}{}
+% \crefname{equation}{}{}
+% \creflabelformat{ineq}{#2{\textup{(1)}}#3}
+% \creflabelformat{equation}{#2\textup{(#1)}#3}
+
+%%%%%%%%%%%%% Environments %%%%%%%%%%%%%%%%
+%amsthm has three separate predefined styles:	
+%
+%\theoremstyle{plain} is the default. it sets the text in italic and adds extra space above and below the \newtheorems listed below it in the input. it is recommended for theorems, corollaries, lemmas, propositions, conjectures, criteria, and (possibly; depends on the subject area) algorithms.
+%
+%\theoremstyle{definition} adds extra space above and below, but sets the text in roman. it is recommended for definitions, conditions, problems, and examples; i've alse seen it used for exercises.
+%
+%\theoremstyle{remark} is set in roman, with no additional space above or below. it is recommended for remarks, notes, notation, claims, summaries, acknowledgments, cases, and conclusions.
+
+%%%  theorem-like environment %%%
+\theoremstyle{plain} % default theorem style
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{property}[theorem]{Property}
+
+\newtheorem{definition}[theorem]{Definition}
+
+%%% definition-like environment %%%
+%\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+
+
+%%% framed package is great %%%
+\usepackage{framed}
+\newenvironment{solution}
+{\color{C2}\normalfont\begin{framed}\begingroup\textbf{Solution:} }
+  {\endgroup\end{framed}}
+
+\newenvironment{topic}
+{\color{C2}\normalfont\begin{framed}\begingroup }
+  {\endgroup\end{framed}}
+
+\newtheoremstyle{remark}% name of the style to be used
+  {}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {\color{C3}}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\color{C3}\bfseries}% name of head font
+  {.}% punctuation between head and body
+  { }% space after theorem head; " " = normal interword space
+  {}
+\theoremstyle{remark}
+\newtheorem{remarkx}[theorem]{Remark}
+\newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\remarkx}
+  {\popQED\endremarkx}
+  
+\newenvironment{point}
+  {\O~~}
+  {}
+
+\usepackage{thmtools}
+\usepackage{thm-restate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% This package is for the long equal sign \xlongequal{}
+\usepackage{extarrows}
+
+%%%%%%%%%%%% Algorithms %%%%%%%%%%%%
+\usepackage{etoolbox} 
+\usepackage{setspace}
+\usepackage{algorithm}
+\AtBeginEnvironment{algorithmic}{\onehalfspacing}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+
+\algrenewcommand\algorithmicindent{2em}
+\let\Algorithm\algorithm
+\renewcommand\algorithm[1][]{\Algorithm[#1]}%\fontsize{11}{16}\selectfont}
+
+\newenvironment{labelalgorithm}[4][t]{%
+\begin{algorithm}[#1]
+%\newcommand{\thealgorithmlabel}{#2}
+\newcommand{\thealgorithmname}{#3}
+%\newcommand{\thealgorithmcap}{#4}
+\customlabel{alg:name:#2}{\textproc{#3}}
+%\customlabel{alg:cap:#2}{#4}
+\caption{#4}\label{alg:#2}
+}{\end{algorithm}}
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{}%
+}
+\makeatother
+
+%\algdef{SE}[FUNCTION]{Procedure}{EndProcedure}%
+%   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+%   {\algorithmicend\ \algorithmicclass}%
+
+\algnewcommand\algorithmicclass{\textbf{class}}
+\algdef{SE}[FUNCTION]{Class}{EndClass}%
+   [2]{\algorithmicclass\ \textproc{#1}\ifthenelse{\equal{#2}{}}{}{$($#2$)$}}%
+   {\algorithmicend\ \algorithmicclass}%
+
+% Tells algorithmicx not to print an empty line if `noend' is set 
+\makeatletter
+\ifthenelse{\equal{\ALG@noend}{t}}%
+  {\algtext*{EndClass}}
+  {}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Page Formatting
+\usepackage[
+    paper=a3paper,
+    inner=22mm,         % Inner margin
+    outer=22mm,         % Outer margin
+    bindingoffset=0mm, % Binding offset
+    top=28mm,           % Top margin
+    bottom=22mm,        % Bottom margin
+    %showframe,         % show how the type block is set on the page
+]{geometry}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{.7em}
+
+
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{subcaption} % for subplots
+\usepackage{multicol}   % for multicolumns
+\usepackage{wrapfig}    % for inserting figures in multicolumns
+\usepackage{enumitem}
+\setlist{topsep=0pt}
+
+\usepackage{bm}
+
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,breaklines=true}
+% \setlength{\parskip}{1em}
+% \setlength{\parindent}{0em}
+\usepackage{dsfont}
+\newcommand{\bOne}{\mathds{1}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\CoV}{\operatorname{Co\mathbb{V}}}
+
+% header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\small   \bfseries Notes}
+\fancyhead[C]{\small   \bfseries Fall 2023}
+\fancyhead[R]{\small   \bfseries Zhou}
+
+
+\begin{document}
+
+\begin{center}
+  \text{\Large{Independent Component Analysis
+    }}
+
+  {\text{Kaiwen Zhou}}
+\end{center}
+\vspace{2em}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Readings}
+In addition to the lecture notes, the following are required readings:
+
+\begin{itemize}
+  \item Chapter 2.7, 5.3-5.5, 7, 8.3, 8.4 hyvarinenetal2001ica
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contextualization: Blind Source Separation Problem}
+Suppose we have a set of $p$ independent signals $s_{i, t}, i=1 \ldots p$ which
+we wish to infer, from noise-free observation of $p$ - unknown set of mixtures
+$x_{i, t}, i=1 \ldots p$ of all the signals:
+
+$$
+\mathbf{x}_{t}=\mathbf{A} \mathbf{s}_{t}, \quad \mathbf{A} \in \mathbb{R}^{p \times p}
+$$
+
+Is it possible to infer $\mathbf{A}$ and separate each signal $s_{i, t}$ from
+the rest?
+
+We call this the blind source separation problem, because it arises in a
+situation where we try to disentangle the sound of each of $p$-musicians in an
+orchestra by recording their symphony with $p-$ distinct microphones by blindly
+positioning the microphones in different parts of the symphony hall.
+
+\section*{Does PCA Solve BSS?}
+Because the sources $s_{i, t}$ are independent, they are therefore uncorrelated.
+Without loss of generality we can also assume that each signal is demeaned and
+has unit variance:
+
+$$
+\mathbb{E}\left[s_{i}\right]=0, \quad \mathbb{E}\left[s_{i} s_{j}\right]=\delta_{i j}
+$$
+
+In this case, it is tempting to say that (1) is simply a linear factor model
+such as the one analyzed in the Probabilistic PCA framework so solution is
+
+$$
+\begin{aligned}
+\mathbf{A}^{*} & =\mathbf{W}^{*}=\mathbf{V} \boldsymbol{\Sigma} \text { - the PCA components of } \mathbf{X} \\
+\mathbf{S}^{*} & =\mathbf{Z}^{*}=\mathbf{U} \text { - the left SVD components of } \mathbf{X}
+\end{aligned}
+$$
+
+\section*{PCA is not unique I}
+However, as we discussed in class that the PCA solution (3) to the latent factor
+model is not unique!
+
+Indeed, suppose $\mathbf{R}$ is an arbitrary $p \times p$ unitary (rotation)
+matrix, $\mathbf{R}^{\prime} \mathbf{R}=\mathbf{I}_{p}$. Then the following
+would also be a solution to the latent factor problem:
+
+$$
+\begin{aligned}
+\tilde{\mathbf{W}}^{\prime} & =\mathbf{R} \mathbf{W}^{* \prime}=\mathbf{R} \mathbf{\Sigma} \mathbf{V}^{\prime} \\
+\tilde{\mathbf{Z}} & =\mathbf{Z}^{*} \mathbf{R}^{\prime}=\mathbf{U R}^{\prime}
+\end{aligned}
+$$
+
+as we clearly have $\mathbf{X}=\mathbf{U S V}^{\prime}=\mathbf{Z}^{*}
+\mathbf{W}^{* \prime}=\tilde{\mathbf{Z}} \tilde{\mathbf{W}}^{\prime}$.
+
+\section*{PCA is not unique II}
+Since PCA only looks at solutions to the latent factor problem which have zero
+mean and unit covariance, any rotation of such solution would also have zero
+mean and covariance.
+
+We need a further constraint in order to solve the problem uniquely. Is there an
+objective way to do it in the BSS problem?
+
+\section*{PCA is not unique III}
+What are the implications of this lack of uniqueness to the use case of risk
+modeling and/or portfolio allocation via PCA.
+
+Is prior knowledge the only way one can separate independent signals such as is
+the case with paying attention to only one instrument in a symphony?
+
+\section*{Independence and covariance I}
+Independence is a much stronger condition than zero cross-covariance:
+
+\section*{Definition}
+Two random variables $s_{1}$ and $s_{2}$ are independent if their joint cdf (and
+equivalently pdf) density factorizes into the marginals of each random variable,
+$F\left(s_{1}, s_{2}\right)=F\left(s_{1}\right) F\left(s_{2}\right)$ (and
+equivalently $\left.p\left(s_{1}, s_{2}\right)=p\left(s_{1}\right)
+p\left(s_{2}\right)\right)$
+
+\section*{Independence and covariance II}
+It is clear that due to the factorization of the joint density that for two
+independent variables $\mathbb{E}\left[s_{1}
+s_{2}\right]=\mathbb{E}\left[s_{1}\right] \mathbb{E}\left[s_{2}\right]$ and
+therefore independence implies zero cross-covariance
+$\operatorname{cov}\left(s_{1}, s_{2}\right)=0$.
+
+Furthermore, it is also clear that $\mathbb{E}\left[f\left(s_{1}\right)
+g\left(s_{2}\right)\right]=\mathbb{E}\left[f\left(s_{1}\right)\right]
+\mathbb{E}\left[g\left(s_{2}\right)\right]$ for any two functions $f$ and $g$.
+If we take $f\left(x^{\prime}\right)=g\left(x^{\prime}\right)=I_{x^{\prime}>x}$,
+we see this is equivalent to the definition of independence so we have the
+following trivial
+
+\section*{Proposition}
+Two random variables $s_{1}$ and $s_{2}$ are independent if and only if for any
+transformations $f(x), g(x)$, the random variables $f\left(s_{1}\right)$ and
+$g\left(s_{2}\right)$ have zero covariance.
+
+\section*{Gaussian variables and independence}
+\section*{Proposition}
+If $s_{1}$ and $s_{2}$ are Gussian then $s_{1}$ and $s_{2}$ are independent iff
+$\operatorname{cov}\left(s_{1}, s_{2}\right)=0$.
+
+As a consequence, if the underlying signal $\mathrm{s}$ in the BSS problem is a
+multivariate Gaussian, then any of the infinitely many PCA solutions is a valid
+BSS solution.
+
+\section*{Whitening}
+Staring with any observed signal $\mathbf{X}$ it is convenient to "whiten" it by
+mapping it to its PCA latent factors:
+
+$$
+\mathbf{X} \rightarrow_{\text {whiten }}(\mathbf{X}-\boldsymbol{\mu}) \mathbf{W}_{P C A}\left(\mathbf{W}_{P C A}^{\prime} \mathbf{W}_{P C A}\right)^{-1}
+$$
+
+The transformed signal will therefore have the same first two moments as if it
+were a mean-zero independent multivariate Gaussian signal i.e.
+
+$$
+\mathbb{E}\left[\mathbf{X}_{\text {whitened }}\right]=0, \quad \operatorname{cov}\left(\mathbf{X}_{\text {whitened }}\right)=I_{p}
+$$
+
+\section*{BSS on whitened data}
+Let's assume that $\mathbf{X}$ is whitened as in (7) from now on and drop the
+subscripts for simplicity.
+
+Then, the BSS problem reduces to finding the $p$-dimensional rotation matrix
+$\mathbf{R}, \mathbf{R}^{\prime} \mathbf{R}=\mathbf{I}_{p}$ in the linear model:
+
+$$
+\mathbf{x}_{t}=\mathbf{R s}_{t} \Longleftrightarrow \mathbf{X}=\mathbf{S R}
+$$
+
+such that the latent $\mathrm{s}_{t}=\left\{s_{i, t}\right\}$ are "maximally"
+independent.
+
+What do we mean by "maximally" independent? We follow hyvarinenetal2001ica and
+present several computationally feasible quantifications of independence.
+
+\section*{Cumulants and independence I}
+Given that independence and zero covariance are equivalent for Gaussian signals,
+in which case the the BSS solutions are the non-unique PCA solutions, our only
+hope to obtain a unique BSS solution is to consider the case where the undelying
+signals $s_{i, t}$ are non-Gaussian.
+
+Since Gaussian distribution is the only distribution with zero moments beyond
+the second, we will look for independence criteria linked to higher moments.
+
+\section*{Cumulants and independence II}
+\section*{Definition}
+The moments $m_{i}$ of a univariate random variable $X$ are the Taylor
+coefficients of the Moment generating function:
+
+$$
+M_{X}(t)=\mathbb{E}\left[e^{i t X}\right]=\sum_{k=0}^{\infty} \mathbb{E}\left[X^{k}\right] \frac{(i t)^{k}}{k !}=\sum_{k=0}^{\infty} m_{k} \frac{(i t)^{k}}{k !}
+$$
+
+\section*{Definition}
+The cumulants $\kappa_{i}$ of $X$ are the Taylor coefficients of the logarithm
+of the Moment generating function:
+
+$$
+K_{X}(t)=\ln M_{X}(t)=\sum_{k=0}^{\infty} \kappa_{k} \frac{(i t)^{k}}{k !}
+$$
+
+\section*{Cumulants and independence III}
+\section*{Proposition}
+For a zero-mean r.v.:
+
+$$
+\begin{gathered}
+\kappa_{1}=m_{1}=\mathbb{E}[X], \kappa_{2}=m_{2}=\mathbb{E}\left[X^{2}\right], \kappa_{3}=m_{3}=E\left[X^{3}\right] \\
+\kappa_{4}=m_{4}-3 m_{2}=E\left[X^{4}\right]-3 E\left[X^{2}\right]
+\end{gathered}
+$$
+
+Note that for a Gaussian r.v. $\kappa_{n}=0, n \geq 3$
+
+\section*{Cumulants and independence IV}
+Proposition (Cumulant additivity under independence)
+
+If $X$ and $Y$ are independent r.v.s then
+
+$$
+\begin{gathered}
+K_{X+Y}(t)=\ln \mathbb{E}\left[e^{i t(X+Y)}\right]=\ln \mathbb{E}\left[e^{i t X} e^{i t Y}\right]= \\
+\ln \mathbb{E}\left[e^{i t X}\right]+\ln \mathbb{E}\left[e^{i t Y}\right]=K_{X}(t)+K_{Y}(t)
+\end{gathered}
+$$
+
+Proposition (Homogeneity under scaling)
+
+The $\ell$-th cumulant is homogeneous of order $\ell$ :
+
+$$
+\begin{gathered}
+\kappa_{\ell}(c X)=c^{\ell} \kappa_{\ell}(X) \text { and therefore } \\
+\kappa_{\ell}(a X+b Y)=a^{\ell} \kappa_{\ell}(X)+b^{\ell} \kappa_{\ell}(Y)
+\end{gathered}
+$$
+
+\section*{Cumulants and independence $\mathrm{V}$} Corollary
+
+$$
+\left|\kappa_{\ell}(a X+b Y)\right| \leq\left|a^{\ell}\right| \cdot\left|\kappa_{\ell}(X)\right|+\left|b^{\ell}\right| \cdot\left|\kappa_{\ell}(Y)\right|
+$$
+
+where if $a^{2}+b^{2}=1$ and $\ell>2$ equality is only achieved if either
+$a^{2}=0$ or $b^{2}=0$.
+
+Therefore a mixture of two independent r.v.'s with finite cumulants has smaller
+than or equal abs-cumulant than the abs-cumulant of each variable.
+
+The above corollary easily generalizes to higher dimensions
+
+\section*{Connection to Central Limit Theorem}
+The cumulant inequality above is somewhat related to the Central Limit Theorem
+as it shows that the abs-cumulant of a sum of r.v.'s would be smaller than the
+abs-cumulants of each of the individual r.v.'s so the sum would look more
+Gaussian.
+
+This statement is true even for r.v.'s unlike the statement of CLT which is
+valid for $N \rightarrow \infty$ assets. However an implicit assumption in the
+result above is that the cumulants of the given order $\ell \geq 3$ are finite,
+which is a stronger than the finite second moment assumption of CLT.
+
+\section*{ICA by Cumulant Optimization I}
+Basic idea
+
+\begin{enumerate}
+  \item Whiten the data, i.e. assume $\mathbf{X}$ is demeaned and
+  $\mathbf{X}^{\prime} \mathbf{X}=\mathbf{I}$. As a result the mixing matrix
+  $\mathbf{A}$ which we seek to recover is restricted to be an orthogonal
+  rotation matrix with $\mathbf{A}^{\prime} \mathbf{A}=\mathbf{I}$ and the
+  separated signal is $\mathbf{S}=\mathbf{X A}$
+
+  \item Find $\mathbf{b}_{1}^{*}=\min
+  _{\mathbf{b},|\mathbf{b}|^{2}=1}\left|\kappa_{\ell}(\mathbf{x} \cdot
+  \mathbf{b})\right|$ for any fixed $\ell \geq 3$.
+
+\end{enumerate}
+
+Typically the method uses $\ell=3,4$ corresponding to skewnessand kurtosis-ICA.
+
+\begin{itemize}
+  \item by the cumulant inequality property, $\mathbf{b}_{1}^{*}= \pm
+  \delta_{i_{1}, i}$ where $i_{1}$ is the index of the signal with maximal
+  abs-cumulant
+  \item therefore $\mathbf{x} \cdot \mathbf{b}_{1}^{*}= \pm s_{i_{1}}$ is the
+  independent signal with the maximum kurtosis up to a sign!
+\end{itemize}
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Let $\mathbf{X} \rightarrow
+  \mathbf{X}\left(\mathbf{I}-\mathbf{b}_{1}^{*} \mathbf{b}_{1}^{*
+  \prime}\right)$, i.e. project out the contribution of $s_{i_{1}}$. Repeat
+  steps 2-3 $p-1$ times
+\end{enumerate}
+
+\section*{ICA by Cumulant Optimization II}
+Note that this algorithm is similar to the Gram-Schmidt procedure of finding the
+principal components of the data (i.e. eigenvectors of the second cumulant which
+is the covariance matrix of the data).
+
+Note also that the algorithm implicitly assumes that the underlying signal is
+indeed a linear combination of independent non-Gaussian signals. This is not
+always the case (in fact for most signals it isn't). Therefore it is not
+guaranteed that the solution of this optimization procedure will produce
+independent factors.
+
+\section*{Gaussian distribution and maximal entropy}
+\section*{Definition (Differential Entropy)}
+The differential entropy of a r.v. $X$ with $p d f p(x)$ is defined as
+$H[X]=-\mathbb{E}[\ln p(X)]$.
+
+\section*{Proposition}
+Of all possible distributions of a given r.v. $X$, with a fixed mean and
+covariance, the Gaussian distribution has the largest entropy.
+
+Intuitively, this result is due to the fact that the Gaussian distribution is
+only determined by its mean and covariance and therefore is the least
+informative of all distributions of fixed mean and covariance.
+
+\section*{Negentropy and maximal non-gaussianity I}
+\section*{Corollary (Positivity of Negentropy)}
+Given a r.v. $\mathrm{x}$ with distribution $p(\mathrm{x})$ of fixed mean and
+covariance, the following quantity is always positive or zero:
+
+$$
+J[\mathrm{x}]=H\left[\mathrm{x}_{\text {gauss }}\right]-H[\mathrm{x}] \geq 0
+$$
+
+Here $\mathbf{x}_{\text {gauss }}$ is a r.v. with the same mean and covariance
+as $\mathbf{x}$
+
+Therefore maximizing non-gaussianity of $J\left[\mathbf{A}^{\prime}
+\mathbf{x}\right]$ is another way to reveal the de-mixing transformation which
+makes the data maximally non-gaussian.
+
+\section*{Negentropy and maximal non-gaussianity II}
+Negentropy is in general not known, because it requires knowledge of the
+distribution $p(\mathrm{x})$ so as to compute the entropy $H[\mathrm{x}]$.
+However, if we assume that this distribution is close to a Gaussian, we can use
+the Gram-Challier expansion and write it as (see hyvarinenetal2001ica Ch 5.52):
+
+$$
+J(x) \sim \frac{1}{12} \kappa_{3}(x)^{2}+\frac{1}{48} \kappa_{4}(x)^{2}
+$$
+
+so maximization would boil down again to maximizing abs-cumulants as before.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{2}
+  \bibitem{Bishop2006}
+  Rasmussen, et al. (2006). Gaussian Processes In Machine Learning.
+
+  \bibitem{Sheffield2007}
+  Sheffield, S. (2007). "Gaussian Free Fields for Mathematicians". In: 139 (3-4), pp. 521-541.
+\end{thebibliography}
+
+
+
+\end{document}

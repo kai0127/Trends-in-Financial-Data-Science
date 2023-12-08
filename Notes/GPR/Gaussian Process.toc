@@ -9,7 +9,7 @@
 \contentsline {subsection}{\numberline {3.4}Stationary Kernels}{5}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Bayesian Learning With GPs}{6}{section.4}%
 \contentsline {section}{\numberline {5}Model Selection and Hyperparameter Optimization}{6}{section.5}%
-\contentsline {section}{\numberline {6}Links to SVD/PCA}{7}{section.6}%
+\contentsline {section}{\numberline {6}Topic: Links to SVD/PCA}{7}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Mercer's Theorem}{7}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}The Hilbert Space of the Kernel}{7}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Karhunen-Loève (KL) Expansion}{8}{subsection.6.3}%

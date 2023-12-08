@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  6 DEC 2023 11:02
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.9.15)  8 DEC 2023 14:05
  restricted system commands enabled.
  file:line:error style messages enabled.
-**"/Users/linda/Desktop/LaTeX/Notes/GPR/Gaussian Process.tex"
-("/Users/linda/Desktop/LaTeX/Notes/GPR/Gaussian Process.tex"
+**"/Users/linda/Desktop/LaTeX/Notes/PCA/Principal Component Analysis.tex"
+("/Users/linda/Desktop/LaTeX/Notes/PCA/Principal Component Analysis.tex"
 LaTeX2e <2022-11-01> patch level 1
 Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
 Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
@@ -1154,8 +1154,8 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@erf=\skip73
 \f@nch@O@olf=\skip74
 \f@nch@O@orf=\skip75
-) ("./Gaussian Process.aux")
-\openout1 = Gaussian Process.aux
+) ("./Principal Component Analysis.aux")
+\openout1 = Principal Component Analysis.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 288.
 LaTeX Font Info:    ... okay on input line 288.
@@ -1217,10 +1217,10 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
 Package hyperref Info: Link coloring ON on input line 288.
- ("./Gaussian Process.out") ("./Gaussian Process.out")
+ ("./Principal Component Analysis.out") ("./Principal Component Analysis.out")
 \@outlinefile=\write5
 
-\openout5 = Gaussian Process.out
+\openout5 = Principal Component Analysis.out
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1269,201 +1269,62 @@ LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 11.23196pt on input line 298.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
 (Font)              scaled to size 11.23196pt on input line 298.
-("./Gaussian Process.toc"
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 8.54097pt on input line 1.
-LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 8.54097pt on input line 1.
-LaTeX Font Info:    Trying loading font information for U+msa on input line 2.
+("./Principal Component Analysis.toc")
+\tf@toc=\write6
+
+\openout6 = Principal Component Analysis.toc
+LaTeX Font Info:    Trying loading font information for U+msa on input line 315.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying loading font information for U+msb on input line 2.
+LaTeX Font Info:    Trying loading font information for U+msb on input line 315.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 6.23999pt on input line 2.
+(Font)              scaled to size 6.23999pt on input line 315.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 4.68pt on input line 2.
+(Font)              scaled to size 4.68pt on input line 315.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 6.23999pt on input line 2.
+(Font)              scaled to size 8.54097pt on input line 315.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 4.68pt on input line 2.
-)
-\tf@toc=\write6
-
-\openout6 = Gaussian Process.toc
+(Font)              scaled to size 6.23999pt on input line 315.
+LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
+(Font)              scaled to size 4.68pt on input line 315.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 9.35999pt on input line 320.
-LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 9.35999pt on input line 320.
+(Font)              scaled to size 6.23999pt on input line 347.
+LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
+(Font)              scaled to size 4.68pt on input line 347.
 LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 9.35999pt on input line 320.
+(Font)              scaled to size 7.79999pt on input line 369.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 9.35999pt on input line 320.
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 6.23999pt on input line 352.
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 4.68pt on input line 352.
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 361.
-LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 7.79999pt on input line 361.
+(Font)              scaled to size 7.79999pt on input line 369.
  [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-]
-Underfull \hbox (badness 1205) in paragraph at lines 445--454
-[]\TU/Vollkorn(0)/m/n/10.95 From the def-i-ni-tion in terms of the de-sign ma-trix, we see that when eval-u-ated on the train/test dataset, all the ker-nel ma-tri-ces
- []
-
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 500.
-[2]
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 512.
-<images/2023_11_26_5b299dbd302e8f129737g-22.jpg, id=128, 596.2275pt x 422.57875pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-22.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-22.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-22.jpg  used on input line 526.
-(luatex.def)             Requested size: 215.9586pt x 153.06319pt.
-LaTeX Font Info:    Font shape `JT3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 6.23999pt on input line 527.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 538.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 559.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 589.
-<images/2023_11_26_5b299dbd302e8f129737g-35.jpg, id=131, 642.4pt x 353.32pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-35.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-35.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-35.jpg  used on input line 596.
-(luatex.def)             Requested size: 287.9375pt x 158.36714pt.
+] [2] [3] [4]
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/m/n' will be
-(Font)              scaled to size 3.9pt on input line 597.
+(Font)              scaled to size 5.45999pt on input line 640.
 LaTeX Font Info:    Font shape `JY3/BabelStoneHan(0)/b/n' will be
-(Font)              scaled to size 3.9pt on input line 597.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 605.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 620.
- [3<./images/2023_11_26_5b299dbd302e8f129737g-22.jpg>]
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 635.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 647.
-LaTeX Font Info:    Trying loading font information for U+dsrom on input line 650.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/doublestroke/Udsrom.fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 660.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 674.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 685.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 709.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 745.
- [4<./images/2023_11_26_5b299dbd302e8f129737g-35.jpg>]
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 749.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 756.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 767.
-<images/2023_11_26_5b299dbd302e8f129737g-55.jpg, id=173, 640.3925pt x 352.31625pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-55.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-55.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-55.jpg  used on input line 811.
-(luatex.def)             Requested size: 215.9586pt x 118.80751pt.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 817.
-<images/2023_11_26_5b299dbd302e8f129737g-23.jpg, id=175, 871.255pt x 358.33875pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-23.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-23.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-23.jpg  used on input line 870.
-(luatex.def)             Requested size: 431.91722pt x 177.64342pt.
- [5<./images/2023_11_26_5b299dbd302e8f129737g-55.jpg>]
-<images/2023_11_26_5b299dbd302e8f129737g-25.jpg, id=189, 882.29625pt x 384.43625pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-25.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-25.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-25.jpg  used on input line 890.
-(luatex.def)             Requested size: 431.91722pt x 188.19356pt.
-<images/samples.png, id=190, 577.15625pt x 414.54875pt>
-File: images/samples.png Graphic file (type png)
-<use images/samples.png>
-Package luatex.def Info: images/samples.png  used on input line 903.
-(luatex.def)             Requested size: 237.55338pt x 170.62393pt.
-<images/kernel.png, id=191, 586.19pt x 446.66875pt>
-File: images/kernel.png Graphic file (type png)
-<use images/kernel.png>
-Package luatex.def Info: images/kernel.png  used on input line 909.
-(luatex.def)             Requested size: 211.42235pt x 161.10051pt.
-<images/corr.png, id=192, 359.3425pt x 316.18124pt>
-File: images/corr.png Graphic file (type png)
-<use images/corr.png>
-Package luatex.def Info: images/corr.png  used on input line 915.
-(luatex.def)             Requested size: 185.29134pt x 163.04019pt.
- [6<./images/2023_11_26_5b299dbd302e8f129737g-23.jpg><./images/2023_11_26_5b299dbd302e8f129737g-25.jpg><./images/samples.png><./images/kernel.png><./images/corr.png>]
-<images/2023_11_26_5b299dbd302e8f129737g-60.jpg, id=208, 751.80875pt x 370.38374pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-60.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-60.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-60.jpg  used on input line 952.
-(luatex.def)             Requested size: 237.55338pt x 117.03319pt.
-<images/2023_11_26_5b299dbd302e8f129737g-61.jpg, id=209, 763.85374pt x 378.41376pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-61.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-61.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-61.jpg  used on input line 958.
-(luatex.def)             Requested size: 237.55338pt x 117.68236pt.
-<images/2023_11_26_5b299dbd302e8f129737g-62.jpg, id=210, 764.8575pt x 376.40625pt>
-File: images/2023_11_26_5b299dbd302e8f129737g-62.jpg Graphic file (type jpg)
-<use images/2023_11_26_5b299dbd302e8f129737g-62.jpg>
-Package luatex.def Info: images/2023_11_26_5b299dbd302e8f129737g-62.jpg  used on input line 964.
-(luatex.def)             Requested size: 237.55338pt x 116.90297pt.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1009.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1064.
- [7<./images/2023_11_26_5b299dbd302e8f129737g-60.jpg><./images/2023_11_26_5b299dbd302e8f129737g-61.jpg><./images/2023_11_26_5b299dbd302e8f129737g-62.jpg>]
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1081.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1091.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1140.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1171.
- [8]
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1222.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1229.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1243.
-LaTeX Font Info:    Kanji font shape `JY3/BabelStoneHan(0)/m/it' undefined
-(Font)              No change on input line 1253.
- [9] [10] ("./Gaussian Process.aux")
-Package rerunfilecheck Info: File `"Gaussian Process".out' has not changed.
+(Font)              scaled to size 5.45999pt on input line 640.
+ [5] [6] [7] ("./Principal Component Analysis.aux")
+Package rerunfilecheck Info: File `"Principal Component Analysis".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 )
 
 Here is how much of LuaTeX's memory you used:
- 34225 strings out of 478285
- 305804,1977958 words of node,token memory allocated
- 2138 words of node memory still in use:
-   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 675 attribute, 63 glue_spec, 73 attribute_list, 2 write, 13 user_defined nodes
-   avail lists: 1:27,2:70439,3:513,4:794,5:1011,6:139,7:11586,8:82,9:1259,10:20,11:688
- 52801 multiletter control sequences out of 65536+600000
- 100 fonts using 212873263 bytes
- 106i,16n,128p,1829b,673s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/linda/Library/Fonts/Vollkorn-Italic.otf></Users/linda/Library/Fonts/Vollkorn-BoldItalic.otf></Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gaussian Process.pdf (10 pages, 1876943 bytes).
+ 33880 strings out of 478285
+ 156557,1977958 words of node,token memory allocated
+ 1999 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 618 attribute, 63 glue_spec, 67 attribute_list, 2 write, 12 user_defined nodes
+   avail lists: 1:43,2:39970,3:315,4:518,5:626,6:108,7:6331,8:52,9:933,10:5,11:476
+ 52604 multiletter control sequences out of 65536+600000
+ 104 fonts using 190109903 bytes
+ 106i,13n,128p,1841b,602s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/linda/Library/Fonts/Vollkorn-Regular.otf></Users/linda/Library/Fonts/Vollkorn-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Principal Component Analysis.pdf (7 pages, 183084 bytes).
 
-PDF statistics: 333 PDF objects out of 1000 (max. 8388607)
- 275 compressed objects within 3 object streams
- 84 named destinations out of 1000 (max. 131072)
- 152 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 164 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 59 named destinations out of 1000 (max. 131072)
+ 16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
