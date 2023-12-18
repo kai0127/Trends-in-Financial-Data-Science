@@ -369,8 +369,9 @@ WordSpace=1.7,
 
   \textbf{Responsibilities $\gamma_{k}(\mathbf{x})$:}
 
-  Define the responnsibility $\gamma_{k}(\mathbf{x})$ is the posterior $p(k \mid
-    \mathbf{x})$ given by the Bayes' theorem
+  Define the responsibility that component $k$ takes for `explaining' the
+    observation $\mathbf{x}$, $\gamma_{k}(\mathbf{x})$ to be the posterior $p(k
+    \mid \mathbf{x})$ given by the Bayes' theorem
   $$
     \gamma_{k}(\mathbf{x}) := p(k \mid \mathbf{x}) =\frac{p(k) p(\mathbf{x} \mid k)}{\sum_{l} p(l) p(\mathbf{x} \mid l)}                                                                                                                                 \\
     =\frac{\pi_{k} \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}_{k}, \mathbf{\Sigma}_{k}\right)}{\sum_{l} \pi_{l} \mathcal{N}\left(\mathbf{x} \mid \boldsymbol{\mu}_{l}, \mathbf{\Sigma}_{l}\right)}
@@ -530,13 +531,11 @@ Interpretation:
 \begin{itemize}
   \item $N_{k}$ is the "effective number of points" assigned to the $k$-th
         cluster; and
-
   \item The mean $\boldsymbol{\mu}_{k}$ of the $k$-th Gaussian component is a
         weighted mean of all of the points in the data set for which the weighting
         factor for the data point, $\mathbf{x}_{n}$, is given by the posterior
         probability $\gamma\left(z_{n k}\right)$ that component $k$ was responsible
         for generating $\mathbf{x}_{n}$.
-
 \end{itemize}
 
 \textbf{First-order condition for $\boldsymbol{\Sigma}_{k}$:}
